@@ -3,11 +3,14 @@ import { AppProps } from "next/app";
 import { ColorModeScript } from "@chakra-ui/react";
 import { themes } from "../configs/themes";
 import { UserProvider } from "@auth0/nextjs-auth0";
+import { RecoilRoot } from "recoil";
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <UserProvider>
     <ChakraProvider theme={{ ...theme, ...themes }}>
-      <Component {...pageProps} />
+      <RecoilRoot>
+        <Component {...pageProps} />
+      </RecoilRoot>
     </ChakraProvider>
   </UserProvider>
 );

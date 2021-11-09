@@ -5,6 +5,11 @@ export default withApiAuthRequired(function ProtectedRoute(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const session = getSession(req, res);
-  const user = session.user;
+  try {
+    const session = getSession(req, res);
+    const user = session.user;
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(400).json({ err });
+  }
 });
