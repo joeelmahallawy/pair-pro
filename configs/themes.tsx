@@ -1,6 +1,10 @@
-import { extendTheme } from "@chakra-ui/react";
+import {
+  extendTheme,
+  keyframes,
+  usePrefersReducedMotion,
+} from "@chakra-ui/react";
 
-const theme = extendTheme({
+const themes = extendTheme({
   fonts: {
     heading: {
       fontFamily: "Raleway",
@@ -16,7 +20,16 @@ const theme = extendTheme({
     bg: "transparent",
     borderRadius: "0",
     _hover: { borderBottom: "1px solid white" },
+    _focus: {},
+    _active: {},
   },
 });
 
-export default theme;
+const bounce = keyframes`
+    from { transform: translate(0px, -5px) }
+    to { transform: translate(0px, 5px); }
+  `;
+
+const bounceAnimation = `${bounce} infinite 1.5s linear`;
+
+export { themes, bounceAnimation };
