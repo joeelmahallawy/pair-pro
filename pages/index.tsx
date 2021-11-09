@@ -4,19 +4,31 @@ import {
   Center,
   Flex,
   Heading,
-  keyframes,
+  Link,
   Text,
+  Image,
   useColorMode,
-  usePrefersReducedMotion,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+  Divider,
 } from "@chakra-ui/react";
+import { useUser } from "@auth0/nextjs-auth0";
 import { IoIosArrowDown } from "react-icons/io";
 import React from "react";
 import Fade from "react-reveal/Fade";
+import { RiArrowDownSFill } from "react-icons/ri";
 
 import { bounceAnimation, themes } from "../configs/themes";
 
 const IndexPage = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const { user, error, isLoading } = useUser();
+  console.log(user);
 
   return (
     <>
@@ -46,14 +58,82 @@ const IndexPage = () => {
               </Button>
             </Flex>
             <Flex w="20%" justifyContent="flex-end">
-              <Button
-                {...themes.navButtons}
-                _hover={{ bg: "blue.600" }}
-                borderRadius={5}
-                bg="blue.500"
-              >
-                Log in
-              </Button>
+              {user ? (
+                <Box mr="20%">
+                  <Popover>
+                    {/* TODO: */}
+                    <PopoverTrigger>
+                      <Box cursor="pointer" _hover={{ color: "gray.300" }}>
+                        {/* <Link
+                      _focus={{}}
+                      display="flex"
+                      flexDir="column"
+                      href="/api/auth/logout"
+                      _hover={{}}
+                    > */}
+                        <Image
+                          src={user.picture}
+                          borderRadius="50%"
+                          boxSize="10"
+                        />
+                        <Flex fontFamily="Roboto">
+                          Me
+                          <RiArrowDownSFill fontSize="22.5" />
+                        </Flex>
+                        {/* </Link> */}
+                        {/* TODO: */}
+                      </Box>
+                    </PopoverTrigger>
+                    <PopoverContent width="250px">
+                      <PopoverArrow />
+                      <PopoverHeader fontFamily="Roboto">
+                        <Link href="/userAccount" _hover={{}}>
+                          <Center
+                            justifyContent="space-between"
+                            fontWeight="bold"
+                          >
+                            <Image
+                              w="60px"
+                              h="60px"
+                              borderRadius="50%"
+                              src={user.picture}
+                            />
+                            {user.name}
+                          </Center>
+                        </Link>
+                      </PopoverHeader>
+                      <PopoverBody>
+                        <Flex flexDir="column" justifyContent="space-around">
+                          <Link p={0.5}>Messages</Link>
+                          <Link p={0.5}>Settings</Link>
+                          <Divider />
+                          <Link _focus={{}} href="/api/auth/logout" p={0.5}>
+                            Sign out
+                          </Link>
+
+                          {/* <Button bg="blue.600" size="sm">
+                          Button
+                        </Button>
+                        <Button colorScheme="teal" size="sm">
+                          Button
+                        </Button> */}
+                        </Flex>
+                      </PopoverBody>
+                    </PopoverContent>
+                  </Popover>
+                </Box>
+              ) : (
+                <Link href="/api/auth/login" _hover={{}}>
+                  <Button
+                    {...themes.navButtons}
+                    _hover={{ bg: "blue.600" }}
+                    borderRadius={5}
+                    bg="blue.500"
+                  >
+                    Log in
+                  </Button>
+                </Link>
+              )}
             </Flex>
           </Center>
           <Center
@@ -124,3 +204,10 @@ const IndexPage = () => {
 };
 
 export default IndexPage;
+
+// import { useUser } from '@auth0/nextjs-auth0';
+
+// export default function Index() {
+
+//   if (isLoading) return <div>Loading...</div>;
+//   if (error) return <div>{error.message}</div>;
