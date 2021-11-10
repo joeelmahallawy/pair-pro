@@ -4,32 +4,23 @@ const checkFirstTime = async (
   user: object,
   setUser: (args: object) => void
 ) => {
-  // const res = await fetch("/api/mongo");
-  // const data = await res.json();
-
-  // console.log(data);
-  const userInstance = {
+  const dataToSend = {
     id: getUserId(user),
   };
-  fetch("/api/mongo", {
-    method: "POST",
-    body: JSON.stringify(userInstance),
+  // GET REQUESTS
+  const res = await fetch(`/api/mongo/`, {
+    headers: dataToSend,
   });
-  //   TODO:TODO:TODO:
-  // if()
-  //   fetch("/api/mongo", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       _id: getUserId(user),
-  //     }),
-  //   });
-  // TODO:TODO:
-  // if (!window.localStorage.getItem(getUserId(user))) {
-  //   user && window.localStorage.setItem(getUserId(user), getUserId(user));
-  //   setUser(user);
-  // }
-  // if (window.localStorage.getItem(getUserId(user))) {
-  //   setUser({ ...user, firstTime: true });
-  // }
+  const resData = await res.json();
+  console.log(`responseData:`, resData);
+
+  if (resData == {}) {
+    const userInstance = JSON.stringify(dataToSend);
+    fetch("/api/mongo", {
+      method: "POST",
+      body: userInstance,
+    });
+    // setUser(user);
+  }
 };
 export default checkFirstTime;

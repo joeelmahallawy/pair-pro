@@ -12,10 +12,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (!db) throw Error("Could not connect to database");
     const users = db.collection("users");
     // users.deleteMany({});
-    // if(req.method=='GET')
-    // if (req.method == "POST") postUserToDB(req, users);
-    const data = await req.body;
-    res.status(200).json({ ...data });
+    // users.insertOne({ data: 1 });
+    // res.json(users.findOne({ data: 1 }));
+    res.json({ data: 200 });
+    // res.json(data);
+    // if (req.method == "POST") postUserToDB(req, res, users);
+    // if (req.method == "GET") getUserFromDB(req, res, users);
   } catch (err: any) {
     res.status(404).json(err);
   }
@@ -23,14 +25,24 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 export default handler;
 
-// function getUserFromDB(req,res){
-
-// }
-async function postUserToDB(request: NextApiRequest, DB: Collection) {
-  const data = await request.body;
-  // const userId: ObjectId = request.body.id;
-  // DB.insertOne({ _id: userId });
-  DB.insertOne({ _id: data.id });
+async function getUserFromDB(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  DB: Collection
+) {
+  const id = req.headers.id;
+  const data = DB.findOne({ id });
+  res.json(DB.findOne());
+}
+// TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
+function postUserToDB(
+  request: NextApiRequest,
+  res: NextApiResponse,
+  DB: Collection
+) {
+  const data = JSON.parse(request.body);
+  DB.insertOne({ id: data.id });
+  res.json({ Status: "Success" });
 }
 
 // switch (req.method) {

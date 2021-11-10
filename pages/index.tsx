@@ -30,7 +30,7 @@ const IndexPage = () => {
   useEffect(() => {
     checkFirstTime(user, setUserData);
   }, [user]);
-
+  // console.log(data);
   return (
     <>
       <Flex flexDir="column" id="root" boxSizing="border-box">

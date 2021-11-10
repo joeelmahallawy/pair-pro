@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import logo from "../../attachments/pairpro-transparent.png";
-import { RiArrowDownSFill, RiLink } from "react-icons/ri";
+import { RiArrowDownSFill } from "react-icons/ri";
 import { useRecoilState } from "recoil";
 import { themes } from "../../configs/themes";
 import { userState } from "../../states/recoil";
@@ -39,6 +39,7 @@ const Header = () => {
       }
     };
   }
+  // console.log(`fromheader:`, userData);
 
   return (
     <Center
@@ -110,7 +111,6 @@ const Header = () => {
               {/* TODO: */}
               <PopoverTrigger>
                 <Box cursor="pointer" _hover={{ color: "gray.300" }}>
-                  {console.log(userData)}
                   <Image
                     //   @ts-expect-error
                     src={userData.picture}
