@@ -125,7 +125,6 @@ const Header = () => {
               <PopoverContent width="250px">
                 <PopoverArrow />
                 <PopoverHeader fontFamily="Roboto">
-                  {console.log(userData)}
                   <Link href={`/user/${getUserId(userData)}`}>
                     <Center justifyContent="space-between" fontWeight="bold">
                       <Image

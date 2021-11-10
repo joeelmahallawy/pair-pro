@@ -21,14 +21,21 @@ const themes = extendTheme({
     },
   },
   navButtons: {
-    size: "md",
-    fontFamily: "mono",
+    size: "lg",
+    fontFamily: "Arial",
     ml: 3,
     bg: "transparent",
     borderRadius: "0",
     _hover: { borderBottom: "1px solid white" },
     _focus: {},
     _active: {},
+  },
+  userSettingFields: {
+    alignItems: "center",
+    justifyContent: "space-between",
+    bg: "gray.800",
+    p: 3,
+    borderRadius: 10,
   },
 });
 
