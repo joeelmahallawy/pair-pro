@@ -136,8 +136,7 @@ const Header = () => {
                         src={userData.picture}
                       />
                       {/* @ts-expect-error */}
-                      {userData.name}
-                      {/* {naming(userData)} */}
+                      {userData?.name ? userData?.name : userData?.nickname}
                     </Center>
                   </Link>
                 </PopoverHeader>
