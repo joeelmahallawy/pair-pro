@@ -1,33 +1,39 @@
 import { Box, Button, Center, Flex, Heading, Text } from "@chakra-ui/react";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { IoIosArrowDown } from "react-icons/io";
 import React, { useEffect } from "react";
 import Fade from "react-reveal/Fade";
 import { bounceAnimation, themes } from "../configs/themes";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "../components/states";
 import Header from "../components/header";
+import dynamic from "next/dynamic";
+import HowItWorks from "../components/howItWorks";
 
 const IndexPage = () => {
+  const { user } = useUser();
   const [_, setUserData] = useRecoilState(userState);
-  // useEffect(() => {
-  //   setUserData(props);
-  // }, []);
+
+  useEffect(() => {
+    setUserData(user);
+  }, [user]);
 
   return (
     <>
       <Box id="root" boxSizing="border-box">
-        <Box id="home" h="100vh">
+        <Flex flexDir="column" id="home" h="100vh">
           <Header />
+
           <Center
             h="80%"
             justifyContent="space-around"
             flexDir="column"
             p={[10, 10, 10, 10, 10, 20]}
           >
-            <Box w={["50%", "50%", "60%", "70%", "80%"]}>
+            <Box w={["55%", "55%", "66%", "75%", "85%"]}>
               <Heading
                 {...themes.fonts.heading}
+                fontFamily="Arial"
                 m="0 auto 1% auto"
                 textAlign="center"
               >
@@ -56,6 +62,7 @@ const IndexPage = () => {
               fontSize="4xl"
               p={10}
               bg="orange.500"
+              fontFamily="Arial"
               _hover={{ bg: "orange.600" }}
               _active={{ bg: "orange.700" }}
               _focus={{}}
@@ -67,7 +74,6 @@ const IndexPage = () => {
             id="bouncer"
             animation={bounceAnimation}
             justifyContent="center"
-            // h="8.5vh"
           >
             <Box _hover={{ cursor: "pointer" }}>
               <Fade top big>
@@ -75,11 +81,9 @@ const IndexPage = () => {
               </Fade>
             </Box>
           </Flex>
-        </Box>
-        <Box bg="gray.900" id="how-it-works">
-          <Center p={3}>
-            <Heading>How it works</Heading>
-          </Center>
+        </Flex>
+        <Box h="100vh" bg="gray.900" id="how-it-works">
+          <HowItWorks />
         </Box>
       </Box>
     </>
@@ -88,13 +92,14 @@ const IndexPage = () => {
 
 export default IndexPage;
 
-export const getServerSideProps = withPageAuthRequired({
-  async getServerSideProps(ctx) {
-    const res = await fetch("http://localhost:3000/api/stats", {
-      headers: { Cookie: ctx.req.headers.cookie },
-    });
-    const data = await res.json();
+// export const getServerSideProps = withPageAuthRequired({
+//   async getServerSideProps(ctx) {
+//     const res = await fetch("http://localhost:3000/api/stats", {
+//       headers: { Cookie: ctx.req.headers.cookie },
+//     });
+//     const data = await res.json();
 
-    return { props: data };
-  },
-});
+//     return { props: data };
+//   },
+// });
+// export const getServerSideProps = withPageAuthRequired();

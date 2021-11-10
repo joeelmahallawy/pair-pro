@@ -14,15 +14,14 @@ import {
   PopoverBody,
 } from "@chakra-ui/react";
 import React from "react";
+import logo from "../attachments/pairpro-transparent.png";
 import { RiArrowDownSFill } from "react-icons/ri";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { themes } from "../configs/themes";
 import { userState } from "./states";
 
 const Header = () => {
-  const userData = useRecoilValue(userState);
-
-  console.log(userData);
+  const [userData] = useRecoilState(userState);
 
   return (
     <Center
@@ -32,7 +31,18 @@ const Header = () => {
       justifyContent="space-around"
       p={7}
     >
-      <Center w="35%">(LOGO HERE)</Center>
+      <Center w="35%">
+        <Center w="280px" h="40px">
+          <Link href="/" _focus={{}}>
+            <Image
+              _hover={{ cursor: "pointer" }}
+              w="240px"
+              h="180px"
+              src={logo.src}
+            />
+          </Link>
+        </Center>
+      </Center>
 
       <Flex w="40%" justifyContent="flex-end">
         <Button {...themes.navButtons}>How it works</Button>
@@ -80,6 +90,7 @@ const Header = () => {
                       />
                       {/* @ts-expect-error */}
                       {userData.name}
+                      {/* {naming(userData)} */}
                     </Center>
                   </Link>
                 </PopoverHeader>
@@ -91,13 +102,6 @@ const Header = () => {
                     <Link _focus={{}} href="/api/auth/logout" p={0.5}>
                       Sign out
                     </Link>
-
-                    {/* <Button bg="blue.600" size="sm">
-                      Button
-                    </Button>
-                    <Button colorScheme="teal" size="sm">
-                      Button
-                    </Button> */}
                   </Flex>
                 </PopoverBody>
               </PopoverContent>
