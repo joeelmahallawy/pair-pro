@@ -20,31 +20,16 @@ import Why from "../components/pageComponents/why";
 import HomePage from "../components/pageComponents/homePage";
 import { Bouncer } from "../components/animations";
 import Socials from "../components/socialLinks";
+import getUserId from "../helpers/getUserId";
+import checkFirstTime from "../helpers/checkFirstTimeUser";
 
 const IndexPage = () => {
   const { user } = useUser();
-  const [_, setUserData] = useRecoilState(userState);
+  const [data, setUserData] = useRecoilState(userState);
 
   useEffect(() => {
-    setUserData(user);
+    checkFirstTime(user, setUserData);
   }, [user]);
-
-  // if (process.browser) {
-  //   window.onscroll = () => {
-  //     if (
-  //       window.scrollY >
-  //       // @ts-expect-error
-  //       ourGoal.current?.getBoundingClientRect().top +
-  //         window.pageYOffset -
-  //         // @ts-expect-error
-  //         nav.current?.getBoundingClientRect().height / 2
-  //     ) {
-  //       setShowSticky(true);
-  //     } else {
-  //       setShowSticky(false);
-  //     }
-  //   };
-  // }
 
   return (
     <>
@@ -61,23 +46,30 @@ const IndexPage = () => {
           <Why />
         </Flex>
 
-        <Center p={20} bg="gray.900">
-          <Button
-            mt="5.5%"
-            size="md"
-            fontSize="3xl"
-            p={10}
-            bg="orange.500"
-            fontFamily="Arial"
-            _hover={{ bg: "orange.600" }}
-            _active={{ bg: "orange.700" }}
-          >
-            <Link href="/api/auth/login" _hover={{}} _focus={{}}>
-              Sign me up!
-            </Link>
-          </Button>
-        </Center>
-        <Center p={15} flexDir="column" id="footer">
+        {!data && (
+          <Center p={0} bg="gray.900">
+            <Button
+              m="10%"
+              size="md"
+              fontSize="3xl"
+              p={10}
+              bg="orange.500"
+              fontFamily="Arial"
+              _hover={{ bg: "orange.600" }}
+              _active={{ bg: "orange.700" }}
+            >
+              <Link href={"/api/auth/login"} _hover={{}} _focus={{}}>
+                Sign me up!
+              </Link>
+            </Button>
+          </Center>
+        )}
+        <Center
+          p={15}
+          flexDir="column"
+          bg={data ? "gray.900" : "gray.800"}
+          id="footer"
+        >
           <Heading mb={3} fontSize="150%">
             Collaborators
           </Heading>

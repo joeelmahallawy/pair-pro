@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { Collection, MongoClient, ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -8,16 +8,45 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     await client.connect();
     // Database name 'mydb'
-    const db = client.db("mydb");
+    const db = client.db("test");
     if (!db) throw Error("Could not connect to database");
-    // Select collection to edit
     const users = db.collection("users");
-    users.insertOne({ firstName: "John", lastName: "Doe" });
-
-    res.status(200).json(db);
+    // users.deleteMany({});
+    // if(req.method=='GET')
+    // if (req.method == "POST") postUserToDB(req, users);
+    const data = await req.body;
+    res.status(200).json({ ...data });
   } catch (err: any) {
     res.status(404).json(err);
   }
 };
 
 export default handler;
+
+// function getUserFromDB(req,res){
+
+// }
+async function postUserToDB(request: NextApiRequest, DB: Collection) {
+  const data = await request.body;
+  // const userId: ObjectId = request.body.id;
+  // DB.insertOne({ _id: userId });
+  DB.insertOne({ _id: data.id });
+}
+
+// switch (req.method) {
+//   case 'GET': {
+//       return getPosts(req, res);
+//   }
+
+//   case 'POST': {
+//       return addPost(req, res);
+//   }
+
+//   case 'PUT': {
+//       return updatePost(req, res);
+//   }
+
+//   case 'DELETE': {
+//       return deletePost(req, res);
+//   }
+// }

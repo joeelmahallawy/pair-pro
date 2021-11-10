@@ -138,7 +138,7 @@ const UserSettings = () => {
           <option value="5+">5+</option>
         </Select>
       </Center>
-      <Center p={3}>
+      <Center p={10}>
         <Button
           bg="blue.500"
           _hover={{ bg: "blue.600" }}

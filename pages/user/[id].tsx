@@ -13,15 +13,18 @@ import React, { useEffect } from "react";
 
 import { useRecoilState, useRecoilValue } from "recoil";
 import Header from "../../components/pageComponents/header";
+import TypeForm from "../../components/userComponents/firstTimeLoginForm";
 import FormValidate from "../../components/userComponents/userForm";
 import UserSettings from "../../components/userComponents/userSettings";
+import checkFirstTime from "../../helpers/checkFirstTimeUser";
+import getUserId from "../../helpers/getUserId";
 import { userState } from "../../states/recoil";
 
 const UserAccount = () => {
   const { user } = useUser();
   const [data, setData] = useRecoilState(userState);
   useEffect(() => {
-    setData(user);
+    checkFirstTime(user, setData);
   }, [user]);
 
   const router = useRouter();
@@ -44,7 +47,15 @@ const UserAccount = () => {
             overflow="auto"
           >
             {/* @ts-expect-error */}
-            {data?.name ? data?.name : data?.nickname}
+            {data?.sub?.startsWith("auth0")
+              ? // @ts-expect-error
+                data.nickname
+              : //   @ts-expect-error
+              data?.name
+              ? //   @ts-expect-error
+                data?.name
+              : //   @ts-expect-error
+                data?.nickname}
           </Text>
           <Text fontFamily="Arial" color="lightgray">
             • (CITY HERE)
@@ -53,6 +64,7 @@ const UserAccount = () => {
         {/* TODO: */}
         <Center bg="black" borderRightRadius={10} w="60%" pt={10}>
           <UserSettings />
+          {/* <TypeForm /> */}
         </Center>
         {/* <FormValidate /> */}
       </Flex>

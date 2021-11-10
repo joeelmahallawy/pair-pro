@@ -110,6 +110,7 @@ const Header = () => {
               {/* TODO: */}
               <PopoverTrigger>
                 <Box cursor="pointer" _hover={{ color: "gray.300" }}>
+                  {console.log(userData)}
                   <Image
                     //   @ts-expect-error
                     src={userData.picture}
@@ -134,8 +135,18 @@ const Header = () => {
                         //   @ts-expect-error
                         src={userData.picture}
                       />
+
                       {/* @ts-expect-error */}
-                      {userData?.name ? userData?.name : userData?.nickname}
+                      {userData?.sub?.startsWith("auth0")
+                        ? // @ts-expect-error
+                          userData.nickname
+                        : //   @ts-expect-error
+                        userData?.name
+                        ? //   @ts-expect-error
+                          userData?.name
+                        : //   @ts-expect-error
+                          userData?.nickname}
+                      {/* {userData?.name ? userData?.name : userData?.nickname} */}
                     </Center>
                   </Link>
                 </PopoverHeader>
