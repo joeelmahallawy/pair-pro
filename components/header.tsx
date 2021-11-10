@@ -13,20 +13,41 @@ import {
   PopoverHeader,
   PopoverBody,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useRef, useState } from "react";
 import logo from "../attachments/pairpro-transparent.png";
 import { RiArrowDownSFill } from "react-icons/ri";
 import { useRecoilState } from "recoil";
 import { themes } from "../configs/themes";
 import { userState } from "../states/recoil";
+import { Link as LinkScroll, animateScroll as scroll } from "react-scroll";
 
 const Header = () => {
   const [userData] = useRecoilState(userState);
+  const header = useRef();
+  const [headerSticky, setHeaderSticky] = useState(false);
+  if (process.browser) {
+    window.onscroll = () => {
+      if (
+        window.innerHeight - window.pageYOffset <=
+        // @ts-expect-error
+        header.current?.getBoundingClientRect().height
+      ) {
+        setHeaderSticky(true);
+      } else {
+        setHeaderSticky(false);
+      }
+    };
+  }
 
   return (
     <Center
+      position={headerSticky ? "fixed" : null}
+      top={headerSticky ? 0 : null}
+      width={headerSticky ? "100%" : null}
+      bg={headerSticky ? "rgb(23, 25, 35,.75)" : null}
+      ref={header}
       h="11.5v%"
-      boxShadow="0 0px 5px 2px rgb(217, 218, 217)"
+      boxShadow="0 0px 3px 1px rgb(217, 218, 217)"
       id="header"
       justifyContent="space-around"
       p={7}
@@ -45,8 +66,29 @@ const Header = () => {
       </Center>
 
       <Flex w="40%" justifyContent="flex-end">
-        <Button {...themes.navButtons}>How it works</Button>
-        <Button {...themes.navButtons}>Why</Button>
+        <Button {...themes.navButtons}>
+          {/* <Link href="#how-it-works">How it works</Link> */}
+          <LinkScroll
+            to="how-it-works"
+            smooth={true}
+            // @ts-expect-error
+            offset={-header.current?.getBoundingClientRect().height}
+            duration={500}
+          >
+            How it works
+          </LinkScroll>
+        </Button>
+        <Button {...themes.navButtons}>
+          <LinkScroll
+            to="why"
+            smooth={true}
+            // @ts-expect-error
+            offset={-header.current?.getBoundingClientRect().height}
+            duration={500}
+          >
+            Why
+          </LinkScroll>
+        </Button>
         <Button
           {...themes.navButtons}
           bg="orange.500"
@@ -54,7 +96,9 @@ const Header = () => {
           borderRadius={5}
           _hover={{ bg: "orange.600" }}
         >
-          Pair me
+          <Link href="/api/auth/login" _hover={{}} _focus={{}}>
+            Pair me
+          </Link>
         </Button>
       </Flex>
       <Flex w="20%" justifyContent="flex-end">

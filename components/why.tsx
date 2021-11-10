@@ -1,19 +1,24 @@
-import { Center, Heading, Box, Text, Image, Flex } from "@chakra-ui/react";
-import React from "react";
+import {
+  Center,
+  Heading,
+  Box,
+  Text,
+  Image,
+  Flex,
+  Button,
+} from "@chakra-ui/react";
+import React, { useRef } from "react";
 import { themes } from "../configs/themes";
 import LaptopPic from "../attachments/laptop.jpeg";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 const Why = () => {
   return (
-    <Center p={10} justifyContent="space-around" w="100%" bg="red">
-      <Image w="30%" h="100%" src={LaptopPic.src} />
-      <Center
-        textAlign="center"
-        flexDir="column"
-        id="why-its-good"
-        w="50%"
-        p={10}
-      >
+    <Center p={10} justifyContent="space-around" w="100%">
+      <Box w="30%">
+        <Image h="100%" src={LaptopPic.src} />
+      </Box>
+      <Center textAlign="center" flexDir="column" w="50%" p={10}>
         <Heading {...themes.fonts.titles}>Why?</Heading>
         <Text fontFamily="Arial">
           Pair programming has many advantages – not only do you accomplish more

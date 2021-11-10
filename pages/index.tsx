@@ -1,4 +1,12 @@
-import { Box, Button, Center, Flex, Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Heading,
+  Link,
+  Text,
+} from "@chakra-ui/react";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { IoIosArrowDown } from "react-icons/io";
 import React, { useEffect } from "react";
@@ -21,6 +29,23 @@ const IndexPage = () => {
     setUserData(user);
   }, [user]);
 
+  // if (process.browser) {
+  //   window.onscroll = () => {
+  //     if (
+  //       window.scrollY >
+  //       // @ts-expect-error
+  //       ourGoal.current?.getBoundingClientRect().top +
+  //         window.pageYOffset -
+  //         // @ts-expect-error
+  //         nav.current?.getBoundingClientRect().height / 2
+  //     ) {
+  //       setShowSticky(true);
+  //     } else {
+  //       setShowSticky(false);
+  //     }
+  //   };
+  // }
+
   return (
     <>
       <Flex flexDir="column" id="root" boxSizing="border-box">
@@ -29,11 +54,37 @@ const IndexPage = () => {
           <HomePage />
           <Bouncer />
         </Flex>
-        <Flex h="80vh" bg="gray.900" id="how-it-works">
+        <Flex h="85vh" bg="gray.900" id="how-it-works">
           <HowItWorks />
         </Flex>
-        <Flex h="70vh" bg="gray.800" id="why">
+        <Flex h="75vh" bg="gray.800" id="why">
           <Why />
+        </Flex>
+
+        <Center p={20} bg="gray.900">
+          <Button
+            mt="5.5%"
+            size="md"
+            fontSize="3xl"
+            p={10}
+            bg="orange.500"
+            fontFamily="Arial"
+            _hover={{ bg: "orange.600" }}
+            _active={{ bg: "orange.700" }}
+          >
+            <Link href="/api/auth/login" _hover={{}} _focus={{}}>
+              Sign me up!
+            </Link>
+          </Button>
+        </Center>
+        <Flex
+          justifyContent="flex-end"
+          p={10}
+          h="11.5vh"
+          bg="gray.500"
+          id="footer"
+        >
+          Collaborators
         </Flex>
       </Flex>
     </>
