@@ -1,7 +1,7 @@
 import { Center, Box, Heading, Text, Button } from "@chakra-ui/react";
 
 import React from "react";
-import { themes } from "../configs/themes";
+import { themes } from "../../configs/themes";
 
 const HomePage = () => {
   return (

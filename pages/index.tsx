@@ -5,21 +5,21 @@ import {
   Flex,
   Heading,
   Link,
+  Image,
   Text,
 } from "@chakra-ui/react";
-import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { IoIosArrowDown } from "react-icons/io";
+import { useUser } from "@auth0/nextjs-auth0";
+import WashingtonPic from "../attachments/washington_pic.jpeg";
+import YosemitePic from "../attachments/yosemite_compressed.jpeg";
 import React, { useEffect } from "react";
-import Fade from "react-reveal/Fade";
-import { bounceAnimation, themes } from "../configs/themes";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { userState } from "../states/recoil";
-import Header from "../components/header";
-import dynamic from "next/dynamic";
-import HowItWorks from "../components/howItWorks";
-import Why from "../components/why";
-import HomePage from "../components/homePage";
+import Header from "../components/pageComponents/header";
+import HowItWorks from "../components/pageComponents/howItWorks";
+import Why from "../components/pageComponents/why";
+import HomePage from "../components/pageComponents/homePage";
 import { Bouncer } from "../components/animations";
+import Socials from "../components/socialLinks";
 
 const IndexPage = () => {
   const { user } = useUser();
@@ -77,15 +77,39 @@ const IndexPage = () => {
             </Link>
           </Button>
         </Center>
-        <Flex
-          justifyContent="flex-end"
+        <Center p={15} flexDir="column" id="footer">
+          <Heading mb={3} fontSize="150%">
+            Collaborators
+          </Heading>
+          <Center bg="gray.700" p={5} flexDir="column" id="contact-card">
+            <Image
+              w="160px"
+              h="140px"
+              borderRadius="50%"
+              src={YosemitePic.src}
+            />
+            {/* TODO: */}
+
+            <Center flexDir="column">
+              <Text fontWeight="500" fontFamily="Roboto">
+                Youssef El Mahallawy
+              </Text>
+              <Socials
+                linkedIn={"https://www.linkedin.com/in/youssefelmahallawy"}
+                gitHub={"https://github.com/joeelmahallawy"}
+              />
+            </Center>
+          </Center>
+        </Center>
+        <Center
+          // justifyContent="flex-end"
           p={10}
           h="11.5vh"
           bg="gray.500"
           id="footer"
         >
-          Collaborators
-        </Flex>
+          Copyright
+        </Center>
       </Flex>
     </>
   );

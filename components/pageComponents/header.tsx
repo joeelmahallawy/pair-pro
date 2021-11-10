@@ -14,12 +14,13 @@ import {
   PopoverBody,
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
-import logo from "../attachments/pairpro-transparent.png";
-import { RiArrowDownSFill } from "react-icons/ri";
+import logo from "../../attachments/pairpro-transparent.png";
+import { RiArrowDownSFill, RiLink } from "react-icons/ri";
 import { useRecoilState } from "recoil";
-import { themes } from "../configs/themes";
-import { userState } from "../states/recoil";
+import { themes } from "../../configs/themes";
+import { userState } from "../../states/recoil";
 import { Link as LinkScroll, animateScroll as scroll } from "react-scroll";
+import getUserId from "../../helpers/getUserId";
 
 const Header = () => {
   const [userData] = useRecoilState(userState);
@@ -64,20 +65,20 @@ const Header = () => {
           </Link>
         </Center>
       </Center>
-
       <Flex w="40%" justifyContent="flex-end">
         <Button {...themes.navButtons}>
-          {/* <Link href="#how-it-works">How it works</Link> */}
           <LinkScroll
             to="how-it-works"
             smooth={true}
             // @ts-expect-error
             offset={-header.current?.getBoundingClientRect().height}
             duration={500}
+            // suppressHydrationWarning
           >
             How it works
           </LinkScroll>
         </Button>
+
         <Button {...themes.navButtons}>
           <LinkScroll
             to="why"
@@ -89,6 +90,7 @@ const Header = () => {
             Why
           </LinkScroll>
         </Button>
+
         <Button
           {...themes.navButtons}
           bg="orange.500"
@@ -123,7 +125,8 @@ const Header = () => {
               <PopoverContent width="250px">
                 <PopoverArrow />
                 <PopoverHeader fontFamily="Roboto">
-                  <Link href="/userAccount" _hover={{}}>
+                  {console.log(userData)}
+                  <Link href={`/user/${getUserId(userData)}`}>
                     <Center justifyContent="space-between" fontWeight="bold">
                       <Image
                         w="60px"
