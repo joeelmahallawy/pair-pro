@@ -12,6 +12,13 @@ const themes = extendTheme({
       fontWeight: "bold",
     },
     body: "Raleway",
+    titles: {
+      mb: 8,
+      fontSize: "3em",
+      textDecor: "underline",
+      textUnderlineOffset: "20%",
+      fontFamily: "Roboto",
+    },
   },
   navButtons: {
     size: "md",

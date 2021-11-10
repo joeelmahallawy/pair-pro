@@ -18,7 +18,7 @@ import logo from "../attachments/pairpro-transparent.png";
 import { RiArrowDownSFill } from "react-icons/ri";
 import { useRecoilState } from "recoil";
 import { themes } from "../configs/themes";
-import { userState } from "./states";
+import { userState } from "../states/recoil";
 
 const Header = () => {
   const [userData] = useRecoilState(userState);

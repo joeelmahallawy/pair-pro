@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 
 import { useRecoilState, useRecoilValue } from "recoil";
 import Header from "../components/header";
-import { userState } from "../components/states";
+import { userState } from "../states/recoil";
 
 const UserAccount = () => {
   const { user } = useUser();
