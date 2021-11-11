@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Center,
   Flex,
@@ -7,14 +6,9 @@ import {
   Link,
   Image,
   Text,
-  useColorMode,
 } from "@chakra-ui/react";
-import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
-import WashingtonPic from "../attachments/washington_pic.jpeg";
 import YosemitePic from "../attachments/yosemite_compressed.jpeg";
 import React, { useEffect } from "react";
-import { useRecoilState } from "recoil";
-import { userInfo, firstLogin } from "../states/recoil";
 import Header from "../components/pageComponents/header";
 import HowItWorks from "../components/pageComponents/howItWorks";
 import Why from "../components/pageComponents/why";
@@ -22,16 +16,18 @@ import HomePage from "../components/pageComponents/homePage";
 import { Bouncer } from "../components/animations";
 import Socials from "../components/socialLinks";
 import getUserId from "../helpers/getUserId";
-import firstTimeUser from "../helpers/firstTimeUser";
 
-const IndexPage = ({ user }: any) => {
-  console.log(user);
-  const [data, setUserData] = useRecoilState(userInfo);
+const IndexPage = (user) => {
   useEffect(() => {
-    setUserData(user);
-  }, [user]);
-  console.log(`DATA:`, data);
-
+    if (user.error != "not_authenticated") {
+      if (!window.localStorage.getItem(getUserId(user))) {
+        window.localStorage.setItem(getUserId(user), getUserId(user));
+        // window.location = "http://localhost:3000/settings";
+        window.location.pathname = "initLogin";
+      }
+    } else user = null;
+  }, []);
+  // console.log(window.location.pathname);
   return (
     <>
       {/* <Button
@@ -41,9 +37,14 @@ const IndexPage = ({ user }: any) => {
       >
         togle
       </Button> */}
-      <Flex flexDir="column" id="root" boxSizing="border-box">
+      <Flex
+        flexDir="column"
+        id="root"
+        // bg="#13111c"
+        boxSizing="border-box"
+      >
         <Flex flexDir="column" id="home" h="100vh">
-          <Header />
+          <Header user={user} />
           <HomePage />
           <Bouncer />
         </Flex>
@@ -54,7 +55,7 @@ const IndexPage = ({ user }: any) => {
           <Why />
         </Flex>
 
-        {!data && (
+        {!user && (
           <Center p={0} bg="gray.900">
             <Button
               m="10%"
@@ -75,7 +76,7 @@ const IndexPage = ({ user }: any) => {
         <Center
           p={15}
           flexDir="column"
-          bg={data ? "gray.900" : "gray.800"}
+          bg={user ? "gray.900" : "gray.800"}
           id="footer"
         >
           <Heading mb={3} fontSize="150%">
@@ -117,13 +118,28 @@ const IndexPage = ({ user }: any) => {
 
 export default IndexPage;
 
-export const getServerSideProps = withPageAuthRequired({
-  async getServerSideProps(ctx) {
+// export const getServerSideProps = withPageAuthRequired({
+//   async getServerSideProps(ctx) {
+//     const res = await fetch("http://localhost:3000/api/stats", {
+//       headers: { Cookie: ctx.req.headers.cookie },
+//     });
+//     console.log(res.ok);
+//     const user = await res.json();
+
+//     return { props: user };
+//   },
+// });
+
+export const getServerSideProps = async (ctx) => {
+  try {
     const res = await fetch("http://localhost:3000/api/stats", {
       headers: { Cookie: ctx.req.headers.cookie },
     });
+    console.log(res);
     const user = await res.json();
 
     return { props: user };
-  },
-});
+  } catch (err) {
+    return {};
+  }
+};

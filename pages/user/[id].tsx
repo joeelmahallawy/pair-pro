@@ -15,33 +15,16 @@ import Header from "../../components/pageComponents/header";
 import TypeForm from "../../components/userComponents/firstTimeLoginForm";
 import FormValidate from "../../components/userComponents/userForm";
 import UserSettings from "../../components/userComponents/userSettings";
-import firstTimeUser from "../../helpers/firstTimeUser";
+
 import getUserId from "../../helpers/getUserId";
 import { userInfo, firstLogin } from "../../states/recoil";
 
-const UserAccount = () => {
-  const { user } = useUser();
-  const [data, setData] = useRecoilStateLoadable(userInfo);
-
-  //   const [data, setData] = useRecoilState(userInfo);
-  const [firstLog, setfirstLog] = useRecoilState(firstLogin);
-
-  useEffect(() => {
-    firstTimeUser(user, setfirstLog, setData);
-    if (firstLog && process.browser) {
-      console.log("hi");
-      window.location = "http://localhost:3000/settings";
-    } else {
-      console.log("NOT your first time logging in");
-    }
-    // if (process.browser) {
-    //   console.log(window.location.href);
-    // }
-  }, [user]);
+const UserAccount = ({ user }) => {
+  useEffect(() => {}, [user]);
 
   return (
     <>
-      <Header />
+      <Header user={user} />
       <Flex bg="gray.900" m="0 auto" mt={10} borderRadius={10} w="80vw">
         <Center w="40%" flexDir="column">
           <Box w="82.5%" borderRadius="50%">
@@ -80,4 +63,15 @@ const UserAccount = () => {
   );
 };
 export default UserAccount;
-export const getServerSideProps = withPageAuthRequired();
+
+export const getServerSideProps = withPageAuthRequired({
+  async getServerSideProps(ctx) {
+    const res = await fetch("http://localhost:3000/api/stats", {
+      headers: { Cookie: ctx.req.headers.cookie },
+    });
+    const user = await res.json();
+    return { props: user };
+  },
+});
+
+// export const getServerSideProps = withPageAuthRequired();

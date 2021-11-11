@@ -11,7 +11,11 @@ const TypeForm = () => {
     // <Sidetab id="<form-id>" buttonText="click to open" />
     <Widget
       id="PbGrnsxz"
-      style={{ width: "100%", height: "100%" }}
+      //   https://f1n3e2z1bc4.typeform.com/to/PbGrnsxz
+      style={{
+        width: "100%",
+        height: "100%",
+      }}
       //   className="my-form"
     />
 
@@ -23,3 +27,5 @@ const TypeForm = () => {
   );
 };
 export default TypeForm;
+
+//KEY= 9RJUmjFbkTvDS67sT3zJvW6WZhKt9j7NRPfKg2RTDKb2

@@ -4,15 +4,13 @@ import { ColorModeScript } from "@chakra-ui/react";
 import { themes } from "../configs/themes";
 import { UserProvider } from "@auth0/nextjs-auth0";
 import { RecoilRoot } from "recoil";
-import React, { Suspense } from "react";
+import React from "react";
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <UserProvider>
     <ChakraProvider theme={{ ...theme, ...themes }}>
       <RecoilRoot>
-        <Suspense fallback="loading...">
-          <Component {...pageProps} />
-        </Suspense>
+        <Component {...pageProps} />
       </RecoilRoot>
     </ChakraProvider>
   </UserProvider>

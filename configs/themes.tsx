@@ -37,6 +37,7 @@ const themes = extendTheme({
     p: 3,
     borderRadius: 10,
   },
+  railwayBg: "#13111c",
 });
 
 const bounce = keyframes`

@@ -22,9 +22,7 @@ import { userInfo } from "../../states/recoil";
 import { Link as LinkScroll, animateScroll as scroll } from "react-scroll";
 import getUserId from "../../helpers/getUserId";
 
-const Header = () => {
-  const [userData] = useRecoilState(userInfo);
-
+const Header = ({ user }) => {
   const header = useRef();
   const [headerSticky, setHeaderSticky] = useState(false);
   if (process.browser) {
@@ -105,18 +103,13 @@ const Header = () => {
         </Button>
       </Flex>
       <Flex w="20%" justifyContent="flex-end">
-        {userData ? (
+        {user ? (
           <Box mr="20%">
             <Popover>
               {/* TODO: */}
               <PopoverTrigger>
                 <Box cursor="pointer" _hover={{ color: "gray.300" }}>
-                  <Image
-                    //   @ts-expect-error
-                    src={userData.picture}
-                    borderRadius="50%"
-                    boxSize="10"
-                  />
+                  <Image src={user.picture} borderRadius="50%" boxSize="10" />
                   <Flex fontFamily="Roboto">
                     Me
                     <RiArrowDownSFill fontSize="22.5" />
@@ -126,28 +119,20 @@ const Header = () => {
               <PopoverContent width="250px">
                 <PopoverArrow />
                 <PopoverHeader fontFamily="Roboto">
-                  <Link href={`/user/${getUserId(userData)}`}>
+                  <Link href={`/user/${getUserId(user)}`}>
                     <Center justifyContent="space-between" fontWeight="bold">
                       <Image
                         w="60px"
                         h="60px"
                         borderRadius="50%"
-                        //   @ts-expect-error
-                        src={userData.picture}
+                        src={user.picture}
                       />
 
-                      {/* @ts-expect-error */}
-
-                      {userData && userData?.sub?.startsWith("auth0")
-                        ? // @ts-expect-error
-                          userData.nickname
-                        : //   @ts-expect-error
-                        userData?.name
-                        ? //   @ts-expect-error
-                          userData?.name
-                        : //   @ts-expect-error
-                          userData?.nickname}
-                      {/* {userData?.name ? userData?.name : userData?.nickname} */}
+                      {user && user?.sub?.startsWith("auth0")
+                        ? user.nickname
+                        : user?.name
+                        ? user?.name
+                        : user?.nickname}
                     </Center>
                   </Link>
                 </PopoverHeader>
