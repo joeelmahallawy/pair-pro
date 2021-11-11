@@ -11,7 +11,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const db = client.db("test");
     if (!db) throw Error("Could not connect to database");
     const users = db.collection("users");
-    users.deleteMany({});
+    // users.deleteMany({});
+
     if (req.method === "POST") postUserToDB(req, res, users);
     if (req.method === "GET") getUserFromDB(req, res, users);
   } catch (err: any) {
@@ -26,9 +27,8 @@ async function getUserFromDB(
   res: NextApiResponse,
   DB: Collection
 ) {
-  const id = req.headers.id;
-  const data = DB.findOne({ id });
-  res.json(data);
+  const data = await DB.findOne({ _id: req.headers._id });
+  res.json({ data });
 }
 // TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
 function postUserToDB(
@@ -37,8 +37,8 @@ function postUserToDB(
   DB: Collection
 ) {
   const data = JSON.parse(request.body);
-  DB.insertOne({ ...data });
-  // res.json({ Status: "Success" });
+  DB.insertOne({ ...data, bare: 1 });
+  res.json({ Status: "Success" });
 }
 
 // switch (req.method) {

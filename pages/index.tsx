@@ -22,15 +22,15 @@ import { Bouncer } from "../components/animations";
 import Socials from "../components/socialLinks";
 import getUserId from "../helpers/getUserId";
 import checkFirstTime from "../helpers/checkFirstTimeUser";
+import { useRouter } from "next/dist/client/router";
 
 const IndexPage = () => {
   const { user } = useUser();
   const [data, setUserData] = useRecoilState(userState);
-
   useEffect(() => {
-    checkFirstTime(user, setUserData);
+    checkFirstTime(getUserId(user), setUserData);
   }, [user]);
-  console.log(data);
+
   return (
     <>
       <Flex flexDir="column" id="root" boxSizing="border-box">

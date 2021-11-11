@@ -23,12 +23,12 @@ import { userState } from "../../states/recoil";
 const UserAccount = () => {
   const { user } = useUser();
   const [data, setData] = useRecoilState(userState);
-  useEffect(() => {
-    checkFirstTime(user, setData);
-  }, [user]);
+  //   const { id } = useRouter().query;
 
-  const router = useRouter();
-  const { id } = router.query;
+  //   const { id } = router.query;
+  useEffect(() => {
+    checkFirstTime(getUserId(user), setData);
+  }, [user]);
 
   return (
     <>
