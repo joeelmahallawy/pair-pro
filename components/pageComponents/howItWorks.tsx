@@ -5,7 +5,6 @@ import { themes } from "../../configs/themes";
 
 const HowItWorks = () => {
   return (
-    // <Center p={10} flexDir="column">
     <Center id="why-its-good" w="90%" justifyContent="space-between" p={10}>
       <Box w="70%" textAlign="center" p={5}>
         <Heading {...themes.fonts.titles}>How it works</Heading>

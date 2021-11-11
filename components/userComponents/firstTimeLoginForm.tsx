@@ -1,31 +1,53 @@
 import { Widget, PopupButton, Sidetab } from "@typeform/embed-react";
+import { createSlider } from "@typeform/embed";
+import "@typeform/embed/build/css/popup.css";
+import React, { useState } from "react";
+import { Button } from "@chakra-ui/react";
+import DynamicFormGenerator from "react-interactive-dynamic-form-generator";
+import getUserId from "../../helpers/getUserId";
 
-const TypeForm = () => {
+const TypeForm = ({ user }) => {
+  const [showForm, setShowForm] = useState(true);
+  console.log(user);
   return (
-    // <div data-tf-widget="PbGrnsxz" style="width:100%;height:600px;"></div>
-
-    // <script src="//embed.typeform.com/next/embed.js"></script>
-    // <PopupButton id="<form-id>" style={{ fontSize: 20 }} className="my-button">
-    //   click to open form in popup
-    // </PopupButton>
-    // <Sidetab id="<form-id>" buttonText="click to open" />
-    <Widget
-      id="PbGrnsxz"
-      //   https://f1n3e2z1bc4.typeform.com/to/PbGrnsxz
-      style={{
-        width: "100%",
-        height: "100%",
-      }}
-      //   className="my-form"
-    />
-
-    // <Widget
-    //   id="<form-id>"
-    //   style={{ width: "100%", height: "100%" }}
-    //   className="my-form"
-    // />
+    <>
+      {/* <Button
+        onClick={async (e) => {
+          const res = await fetch("/api/mongo", {
+            headers: {
+              Accept: "application/json",
+              userID: getUserId(user),
+            },
+          });
+          const data = await res.json();
+          setShowForm(false);
+          //   console.log(data);
+        }}
+      >
+        Click me for data!
+      </Button> */}
+      {showForm ? (
+        <Widget
+          id="Y2VtM1jQ"
+          style={{
+            width: "100%",
+            height: "100%",
+          }}
+          onSubmit={async (e) => {
+            const res = await fetch("/api/typeform");
+            const data = await res.json();
+            setShowForm(false);
+            console.log(data);
+          }}
+        />
+      ) : (
+        (window.location.pathname = "/")
+      )}
+    </>
   );
 };
 export default TypeForm;
 
 //KEY= 9RJUmjFbkTvDS67sT3zJvW6WZhKt9j7NRPfKg2RTDKb2
+
+//TOKEN: tfp_G5bR4u16DKazhxfLkiWmTFJTrFHc4Vr9f3zAKwaFwed4_3pc4pAfnGPS2UF

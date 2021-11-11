@@ -16,13 +16,13 @@ import {
 import React, { useRef, useState } from "react";
 import logo from "../../attachments/pairpro-transparent.png";
 import { RiArrowDownSFill } from "react-icons/ri";
-import { useRecoilState } from "recoil";
 import { themes } from "../../configs/themes";
-import { userInfo } from "../../states/recoil";
 import { Link as LinkScroll, animateScroll as scroll } from "react-scroll";
 import getUserId from "../../helpers/getUserId";
 
 const Header = ({ user }) => {
+  if (user.error == "not_authenticated") user = null;
+
   const header = useRef();
   const [headerSticky, setHeaderSticky] = useState(false);
   if (process.browser) {

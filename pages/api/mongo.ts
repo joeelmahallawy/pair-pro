@@ -1,5 +1,6 @@
 import { Collection, MongoClient, ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
+import getPostsThenStoreToDB from "../../helpers/api/getPostsStoreToDB";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -11,50 +12,25 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const db = client.db("test");
     if (!db) throw Error("Could not connect to database");
     const users = db.collection("users");
+    // Fetch posts from typeform API then store it to MongoDB
     // users.deleteMany({});
+    getPostsThenStoreToDB(req, res, users);
 
-    if (req.method === "POST") postUserToDB(req, res, users);
-    if (req.method === "GET") getUserFromDB(req, res, users);
+    // if (req.method === "POST")
+    // if (req.method === "GET") getUserFromDB(req, res, users);
   } catch (err: any) {
-    res.status(404).json(err);
+    res.status(404).json({ err });
   }
 };
 
 export default handler;
 
-async function getUserFromDB(
-  req: NextApiRequest,
-  res: NextApiResponse,
-  DB: Collection
-) {
-  const data = await DB.findOne({ _id: req.headers._id });
-  res.json({ ...data });
-}
-// TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
-function postUserToDB(
-  request: NextApiRequest,
-  res: NextApiResponse,
-  DB: Collection
-) {
-  const data = JSON.parse(request.body);
-  DB.insertOne({ _id: data._id, bare: 1 });
-  res.json({ Status: "Success" });
-}
-
-// switch (req.method) {
-//   case 'GET': {
-//       return getPosts(req, res);
-//   }
-
-//   case 'POST': {
-//       return addPost(req, res);
-//   }
-
-//   case 'PUT': {
-//       return updatePost(req, res);
-//   }
-
-//   case 'DELETE': {
-//       return deletePost(req, res);
-//   }
+// async function getUserFromDB(
+//   req: NextApiRequest,
+//   res: NextApiResponse,
+//   DB: Collection
+// ) {
+//   // const data = await DB.findOne({ _id: req.headers._id });
+//   res.json({ data: 1 });
 // }
+// TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:

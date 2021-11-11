@@ -1,35 +1,17 @@
-import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
-import {
-  Box,
-  Button,
-  Text,
-  Center,
-  Flex,
-  Heading,
-  Image,
-} from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-
-import { useRecoilState, useRecoilStateLoadable, useRecoilValue } from "recoil";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { Box, Text, Center, Flex, Image } from "@chakra-ui/react";
+import React from "react";
 import Header from "../../components/pageComponents/header";
-import TypeForm from "../../components/userComponents/firstTimeLoginForm";
-import FormValidate from "../../components/userComponents/userForm";
 import UserSettings from "../../components/userComponents/userSettings";
 
-import getUserId from "../../helpers/getUserId";
-import { userInfo, firstLogin } from "../../states/recoil";
-
 const UserAccount = ({ user }) => {
-  useEffect(() => {}, [user]);
-
   return (
     <>
       <Header user={user} />
       <Flex bg="gray.900" m="0 auto" mt={10} borderRadius={10} w="80vw">
         <Center w="40%" flexDir="column">
           <Box w="82.5%" borderRadius="50%">
-            {/* @ts-expect-error */}
-            <Image w="100%" h="100%" borderRadius="50%" src={data?.picture} />
+            <Image w="100%" h="100%" borderRadius="50%" src={user?.picture} />
           </Box>
           <Text
             fontSize="200%"
@@ -37,16 +19,11 @@ const UserAccount = ({ user }) => {
             fontFamily="Arial"
             overflow="auto"
           >
-            {/* @ts-expect-error */}
-            {data?.sub?.startsWith("auth0")
-              ? // @ts-expect-error
-                data.nickname
-              : //   @ts-expect-error
-              data?.name
-              ? //   @ts-expect-error
-                data?.name
-              : //   @ts-expect-error
-                data?.nickname}
+            {user?.sub?.startsWith("auth0")
+              ? user.nickname
+              : user?.name
+              ? user?.name
+              : user?.nickname}
           </Text>
           <Text fontFamily="Arial" color="lightgray">
             • (CITY HERE)
@@ -54,10 +31,8 @@ const UserAccount = ({ user }) => {
         </Center>
         {/* TODO: */}
         <Center bg="black" borderRightRadius={10} w="60%" pt={10}>
-          <UserSettings />
-          {/* <TypeForm /> */}
+          <UserSettings user={user} />
         </Center>
-        {/* <FormValidate /> */}
       </Flex>
     </>
   );
@@ -73,5 +48,3 @@ export const getServerSideProps = withPageAuthRequired({
     return { props: user };
   },
 });
-
-// export const getServerSideProps = withPageAuthRequired();

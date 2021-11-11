@@ -1,36 +1,17 @@
-import {
-  Center,
-  Text,
-  Box,
-  Select,
-  Flex,
-  Input,
-  Button,
-} from "@chakra-ui/react";
+import { Center, Text, Box, Select, Button } from "@chakra-ui/react";
 import { Editable, EditableInput, EditablePreview } from "@chakra-ui/editable";
-import React, { useEffect, useState } from "react";
-import { useUser } from "@auth0/nextjs-auth0";
-import { useRecoilState } from "recoil";
-import { userState } from "../../states/recoil";
+import React from "react";
 import EditableControls from "../editableControls";
 import { themes } from "../../configs/themes";
 
-const UserSettings = () => {
-  const { user } = useUser();
-  const [data, setData] = useRecoilState(userState);
-  const [state, setstate] = useState({ fullName: user?.name });
-  useEffect(() => {
-    setData(user);
-  }, [user]);
-
-  return data ? (
+const UserSettings = ({ user }) => {
+  return user ? (
     <Box w="85%" p={5} fontFamily="Arial">
       <Editable
         p={3}
         fontSize="xl"
         textAlign="left"
-        // @ts-expect-error
-        defaultValue={data?.name}
+        defaultValue={user?.name}
         isPreviewFocusable={false}
       >
         <Center {...themes.userSettingFields} bg="gray.700">
@@ -44,8 +25,7 @@ const UserSettings = () => {
         p={3}
         fontSize="xl"
         textAlign="left"
-        // @ts-expect-error
-        defaultValue={data?.nickname}
+        defaultValue={user?.nickname}
         isPreviewFocusable={false}
       >
         <Center {...themes.userSettingFields} bg="gray.700">
@@ -65,8 +45,6 @@ const UserSettings = () => {
         <Center {...themes.userSettingFields} bg="gray.700">
           <Text mr={3}>Language(s):</Text>
           <EditablePreview p={3} maxW="50%" />
-          {/* <EditableInput placeholder="Javascript" /> */}
-          {/* <EditableInput bg="white" _focus={{}} color="black" /> */}
           <EditableInput as="textarea" color="black" bg="white" />
           <EditableControls />
         </Center>
@@ -144,8 +122,6 @@ const UserSettings = () => {
           _hover={{ bg: "blue.600" }}
           _active={{ bg: "blue.700" }}
           _focus={{}}
-          //   isLoading
-          //   loadingText={false ? "Submitting" : null}
         >
           {" "}
           Submit changes

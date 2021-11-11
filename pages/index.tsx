@@ -19,24 +19,13 @@ import getUserId from "../helpers/getUserId";
 
 const IndexPage = (user) => {
   useEffect(() => {
-    if (user.error != "not_authenticated") {
-      if (!window.localStorage.getItem(getUserId(user))) {
-        window.localStorage.setItem(getUserId(user), getUserId(user));
-        // window.location = "http://localhost:3000/settings";
-        window.location.pathname = "initLogin";
-      }
-    } else user = null;
+    if (!window.localStorage.getItem(getUserId(user))) {
+      window.localStorage.setItem(getUserId(user), getUserId(user));
+      window.location.pathname = "initLogin";
+    }
   }, []);
-  // console.log(window.location.pathname);
   return (
     <>
-      {/* <Button
-        onClick={() => {
-          console.log(toggle.toggleColorMode());
-        }}
-      >
-        togle
-      </Button> */}
       <Flex
         flexDir="column"
         id="root"
@@ -117,18 +106,6 @@ const IndexPage = (user) => {
 };
 
 export default IndexPage;
-
-// export const getServerSideProps = withPageAuthRequired({
-//   async getServerSideProps(ctx) {
-//     const res = await fetch("http://localhost:3000/api/stats", {
-//       headers: { Cookie: ctx.req.headers.cookie },
-//     });
-//     console.log(res.ok);
-//     const user = await res.json();
-
-//     return { props: user };
-//   },
-// });
 
 export const getServerSideProps = async (ctx) => {
   try {

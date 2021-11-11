@@ -25,6 +25,7 @@
     "react-animations": "^1.0.0",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
+    "react-interactive-dynamic-form-generator": "^1.0.4",
     "react-reveal": "^1.2.2",
     "react-scroll": "^1.8.4",
     "react-ssr-prepass": "^1.4.0",

@@ -3,27 +3,24 @@ import { Box, Center } from "@chakra-ui/react";
 import React from "react";
 import Header from "../components/pageComponents/header";
 import TypeForm from "../components/userComponents/firstTimeLoginForm";
-import FormValidate from "../components/userComponents/userForm";
 
-export default function InitLog() {
+export default function InitLog(user) {
   return (
     <>
-      {/* <Header user={user} /> */}
-
-      <Box w="75vw" m="0 auto" h="100vh" bg="#13111c">
-        <TypeForm />
+      <Box w="75vw" m="0 auto" h="80vh" bg="#13111c">
+        <TypeForm user={user} />
       </Box>
     </>
   );
 }
 
-// export const getServerSideProps = withPageAuthRequired({
-//   async getServerSideProps(ctx) {
-//     const res = await fetch("http://localhost:3000/api/stats", {
-//       headers: { Cookie: ctx.req.headers.cookie },
-//     });
-//     const data = await res.json();
+export const getServerSideProps = withPageAuthRequired({
+  async getServerSideProps(ctx) {
+    const res = await fetch("http://localhost:3000/api/stats", {
+      headers: { Cookie: ctx.req.headers.cookie },
+    });
+    const data = await res.json();
 
-//     return { props: data };
-//   },
-// });
+    return { props: data };
+  },
+});
