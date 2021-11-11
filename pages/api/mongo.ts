@@ -28,7 +28,7 @@ async function getUserFromDB(
   DB: Collection
 ) {
   const data = await DB.findOne({ _id: req.headers._id });
-  res.json({ data });
+  res.json({ ...data });
 }
 // TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
 function postUserToDB(
@@ -37,7 +37,7 @@ function postUserToDB(
   DB: Collection
 ) {
   const data = JSON.parse(request.body);
-  DB.insertOne({ ...data, bare: 1 });
+  DB.insertOne({ _id: data._id, bare: 1 });
   res.json({ Status: "Success" });
 }
 

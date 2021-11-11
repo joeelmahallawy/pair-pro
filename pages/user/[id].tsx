@@ -8,32 +8,40 @@ import {
   Heading,
   Image,
 } from "@chakra-ui/react";
-import { useRouter } from "next/dist/client/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilStateLoadable, useRecoilValue } from "recoil";
 import Header from "../../components/pageComponents/header";
 import TypeForm from "../../components/userComponents/firstTimeLoginForm";
 import FormValidate from "../../components/userComponents/userForm";
 import UserSettings from "../../components/userComponents/userSettings";
-import checkFirstTime from "../../helpers/checkFirstTimeUser";
+import firstTimeUser from "../../helpers/firstTimeUser";
 import getUserId from "../../helpers/getUserId";
-import { userState } from "../../states/recoil";
+import { userInfo, firstLogin } from "../../states/recoil";
 
 const UserAccount = () => {
   const { user } = useUser();
-  const [data, setData] = useRecoilState(userState);
-  //   const { id } = useRouter().query;
+  const [data, setData] = useRecoilStateLoadable(userInfo);
 
-  //   const { id } = router.query;
+  //   const [data, setData] = useRecoilState(userInfo);
+  const [firstLog, setfirstLog] = useRecoilState(firstLogin);
+
   useEffect(() => {
-    checkFirstTime(getUserId(user), setData);
+    firstTimeUser(user, setfirstLog, setData);
+    if (firstLog && process.browser) {
+      console.log("hi");
+      window.location = "http://localhost:3000/settings";
+    } else {
+      console.log("NOT your first time logging in");
+    }
+    // if (process.browser) {
+    //   console.log(window.location.href);
+    // }
   }, [user]);
 
   return (
     <>
       <Header />
-
       <Flex bg="gray.900" m="0 auto" mt={10} borderRadius={10} w="80vw">
         <Center w="40%" flexDir="column">
           <Box w="82.5%" borderRadius="50%">

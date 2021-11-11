@@ -1,27 +1,98 @@
-// import { join, dirname } from "path";
-// import { Low, JSONFile } from "lowdb";
-// import { fileURLToPath } from "url";
+// // import { join, dirname } from "path";
+// // import { Low, JSONFile } from "lowdb";
+// // import { fileURLToPath } from "url";
 
-// import { NextApiRequest, NextApiResponse } from "next";
+// // import { NextApiRequest, NextApiResponse } from "next";
 
-// type Database = {
-//   users: object[];
-// };
-// const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-//   try {
-//     const __dirname = dirname(fileURLToPath(import.meta.url));
-//     const file = join(__dirname, "db.json");
-//     const adapter = new JSONFile<Database>(file);
-//     const db = new Low<Database>(adapter);
-//     await db.read();
+// // type Database = {
+// //   users: object[];
+// // };
+// // const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+// //   try {
+// //     const __dirname = dirname(fileURLToPath(import.meta.url));
+// //     const file = join(__dirname, "db.json");
+// //     const adapter = new JSONFile<Database>(file);
+// //     const db = new Low<Database>(adapter);
+// //     await db.read();
 
-//     db.data = { users: [] };
+// //     db.data = { users: [] };
 
-//     await db.write();
-//     res.status(200).json(db.data);
-//   } catch (err) {
-//     res.status(400).json(err.message);
+// //     await db.write();
+// //     res.status(200).json(db.data);
+// //   } catch (err) {
+// //     res.status(400).json(err.message);
+// //   }
+// // };
+
+// // export default handler;
+
+// import getUserId from "./getUserId";
+
+// const checkFirstTime = () =>
+//   // user: any,
+//   // setUser: (args: object) => void
+//   // : Promise<boolean>
+//   {
+//     // if (getUserId(user)) {
+//     //   fetch(`/api/mongo/`, {
+//     //     method: "GET",
+//     //     headers: { _id: getUserId(user) },
+//     //   }).then(async (res) => {
+//     //     setUser(user);
+//     //     const resData = await res.json();
+//     //     console.log(resData);
+
+//     //     if (Object.keys(resData).length == 0) return true;
+//     //     else return false;
+//     //   });
+//     // } else {
+//     //   setUser(user);
+//     //   return false;
+//     // }
+//     if (!window.localStorage.getItem(getUserId(user))) {
+//       user && window.localStorage.setItem(getUserId(user), getUserId(user));
+//       setUser(user);
+//     }
+//     if (window.localStorage.getItem(getUserId(user))) {
+//       setUser({ ...user, firstTime: true });
+//     }
+//   };
+
+// // Fetch user data to check if exists
+// // const res = await fetch(`/api/mongo/`, {
+// //   method: "GET",
+// //   headers: { _id: getUserId(user) },
+// // });
+// // const resData = await res.json();
+
+// // // If returned object is empty and user doesn't exist in DB
+
+// // if (Object.keys(resData).length == 0) return true;
+// // else {
+// //   setUser(user);
+// // }
+
+// export default checkFirstTime;
+
+// // setUser({ user, firstLogin: true });
+// // return;
+// // fetch(`/api/mongo`, {
+// //   method: `POST`,
+// //   body: JSON.stringify({ _id: getUserId(user) }),
+// // });
+// // setUser({ user: { ...user }, firstTime: true });
+
+// // return
+
+// console.log(firstLog);
+// console.log(`USERDATA:`, user);
+// useEffect(() => {
+//   firstTimeUser(user, setfirstLog, setUserData);
+// }, [user]);
+// useEffect(() => {
+//   if (!firstLog && process.browser) {
+//     window.location = "http://localhost:3000/settings";
+//   } else {
+//     console.log("NOT your first time logging in");
 //   }
-// };
-
-// export default handler;
+// }, []);

@@ -7,13 +7,14 @@ import {
   Link,
   Image,
   Text,
+  useColorMode,
 } from "@chakra-ui/react";
-import { useUser } from "@auth0/nextjs-auth0";
+import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import WashingtonPic from "../attachments/washington_pic.jpeg";
 import YosemitePic from "../attachments/yosemite_compressed.jpeg";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { userState } from "../states/recoil";
+import { userInfo, firstLogin } from "../states/recoil";
 import Header from "../components/pageComponents/header";
 import HowItWorks from "../components/pageComponents/howItWorks";
 import Why from "../components/pageComponents/why";
@@ -21,18 +22,25 @@ import HomePage from "../components/pageComponents/homePage";
 import { Bouncer } from "../components/animations";
 import Socials from "../components/socialLinks";
 import getUserId from "../helpers/getUserId";
-import checkFirstTime from "../helpers/checkFirstTimeUser";
-import { useRouter } from "next/dist/client/router";
+import firstTimeUser from "../helpers/firstTimeUser";
 
-const IndexPage = () => {
-  const { user } = useUser();
-  const [data, setUserData] = useRecoilState(userState);
+const IndexPage = ({ user }: any) => {
+  console.log(user);
+  const [data, setUserData] = useRecoilState(userInfo);
   useEffect(() => {
-    checkFirstTime(getUserId(user), setUserData);
+    setUserData(user);
   }, [user]);
+  console.log(`DATA:`, data);
 
   return (
     <>
+      {/* <Button
+        onClick={() => {
+          console.log(toggle.toggleColorMode());
+        }}
+      >
+        togle
+      </Button> */}
       <Flex flexDir="column" id="root" boxSizing="border-box">
         <Flex flexDir="column" id="home" h="100vh">
           <Header />
@@ -109,14 +117,13 @@ const IndexPage = () => {
 
 export default IndexPage;
 
-// export const getServerSideProps = withPageAuthRequired({
-//   async getServerSideProps(ctx) {
-//     const res = await fetch("http://localhost:3000/api/stats", {
-//       headers: { Cookie: ctx.req.headers.cookie },
-//     });
-//     const data = await res.json();
+export const getServerSideProps = withPageAuthRequired({
+  async getServerSideProps(ctx) {
+    const res = await fetch("http://localhost:3000/api/stats", {
+      headers: { Cookie: ctx.req.headers.cookie },
+    });
+    const user = await res.json();
 
-//     return { props: data };
-//   },
-// });
-// export const getServerSideProps = withPageAuthRequired();
+    return { props: user };
+  },
+});

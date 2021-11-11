@@ -18,12 +18,13 @@ import logo from "../../attachments/pairpro-transparent.png";
 import { RiArrowDownSFill } from "react-icons/ri";
 import { useRecoilState } from "recoil";
 import { themes } from "../../configs/themes";
-import { userState } from "../../states/recoil";
+import { userInfo } from "../../states/recoil";
 import { Link as LinkScroll, animateScroll as scroll } from "react-scroll";
 import getUserId from "../../helpers/getUserId";
 
 const Header = () => {
-  const [userData] = useRecoilState(userState);
+  const [userData] = useRecoilState(userInfo);
+
   const header = useRef();
   const [headerSticky, setHeaderSticky] = useState(false);
   if (process.browser) {
@@ -39,7 +40,6 @@ const Header = () => {
       }
     };
   }
-  // console.log(`fromheader:`, userData);
 
   return (
     <Center
@@ -137,7 +137,8 @@ const Header = () => {
                       />
 
                       {/* @ts-expect-error */}
-                      {userData?.sub?.startsWith("auth0")
+
+                      {userData && userData?.sub?.startsWith("auth0")
                         ? // @ts-expect-error
                           userData.nickname
                         : //   @ts-expect-error
