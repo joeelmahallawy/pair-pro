@@ -47,7 +47,3 @@ const TypeForm = ({ user }) => {
   );
 };
 export default TypeForm;
-
-//KEY= 9RJUmjFbkTvDS67sT3zJvW6WZhKt9j7NRPfKg2RTDKb2
-
-//TOKEN: tfp_G5bR4u16DKazhxfLkiWmTFJTrFHc4Vr9f3zAKwaFwed4_3pc4pAfnGPS2UF

@@ -11,7 +11,7 @@ const getPostsThenStoreToDB = async (
       `https://api.typeform.com/forms/${process.env.TYPE_FORM_ID}/responses`,
       {
         headers: {
-          Authorization: `Bearer tfp_G5bR4u16DKazhxfLkiWmTFJTrFHc4Vr9f3zAKwaFwed4_3pc4pAfnGPS2UF`,
+          Authorization: `Bearer ${process.env.TYPE_FORM_PERSONAL_TOKEN}`,
           Accept: "application/json",
         },
       }
