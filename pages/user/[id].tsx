@@ -44,12 +44,12 @@ export default UserAccount;
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
-    const res = await fetch("http://localhost:3000/api/stats", {
+    const res = await fetch("https://pair-pro.vercel.app/api/stats", {
       headers: { Cookie: ctx.req.headers.cookie },
     });
     const user = await res.json();
     //TODO:
-    const response = await fetch("http://localhost:3000/api/mongo", {
+    const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
       headers: {
         user: getUserId(user),
       },

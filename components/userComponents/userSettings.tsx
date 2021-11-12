@@ -191,12 +191,13 @@ const UserSettings = ({ data }: any) => {
           _active={{ bg: "blue.700" }}
           _focus={{}}
           onClick={() => {
-            fetch("http://localhost:3000/api/mongo", {
+            fetch("https://pair-pro.vercel.app/api/mongo", {
               method: "PUT",
               body: JSON.stringify({
                 prefs: preferences,
               }),
             });
+
             setIsSending(true);
             setTimeout(() => {
               setIsSending(false);

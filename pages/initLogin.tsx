@@ -16,12 +16,12 @@ export default function InitLog(user) {
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
-    const res = await fetch("http://localhost:3000/api/stats", {
+    const res = await fetch("https://pair-pro.vercel.app/api/stats", {
       headers: { Cookie: ctx.req.headers.cookie },
     });
     const data = await res.json();
     //
-    const response = await fetch("http://localhost:3000/api/mongo");
+    const response = await fetch("https://pair-pro.vercel.app/api/mongo");
     const responseData = await response.json();
 
     return { props: data };

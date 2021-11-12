@@ -69,7 +69,7 @@ export default Pairing;
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
-    const res = await fetch("http://localhost:3000/api/stats", {
+    const res = await fetch("https://pair-pro.vercel.app/api/stats", {
       headers: { Cookie: ctx.req.headers.cookie },
     });
     const data = await res.json();
