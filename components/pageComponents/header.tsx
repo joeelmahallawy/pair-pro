@@ -51,6 +51,7 @@ const Header = ({ user }) => {
       id="header"
       justifyContent="space-around"
       p={7}
+      fontFamily="Arial"
     >
       <Center w="35%">
         <Center w="280px" h="40px">

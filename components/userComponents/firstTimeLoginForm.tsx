@@ -221,7 +221,7 @@ const TypeForm = ({ user }) => {
                 return (
                   <FormControl mb={5} key={i} id={`${field}`} isRequired>
                     <FormLabel fontWeight="bold">
-                      If so, what kind of project?
+                      If so, what kind of project? (optional)
                     </FormLabel>
                     <Input
                       _focus={{ bg: "gray.500" }}

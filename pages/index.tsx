@@ -18,23 +18,17 @@ import Socials from "../components/socialLinks";
 import getUserId from "../helpers/getUserId";
 
 const IndexPage = (user) => {
-  console.log(user);
-  console.log(user);
+  if (user.error == "not_authenticated") user = null;
   useEffect(() => {
-    if (user.error == "not_authenticated") user = null;
-    else {
-      // TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
-      // GET AND CHECK IF USER EXISTS IN DATABASE, IF TRUE, GO TO 'initLogin' page
-      // TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
-      // fetch("http://localhost:3000/api/mongo", {
-      //   headers: {
-      //     user: getUserId(user),
-      //   },
-      // }).then(async (res) => {
-      //   const userData = await res.json();
-      //   console.log("ohtya", userData);
-      //   if (user.data === null) window.location.pathname = "initLogin";
-      // });
+    if (user) {
+      fetch("http://localhost:3000/api/mongo", {
+        headers: {
+          user: getUserId(user),
+        },
+      }).then(async (res) => {
+        const userData = await res.json();
+        if (!userData.data) window.location.pathname = "initLogin";
+      });
     }
   }, []);
 

@@ -1,15 +1,66 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { Center } from "@chakra-ui/react";
-import React from "react";
+import {
+  ModalOverlay,
+  ModalContent,
+  Button,
+  Center,
+  FormControl,
+  FormLabel,
+  Input,
+  ModalBody,
+  ModalCloseButton,
+  ModalHeader,
+  Modal,
+  Flex,
+  Spinner,
+  Alert,
+  AlertIcon,
+  Box,
+  AlertDescription,
+  AlertTitle,
+} from "@chakra-ui/react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../components/pageComponents/header";
 
 const Pairing = (user) => {
+  const [showSpinner, setshowSpinner] = useState(true);
   console.log(user);
+  useEffect(() => {
+    setTimeout(() => {
+      setshowSpinner(false);
+    }, 3000);
+  }, []);
+
   return (
     <>
       <Header user={user} />
-      <Center fontFamily="Arial" w="100vw" h="90vh">
-        Hi
+      <Center fontFamily="Arial" w="100vw" h="80vh">
+        {showSpinner ? (
+          <Spinner w="70px" h="70px" />
+        ) : (
+          <>
+            <Alert
+              status="success"
+              variant="subtle"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+              textAlign="center"
+              height="200px"
+              w="35vw"
+              borderRadius={10}
+            >
+              <AlertIcon boxSize="40px" mr={0} />
+              <AlertTitle mt={4} mb={1} fontSize="lg">
+                Congratulations!
+              </AlertTitle>
+              <AlertDescription maxWidth="sm">
+                You've been added to the matchmaking queue! You will receive an
+                email once you match with someone.
+              </AlertDescription>
+            </Alert>
+          </>
+        )}
       </Center>
     </>
   );

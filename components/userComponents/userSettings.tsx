@@ -200,16 +200,18 @@ const UserSettings = ({ data }: any) => {
             setIsSending(true);
             setTimeout(() => {
               setIsSending(false);
-              if (process.browser) window.location = window.location;
-            }, 2000);
+              // if (process.browser) window.location = window.location;
+            }, 2500);
 
-            return toast({
-              title: "Account created.",
-              description: "We've created your account for you.",
-              status: "success",
-              duration: 9000,
-              isClosable: true,
-            });
+            setTimeout(() => {
+              return toast({
+                title: "Submitted changes!",
+                description: "Profile looking good. 😉",
+                status: "success",
+                duration: 5000,
+                isClosable: false,
+              });
+            }, 2500);
           }}
         >
           Submit changes
