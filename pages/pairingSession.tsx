@@ -1,18 +1,20 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { Box, Center } from "@chakra-ui/react";
+import { Center } from "@chakra-ui/react";
 import React from "react";
 import Header from "../components/pageComponents/header";
-import TypeForm from "../components/userComponents/firstTimeLoginForm";
 
-export default function InitLog(user) {
+const Pairing = (user) => {
+  console.log(user);
   return (
     <>
-      <Center w="100vw" m="5% auto">
-        <TypeForm user={user} />
+      <Header user={user} />
+      <Center fontFamily="Arial" w="100vw" h="90vh">
+        Hi
       </Center>
     </>
   );
-}
+};
+export default Pairing;
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
@@ -20,9 +22,6 @@ export const getServerSideProps = withPageAuthRequired({
       headers: { Cookie: ctx.req.headers.cookie },
     });
     const data = await res.json();
-    //
-    const response = await fetch("http://localhost:3000/api/mongo");
-    const responseData = await response.json();
 
     return { props: data };
   },

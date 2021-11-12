@@ -1,13 +1,14 @@
-import { Center, Text, Box, Button, Flex } from "@chakra-ui/react";
+import { Center, Text, Box, Button, Flex, useToast } from "@chakra-ui/react";
 import { Editable, EditableInput, EditablePreview } from "@chakra-ui/editable";
 import React, { useState } from "react";
-import EditableControls from "../editableControls";
+import EditableControls from "./editableControls";
 import { themes } from "../../configs/themes";
 import userPref from "../../interfaces/userPrefTypes";
 
 const UserSettings = ({ data }: any) => {
   const [preferences, setPreferences] = useState<userPref>(data);
   const [isSending, setIsSending] = useState(false);
+  const toast = useToast();
 
   console.log(preferences);
   return data ? (
@@ -189,7 +190,7 @@ const UserSettings = ({ data }: any) => {
           _hover={{ bg: "blue.600" }}
           _active={{ bg: "blue.700" }}
           _focus={{}}
-          onClick={async () => {
+          onClick={() => {
             fetch("http://localhost:3000/api/mongo", {
               method: "PUT",
               body: JSON.stringify({
@@ -201,6 +202,14 @@ const UserSettings = ({ data }: any) => {
               setIsSending(false);
               if (process.browser) window.location = window.location;
             }, 2000);
+
+            return toast({
+              title: "Account created.",
+              description: "We've created your account for you.",
+              status: "success",
+              duration: 9000,
+              isClosable: true,
+            });
           }}
         >
           Submit changes

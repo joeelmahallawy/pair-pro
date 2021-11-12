@@ -65,30 +65,33 @@ const Header = ({ user }) => {
         </Center>
       </Center>
       <Flex w="40%" justifyContent="flex-end">
-        <Button {...themes.navButtons}>
-          <LinkScroll
-            to="how-it-works"
-            smooth={true}
-            // @ts-expect-error
-            offset={-header.current?.getBoundingClientRect().height}
-            duration={500}
-            // suppressHydrationWarning
-          >
-            How it works
-          </LinkScroll>
-        </Button>
+        {/* FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:ISSUE WITH RENDERING BUTTON SINCE ITS ON SERVERFIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME: */}
 
-        <Button {...themes.navButtons}>
-          <LinkScroll
-            to="why"
-            smooth={true}
-            // @ts-expect-error
-            offset={-header.current?.getBoundingClientRect().height}
-            duration={500}
-          >
-            Why
-          </LinkScroll>
-        </Button>
+        <>
+          <Button {...themes.navButtons}>
+            <LinkScroll
+              to="how-it-works"
+              smooth={true}
+              // @ts-expect-error
+              offset={-header.current?.getBoundingClientRect().height}
+              duration={500}
+            >
+              How it works
+            </LinkScroll>
+          </Button>
+
+          <Button {...themes.navButtons}>
+            <LinkScroll
+              to="why"
+              smooth={true}
+              // @ts-expect-error
+              offset={-header.current?.getBoundingClientRect().height}
+              duration={500}
+            >
+              Why
+            </LinkScroll>
+          </Button>
+        </>
 
         <Button
           {...themes.navButtons}
@@ -97,7 +100,7 @@ const Header = ({ user }) => {
           borderRadius={5}
           _hover={{ bg: "orange.600" }}
         >
-          <Link href="/api/auth/login" _hover={{}} _focus={{}}>
+          <Link href="/pairingSession" _hover={{}} _focus={{}}>
             Pair me
           </Link>
         </Button>

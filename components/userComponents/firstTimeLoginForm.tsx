@@ -18,12 +18,9 @@ import getUserId from "../../helpers/getUserId";
 import { Formik } from "formik";
 
 const TypeForm = ({ user }) => {
-  const wow = useRef();
   return (
     <Flex
-      ref={wow}
       overflowY="auto"
-      // overscrollBehavior="contain"
       flexDir="column"
       p={5}
       bg="gray.700"
@@ -32,7 +29,6 @@ const TypeForm = ({ user }) => {
       fontFamily="Arial"
       borderRadius={10}
     >
-      {/* <Button onClick={() => {}}>hiii</Button> */}
       <Formik
         initialValues={{
           "Full Name": "",
@@ -198,28 +194,7 @@ const TypeForm = ({ user }) => {
                   </FormControl>
                 );
               }
-              // if (field == "Interested spaces") {
-              //   return (
-              //     <FormControl key={i} mb={3}>
-              //       <FormLabel fontWeight="bold">{field}</FormLabel>
-              //       <Select
-              //         onChange={props.handleChange}
-              //         onBlur={props.handleBlur}
-              //         value={props.values[field]}
-              //         name={`${field}`}
-              //         placeholder="Please select an option"
-              //       >
-              //         <option value="Cryptocurrency">Cryptocurrency</option>
-              //         <option value="Blockchain">Blockchain</option>
-              //         <option value="DeFi">DeFi</option>
-              //         <option value="Artificial Intelligence">
-              //           Artificial Intelligence
-              //         </option>
-              //         <option value="Machine Learning">Machine Learning</option>
-              //       </Select>
-              //     </FormControl>
-              //   );
-              // }
+
               if (field == "Have any projects in mind?") {
                 return (
                   <FormControl key={i} mb={3}>
@@ -281,7 +256,6 @@ const TypeForm = ({ user }) => {
                       value={props.values[field]}
                       name={`${field}`}
                     />
-                    {/* <FormHelperText>Ex) San Francisco</FormHelperText> */}
                   </FormControl>
                 );
               }

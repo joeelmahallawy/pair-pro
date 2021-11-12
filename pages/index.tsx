@@ -18,15 +18,26 @@ import Socials from "../components/socialLinks";
 import getUserId from "../helpers/getUserId";
 
 const IndexPage = (user) => {
-  if (user.error == "not_authenticated") user = null;
+  console.log(user);
+  console.log(user);
   useEffect(() => {
-    if (typeof getUserId(user) != "undefined") {
-      if (!window.localStorage.getItem(getUserId(user))) {
-        window.localStorage.setItem(getUserId(user), getUserId(user));
-        window.location.pathname = "initLogin";
-      }
+    if (user.error == "not_authenticated") user = null;
+    else {
+      // TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
+      // GET AND CHECK IF USER EXISTS IN DATABASE, IF TRUE, GO TO 'initLogin' page
+      // TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
+      // fetch("http://localhost:3000/api/mongo", {
+      //   headers: {
+      //     user: getUserId(user),
+      //   },
+      // }).then(async (res) => {
+      //   const userData = await res.json();
+      //   console.log("ohtya", userData);
+      //   if (user.data === null) window.location.pathname = "initLogin";
+      // });
     }
   }, []);
+
   return (
     <>
       <Flex
