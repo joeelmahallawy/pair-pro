@@ -3,8 +3,10 @@ import { Box, Text, Center, Flex, Image } from "@chakra-ui/react";
 import React from "react";
 import Header from "../../components/pageComponents/header";
 import UserSettings from "../../components/userComponents/userSettings";
+import getUserId from "../../helpers/getUserId";
 
 const UserAccount = ({ user }) => {
+  console.log("ohya", user);
   return (
     <>
       <Header user={user} />
@@ -45,6 +47,14 @@ export const getServerSideProps = withPageAuthRequired({
       headers: { Cookie: ctx.req.headers.cookie },
     });
     const user = await res.json();
+    //
+    const response = await fetch("http://localhost:3000/api/mongo", {
+      headers: {
+        user: getUserId(user),
+      },
+    });
+    const data = await response.json();
+    //PASS THE USER PREFERENCES HERE
     return { props: user };
   },
 });

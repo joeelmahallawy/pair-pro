@@ -31,6 +31,7 @@ const TypeForm = ({ user }) => {
         initialValues={{
           "Full Name": "",
           Email: "",
+          "Where are you based?": "",
           "Years of experience": "",
           "Proficient language(s)": [],
           "Tools and technologies used": "",
@@ -101,8 +102,13 @@ const TypeForm = ({ user }) => {
                       "Other",
                     ].map((language, i) => (
                       <Checkbox
+                        isFocusable={false}
+                        _focus={{
+                          outline: "none",
+                          bg: "red",
+                          borderColor: "transparent",
+                        }}
                         w="25%"
-                        // m={1}
                         type="checkbox"
                         key={i}
                         onChange={(e) => {
@@ -121,8 +127,6 @@ const TypeForm = ({ user }) => {
                             props.values["Proficient language(s)"].push(
                               e.currentTarget.value
                             );
-
-                          console.log(props.values["Proficient language(s)"]);
                         }}
                         onBlur={props.handleBlur}
                         value={language}
@@ -195,6 +199,7 @@ const TypeForm = ({ user }) => {
                       onBlur={props.handleBlur}
                       value={props.values[field]}
                       name={`${field}`}
+                      placeholder="Ex) The Airbnb for people's backyards"
                     />
                     <FormHelperText>
                       Give the TL;DR and 'N/A' otherwise
@@ -202,6 +207,63 @@ const TypeForm = ({ user }) => {
                   </FormControl>
                 );
               }
+
+              if (field == "Where are you based?") {
+                return (
+                  <FormControl mb={5} key={i} id={`${field}`} isRequired>
+                    <FormLabel fontWeight="bold">{field} </FormLabel>
+                    <Input
+                      _focus={{ bg: "gray.500" }}
+                      variant="filled"
+                      color="white"
+                      type="text"
+                      placeholder="Ex) San Francisco"
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      value={props.values[field]}
+                      name={`${field}`}
+                    />
+                    {/* <FormHelperText>Ex) San Francisco</FormHelperText> */}
+                  </FormControl>
+                );
+              }
+              if (field == "Email") {
+                return (
+                  <FormControl mb={5} key={i} id={`${field}`} isRequired>
+                    <FormLabel fontWeight="bold">{field}</FormLabel>
+                    <Input
+                      _focus={{ bg: "gray.500" }}
+                      variant="filled"
+                      color="white"
+                      type="text"
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      value={props.values[field]}
+                      name={`${field}`}
+                      placeholder="johndoe123@gmail.com"
+                    />
+                  </FormControl>
+                );
+              }
+              if (field == "Full Name") {
+                return (
+                  <FormControl mb={5} key={i} id={`${field}`} isRequired>
+                    <FormLabel fontWeight="bold">{field}</FormLabel>
+                    <Input
+                      _focus={{ bg: "gray.500" }}
+                      variant="filled"
+                      color="white"
+                      type="text"
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      value={props.values[field]}
+                      name={`${field}`}
+                      placeholder="John Doe"
+                    />
+                  </FormControl>
+                );
+              }
+
               return (
                 <FormControl mb={5} key={i} id={`${field}`} isRequired>
                   <FormLabel fontWeight="bold">{field}</FormLabel>
@@ -214,17 +276,16 @@ const TypeForm = ({ user }) => {
                     onBlur={props.handleBlur}
                     value={props.values[field]}
                     name={`${field}`}
+                    placeholder="Ex) React.js, Node.js"
                   />
                   {field == "Tools and technologies used" && (
                     <FormHelperText mb={1}>
-                      Separate answers with comma and space (Ex. React.js,
-                      Node.js)
+                      Separate answers with comma and space
                     </FormHelperText>
                   )}
                   {field == "Tools and technologies you want to learn" && (
                     <FormHelperText>
-                      Separate answers with comma and space (Ex. React.js,
-                      Node.js)
+                      Separate answers with comma and space
                     </FormHelperText>
                   )}
                 </FormControl>

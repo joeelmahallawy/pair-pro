@@ -12,12 +12,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const db = client.db("test");
     if (!db) throw Error("Could not connect to database");
     const users = db.collection("users");
-    // Fetch posts from typeform responses API  then store it to MongoDB
     // users.deleteMany({});
+    // Fetch posts from typeform responses API  then store it to MongoDB
     if (req.method === "POST") getPostsThenStoreToDB(req, res, users);
+    if (req.method === "GET") console.log("hi");
 
-    // if (req.method === "POST")
-    // if (req.method === "GET") getUserFromDB(req, res, users);
+    //  getUserFromDB(req, res, users);
   } catch (err: any) {
     res.status(404).json({ err });
   }
@@ -33,4 +33,3 @@ export default handler;
 //   // const data = await DB.findOne({ _id: req.headers._id });
 //   res.json({ data: 1 });
 // }
-// TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:

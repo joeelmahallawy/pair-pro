@@ -5,6 +5,7 @@ import EditableControls from "../editableControls";
 import { themes } from "../../configs/themes";
 
 const UserSettings = ({ user }) => {
+  console.log(user);
   return user ? (
     <Box w="85%" p={5} fontFamily="Arial">
       <Editable
@@ -102,7 +103,7 @@ const UserSettings = ({ user }) => {
         <Text alignItems="center" fontSize="xl" w="45%">
           Years of experience:
         </Text>
-        <Select
+        {/* <Select
           _focus={{}}
           ml="auto"
           w="65%"
@@ -114,7 +115,8 @@ const UserSettings = ({ user }) => {
           <option value="3-4">3-4</option>
           <option value="4-5">4-5</option>
           <option value="5+">5+</option>
-        </Select>
+        </Select> */}
+        {/* {} */}
       </Center>
       <Center p={10}>
         <Button
