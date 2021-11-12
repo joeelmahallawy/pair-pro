@@ -15,7 +15,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     // users.deleteMany({});
     // Fetch posts from typeform responses API  then store it to MongoDB
     if (req.method === "POST") getPostsThenStoreToDB(req, res, users);
-    if (req.method === "GET") console.log("hi");
+    if (req.method === "GET") getUserFromDB(req, res, users);
+    if (req.method === "PUT") updateUser(req, res, users);
 
     //  getUserFromDB(req, res, users);
   } catch (err: any) {
@@ -25,11 +26,28 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 export default handler;
 
-// async function getUserFromDB(
-//   req: NextApiRequest,
-//   res: NextApiResponse,
-//   DB: Collection
-// ) {
-//   // const data = await DB.findOne({ _id: req.headers._id });
-//   res.json({ data: 1 });
-// }
+async function getUserFromDB(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  DB: Collection
+) {
+  const { user } = req.headers;
+  const data = await DB.findOne({ id: user });
+  res.json({ data });
+}
+async function updateUser(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  DB: Collection
+) {
+  const { prefs } = JSON.parse(req.body);
+  // const data = await DB.findOne({ id: preferences.prefs.id });
+  DB.deleteOne({ id: prefs.id });
+  // const obj = { ...data };
+  // Object.keys(preferences).forEach((pref) => {
+  //   if (preferences.pref != data.pref) obj.pref = preferences.pref;
+  // });
+  DB.insertOne(prefs);
+
+  res.json(prefs);
+}

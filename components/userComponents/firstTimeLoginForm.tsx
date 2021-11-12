@@ -1,6 +1,6 @@
 import _ from "lodash";
 import "@typeform/embed/build/css/popup.css";
-import React from "react";
+import React, { useRef } from "react";
 import {
   Button,
   Checkbox,
@@ -18,15 +18,21 @@ import getUserId from "../../helpers/getUserId";
 import { Formik } from "formik";
 
 const TypeForm = ({ user }) => {
+  const wow = useRef();
   return (
     <Flex
+      ref={wow}
+      overflowY="auto"
+      // overscrollBehavior="contain"
       flexDir="column"
       p={5}
       bg="gray.700"
-      w="35vw"
+      h={["75vh", "75vh", "75vh", "75vh", "75vh", "62vh"]}
+      w={["35vw", "35vw", "35vw", "35vw", "35vw", "20vw"]}
       fontFamily="Arial"
       borderRadius={10}
     >
+      {/* <Button onClick={() => {}}>hiii</Button> */}
       <Formik
         initialValues={{
           "Full Name": "",
@@ -36,7 +42,7 @@ const TypeForm = ({ user }) => {
           "Proficient language(s)": [],
           "Tools and technologies used": "",
           "Tools and technologies you want to learn": "",
-          "Interested spaces": "",
+          "Interested space(s)": [],
           "Have any projects in mind?": "",
           "What kind of project?": "",
         }}
@@ -108,7 +114,7 @@ const TypeForm = ({ user }) => {
                           bg: "red",
                           borderColor: "transparent",
                         }}
-                        w="25%"
+                        w={["30%", "30%", "30%", "30%", "30%", "25%"]}
                         type="checkbox"
                         key={i}
                         onChange={(e) => {
@@ -140,28 +146,80 @@ const TypeForm = ({ user }) => {
                   </FormControl>
                 );
               }
-              if (field == "Interested spaces") {
+              if (field == "Interested space(s)") {
                 return (
-                  <FormControl key={i} mb={3}>
-                    <FormLabel fontWeight="bold">{field}</FormLabel>
-                    <Select
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
-                      value={props.values[field]}
-                      name={`${field}`}
-                      placeholder="Please select an option"
-                    >
-                      <option value="Cryptocurrency">Cryptocurrency</option>
-                      <option value="Blockchain">Blockchain</option>
-                      <option value="DeFi">DeFi</option>
-                      <option value="Artificial Intelligence">
-                        Artificial Intelligence
-                      </option>
-                      <option value="Machine Learning">Machine Learning</option>
-                    </Select>
+                  <FormControl mb={5} key={i}>
+                    {[
+                      "Cryptocurrency",
+                      "NFT",
+                      "Blockchain technology",
+                      "DeFi",
+                      "Artificial Intelligence",
+                      "Machine Learning",
+                      "Data science",
+                      "Other",
+                    ].map((language, i) => (
+                      <Checkbox
+                        isFocusable={false}
+                        _focus={{
+                          outline: "none",
+                          bg: "red",
+                          borderColor: "transparent",
+                        }}
+                        w={["50%", "50%", "50%", "50%", "50%", "50%"]}
+                        type="checkbox"
+                        key={i}
+                        onChange={(e) => {
+                          if (
+                            props.values["Interested space(s)"].includes(
+                              e.currentTarget.value
+                            )
+                          )
+                            _.remove(
+                              props.values["Interested space(s)"],
+                              function (el) {
+                                return e.currentTarget.value == el;
+                              }
+                            );
+                          else
+                            props.values["Interested space(s)"].push(
+                              e.currentTarget.value
+                            );
+                        }}
+                        onBlur={props.handleBlur}
+                        value={language}
+                        name={`${props.values["Interested space(s)"]}`}
+                        size="lg"
+                        colorScheme="twitter"
+                      >
+                        {language}
+                      </Checkbox>
+                    ))}
                   </FormControl>
                 );
               }
+              // if (field == "Interested spaces") {
+              //   return (
+              //     <FormControl key={i} mb={3}>
+              //       <FormLabel fontWeight="bold">{field}</FormLabel>
+              //       <Select
+              //         onChange={props.handleChange}
+              //         onBlur={props.handleBlur}
+              //         value={props.values[field]}
+              //         name={`${field}`}
+              //         placeholder="Please select an option"
+              //       >
+              //         <option value="Cryptocurrency">Cryptocurrency</option>
+              //         <option value="Blockchain">Blockchain</option>
+              //         <option value="DeFi">DeFi</option>
+              //         <option value="Artificial Intelligence">
+              //           Artificial Intelligence
+              //         </option>
+              //         <option value="Machine Learning">Machine Learning</option>
+              //       </Select>
+              //     </FormControl>
+              //   );
+              // }
               if (field == "Have any projects in mind?") {
                 return (
                   <FormControl key={i} mb={3}>
@@ -217,7 +275,7 @@ const TypeForm = ({ user }) => {
                       variant="filled"
                       color="white"
                       type="text"
-                      placeholder="Ex) San Francisco"
+                      placeholder="Ex) San Francisco, CA"
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
                       value={props.values[field]}

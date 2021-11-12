@@ -5,8 +5,7 @@ import Header from "../../components/pageComponents/header";
 import UserSettings from "../../components/userComponents/userSettings";
 import getUserId from "../../helpers/getUserId";
 
-const UserAccount = ({ user }) => {
-  console.log("ohya", user);
+const UserAccount = ({ user, data }: any) => {
   return (
     <>
       <Header user={user} />
@@ -27,13 +26,13 @@ const UserAccount = ({ user }) => {
               ? user?.name
               : user?.nickname}
           </Text>
-          <Text fontFamily="Arial" color="lightgray">
-            • (CITY HERE)
+          <Text fontSize="lg" fontFamily="Arial" color="lightgray">
+            • {data["Where are you based?"]}
           </Text>
         </Center>
         {/* TODO: */}
         <Center bg="black" borderRightRadius={10} w="60%" pt={10}>
-          <UserSettings user={user} />
+          {data && <UserSettings data={data} />}
         </Center>
       </Flex>
     </>
@@ -47,14 +46,13 @@ export const getServerSideProps = withPageAuthRequired({
       headers: { Cookie: ctx.req.headers.cookie },
     });
     const user = await res.json();
-    //
+    //TODO:
     const response = await fetch("http://localhost:3000/api/mongo", {
       headers: {
         user: getUserId(user),
       },
     });
     const data = await response.json();
-    //PASS THE USER PREFERENCES HERE
-    return { props: user };
+    return { props: data };
   },
 });

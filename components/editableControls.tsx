@@ -14,7 +14,13 @@ export default function EditableControls() {
     getEditButtonProps,
   } = useEditableControls();
 
-  return isEditing ? null : (
+  return isEditing ? (
+    <Flex justifyContent="center" p={3}>
+      <Button {...getSubmitButtonProps()} _focus={{}}>
+        Save
+      </Button>
+    </Flex>
+  ) : (
     <Flex justifyContent="center" p={3}>
       <Button {...getEditButtonProps()} _focus={{}}>
         Edit

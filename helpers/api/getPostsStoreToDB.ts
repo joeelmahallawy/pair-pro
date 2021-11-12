@@ -8,7 +8,7 @@ const getPostsThenStoreToDB = async (
 ) => {
   try {
     const data = JSON.parse(request.body);
-    DB.insertOne(data);
+    DB.insertOne({ ...data, nickName: data.nickName ? data.nickName : "" });
     res.status(200).json({});
   } catch (err) {
     res.status(404).json({ err: 1 });

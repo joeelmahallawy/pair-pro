@@ -1,134 +1,205 @@
-import { Center, Text, Box, Select, Button } from "@chakra-ui/react";
+import { Center, Text, Box, Select, Button, Flex } from "@chakra-ui/react";
 import { Editable, EditableInput, EditablePreview } from "@chakra-ui/editable";
-import React from "react";
+import React, { useState } from "react";
 import EditableControls from "../editableControls";
 import { themes } from "../../configs/themes";
+import formatSettings from "../../helpers/formatUserSettings";
+import userPref from "../../interfaces/userPrefTypes";
 
-const UserSettings = ({ user }) => {
-  console.log(user);
-  return user ? (
+const UserSettings = ({ data }: any) => {
+  const [preferences, setPreferences] = useState<userPref>(data);
+
+  console.log(preferences);
+  return data ? (
     <Box w="85%" p={5} fontFamily="Arial">
       <Editable
         p={3}
         fontSize="xl"
         textAlign="left"
-        defaultValue={user?.name}
+        defaultValue={data["Full Name"]}
         isPreviewFocusable={false}
       >
         <Center {...themes.userSettingFields} bg="gray.700">
           <Text mr={3}>Name:</Text>
-          <EditablePreview />
-          <EditableInput bg="white" m={3} color="black" />
-          <EditableControls />
+          <Center>
+            <EditablePreview />
+            <EditableInput
+              onChange={(e) => {
+                setPreferences({
+                  ...preferences,
+                  "Full Name": e.currentTarget.value,
+                });
+              }}
+              w="100%"
+              bg="white"
+              m={3}
+              color="black"
+            />
+            <EditableControls />
+          </Center>
         </Center>
       </Editable>
+
       <Editable
         p={3}
         fontSize="xl"
         textAlign="left"
-        defaultValue={user?.nickname}
+        defaultValue={data?.nickname}
         isPreviewFocusable={false}
       >
         <Center {...themes.userSettingFields} bg="gray.700">
           <Text mr={3}>Nickname:</Text>
-          <EditablePreview />
-          <EditableInput bg="white" m={3} color="black" />
-          <EditableControls />
+          <Center>
+            <EditablePreview />
+            <EditableInput
+              onChange={(e) => {
+                setPreferences({
+                  ...preferences,
+                  nickName: e.currentTarget.value,
+                });
+              }}
+              w="100%"
+              bg="white"
+              m={3}
+              color="black"
+            />
+            <EditableControls />
+          </Center>
         </Center>
       </Editable>
       <Editable
         p={3}
         fontSize="xl"
-        defaultValue="(Saved languages)"
+        defaultValue={formatSettings(data["Proficient language(s)"])}
         textAlign="left"
         isPreviewFocusable={false}
       >
-        <Center {...themes.userSettingFields} bg="gray.700">
-          <Text mr={3}>Language(s):</Text>
-          <EditablePreview p={3} maxW="50%" />
-          <EditableInput as="textarea" color="black" bg="white" />
-          <EditableControls />
-        </Center>
-      </Editable>
-      <Editable
-        p={3}
-        fontSize="xl"
-        defaultValue="(Saved tech)"
-        _placeholder={{ bg: "red" }}
-        textAlign="left"
-        isPreviewFocusable={false}
-      >
-        <Center {...themes.userSettingFields} bg="gray.700">
-          <Text mr={3}>Technologies:</Text>
-          <EditablePreview p={3} maxW="50%" />
-          <EditableInput as="textarea" color="black" bg="white" />
-
-          <EditableControls />
-        </Center>
-      </Editable>
-      <Editable
-        p={3}
-        fontSize="xl"
-        defaultValue="(Saved tech)"
-        _placeholder={{ bg: "red" }}
-        textAlign="left"
-        isPreviewFocusable={false}
-      >
-        <Center {...themes.userSettingFields} bg="gray.700">
-          <Text mr={3}>Interested in learning:</Text>
-          <EditablePreview p={3} maxW="50%" />
-          <EditableInput as="textarea" color="black" bg="white" maxW="55%" />
-
-          <EditableControls />
-        </Center>
-      </Editable>
-      <Editable
-        p={3}
-        fontSize="xl"
-        defaultValue="(Saved tech)"
-        _placeholder={{ bg: "red" }}
-        textAlign="left"
-        isPreviewFocusable={false}
-      >
-        <Center {...themes.userSettingFields} bg="gray.700">
-          <Text mr={3}>Interested in building:</Text>
-          <EditablePreview p={3} maxW="50%" />
-          <EditableInput as="textarea" color="black" bg="white" maxW="55%" />
-
-          <EditableControls />
-        </Center>
-      </Editable>
-
-      <Center p={3}>
-        <Text alignItems="center" fontSize="xl" w="45%">
-          Years of experience:
-        </Text>
-        {/* <Select
-          _focus={{}}
-          ml="auto"
-          w="65%"
-          placeholder="Please select an option"
+        <Center
+          {...themes.userSettingFields}
+          justifyContent="space-between"
+          bg="gray.700"
         >
-          <option value="< 1">{`< 1`}</option>
-          <option value="1-2">1-2</option>
-          <option value="2-3">2-3</option>
-          <option value="3-4">3-4</option>
-          <option value="4-5">4-5</option>
-          <option value="5+">5+</option>
-        </Select> */}
-        {/* {} */}
-      </Center>
-      <Center p={10}>
+          <Text mr={3}>Language(s):</Text>
+          <Center>
+            <EditablePreview p={3} />
+            <EditableInput
+              onChange={(e) => {
+                setPreferences({
+                  ...preferences,
+                  "Proficient language(s)": e.currentTarget.value.split(", "),
+                });
+              }}
+              w="275px"
+              h="40px"
+              as="textarea"
+              color="black"
+              bg="white"
+            />
+            <EditableControls />
+          </Center>
+        </Center>
+      </Editable>
+      <Editable
+        p={3}
+        fontSize="xl"
+        defaultValue={data["Tools and technologies used"]}
+        textAlign="left"
+        isPreviewFocusable={false}
+      >
+        <Center {...themes.userSettingFields} bg="gray.700">
+          <Text mr={3}>Technologies used:</Text>
+          <Center>
+            <EditablePreview p={3} />
+            <EditableInput
+              onChange={(e) => {
+                setPreferences({
+                  ...preferences,
+                  "Tools and technologies used": e.currentTarget.value,
+                });
+              }}
+              w="275px"
+              as="textarea"
+              color="black"
+              bg="white"
+            />
+            <EditableControls />
+          </Center>
+        </Center>
+      </Editable>
+      <Editable
+        p={3}
+        fontSize="xl"
+        defaultValue={data["Tools and technologies you want to learn"]}
+        textAlign="left"
+        isPreviewFocusable={false}
+      >
+        <Center {...themes.userSettingFields} bg="gray.700">
+          <Text mr={3}>Technologies interested in learning:</Text>
+          <Center maxW="50%">
+            <EditablePreview p={3} />
+            <EditableInput
+              onChange={(e) => {
+                setPreferences({
+                  ...preferences,
+                  "Tools and technologies you want to learn":
+                    e.currentTarget.value,
+                });
+              }}
+              w="275px"
+              as="textarea"
+              color="black"
+              bg="white"
+            />
+            <EditableControls />
+          </Center>
+        </Center>
+      </Editable>
+      <Editable
+        p={3}
+        fontSize="xl"
+        defaultValue={formatSettings(data["Interested space(s)"])}
+        textAlign="left"
+        isPreviewFocusable={false}
+      >
+        <Center {...themes.userSettingFields} bg="gray.700">
+          <Text mr={3}>Interested in spaces:</Text>
+          <Center maxW="50%">
+            <EditablePreview p={3} />
+            <EditableInput
+              onChange={(e) => {
+                setPreferences({
+                  ...preferences,
+                  "Interested space(s)": e.currentTarget.value.split(", "),
+                });
+              }}
+              w="275px"
+              as="textarea"
+              color="black"
+              bg="white"
+            />
+            <EditableControls />
+          </Center>
+        </Center>
+      </Editable>
+      <Flex justifyContent="flex-end" p={3}>
         <Button
           bg="blue.500"
           _hover={{ bg: "blue.600" }}
           _active={{ bg: "blue.700" }}
           _focus={{}}
+          onClick={async () => {
+            fetch("http://localhost:3000/api/mongo", {
+              method: "PUT",
+              body: JSON.stringify({
+                prefs: preferences,
+              }),
+            });
+          }}
         >
           {" "}
           Submit changes
         </Button>
-      </Center>
+      </Flex>
     </Box>
   ) : null;
 };
