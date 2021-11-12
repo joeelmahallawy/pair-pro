@@ -20,9 +20,10 @@ import getUserId from "../helpers/getUserId";
 const IndexPage = (user) => {
   if (user.error == "not_authenticated") user = null;
 
+  console.log("USER FROM HOMEPAGE", user);
   useEffect(() => {
     if (user) {
-      fetch("https://pair-pro.vercel.app/api/mongo", {
+      fetch("http://localhost:3000/api/mongo", {
         headers: {
           user: getUserId(user),
         },
@@ -117,7 +118,7 @@ export default IndexPage;
 
 export const getServerSideProps = async (ctx) => {
   try {
-    const res = await fetch("https://pair-pro.vercel.app/api/stats", {
+    const res = await fetch("http://localhost:3000/api/stats", {
       headers: { Cookie: ctx.req.headers.cookie },
     });
     const user = await res.json();
