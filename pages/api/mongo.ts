@@ -12,6 +12,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const db = client.db("test");
     if (!db) throw Error("Could not connect to database");
     const users = db.collection("users");
+    const matches = db.collection("matches");
     // users.deleteMany({});
     // Fetch posts from typeform responses API  then store it to MongoDB
     if (req.method === "POST") getPostsThenStoreToDB(req, res, users);

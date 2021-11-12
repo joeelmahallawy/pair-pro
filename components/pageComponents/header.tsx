@@ -22,6 +22,7 @@ import getUserId from "../../helpers/getUserId";
 
 const Header = ({ user }) => {
   // if (user.error == "not_authenticated") user = null;
+  console.log(`HEADER:`, user);
 
   const header = useRef();
   const [headerSticky, setHeaderSticky] = useState(false);
@@ -94,17 +95,17 @@ const Header = ({ user }) => {
           </Button>
         </>
 
-        <Button
-          {...themes.navButtons}
-          bg="orange.500"
-          ml={5}
-          borderRadius={5}
-          _hover={{ bg: "orange.600" }}
-        >
-          <Link href="/pairingSession" _hover={{}} _focus={{}}>
+        <Link href="/pairingSession" _hover={{}} _focus={{}}>
+          <Button
+            {...themes.navButtons}
+            bg="orange.500"
+            ml={5}
+            borderRadius={5}
+            _hover={{ bg: "orange.600" }}
+          >
             Pair me
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </Flex>
       <Flex w="20%" justifyContent="flex-end">
         {user ? (
