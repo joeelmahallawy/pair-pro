@@ -5,4 +5,5 @@ export default initAuth0({
   issuerBaseURL: process.env.AUTH0_ISSUER_BASE_UR,
   clientID: process.env.AUTH0_CLIENT_ID,
   clientSecret: process.env.AUTH0_CLIENT_SECRET,
+  // session: {},
 });

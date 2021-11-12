@@ -21,7 +21,7 @@ import { Link as LinkScroll, animateScroll as scroll } from "react-scroll";
 import getUserId from "../../helpers/getUserId";
 
 const Header = ({ user }) => {
-  if (user.error == "not_authenticated") user = null;
+  // if (user.error == "not_authenticated") user = null;
 
   const header = useRef();
   const [headerSticky, setHeaderSticky] = useState(false);

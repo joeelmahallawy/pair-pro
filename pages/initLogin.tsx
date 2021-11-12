@@ -7,9 +7,9 @@ import TypeForm from "../components/userComponents/firstTimeLoginForm";
 export default function InitLog(user) {
   return (
     <>
-      <Box w="75vw" m="0 auto" h="80vh" bg="#13111c">
+      <Center w="100vw" m="5% auto">
         <TypeForm user={user} />
-      </Box>
+      </Center>
     </>
   );
 }

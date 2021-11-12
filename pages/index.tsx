@@ -18,6 +18,7 @@ import Socials from "../components/socialLinks";
 import getUserId from "../helpers/getUserId";
 
 const IndexPage = (user) => {
+  if (user.error == "not_authenticated") user = null;
   useEffect(() => {
     if (!window.localStorage.getItem(getUserId(user))) {
       window.localStorage.setItem(getUserId(user), getUserId(user));
