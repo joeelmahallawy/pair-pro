@@ -1,13 +1,13 @@
-import { Center, Text, Box, Select, Button, Flex } from "@chakra-ui/react";
+import { Center, Text, Box, Button, Flex } from "@chakra-ui/react";
 import { Editable, EditableInput, EditablePreview } from "@chakra-ui/editable";
 import React, { useState } from "react";
 import EditableControls from "../editableControls";
 import { themes } from "../../configs/themes";
-import formatSettings from "../../helpers/formatUserSettings";
 import userPref from "../../interfaces/userPrefTypes";
 
 const UserSettings = ({ data }: any) => {
   const [preferences, setPreferences] = useState<userPref>(data);
+  const [isSending, setIsSending] = useState(false);
 
   console.log(preferences);
   return data ? (
@@ -70,7 +70,7 @@ const UserSettings = ({ data }: any) => {
       <Editable
         p={3}
         fontSize="xl"
-        defaultValue={formatSettings(data["Proficient language(s)"])}
+        defaultValue={data["Proficient language(s)"].join(", ")}
         textAlign="left"
         isPreviewFocusable={false}
       >
@@ -157,7 +157,7 @@ const UserSettings = ({ data }: any) => {
       <Editable
         p={3}
         fontSize="xl"
-        defaultValue={formatSettings(data["Interested space(s)"])}
+        defaultValue={data["Interested space(s)"].join(", ")}
         textAlign="left"
         isPreviewFocusable={false}
       >
@@ -183,6 +183,8 @@ const UserSettings = ({ data }: any) => {
       </Editable>
       <Flex justifyContent="flex-end" p={3}>
         <Button
+          isLoading={isSending}
+          loadingText={isSending ? "Submitting..." : null}
           bg="blue.500"
           _hover={{ bg: "blue.600" }}
           _active={{ bg: "blue.700" }}
@@ -194,9 +196,13 @@ const UserSettings = ({ data }: any) => {
                 prefs: preferences,
               }),
             });
+            setIsSending(true);
+            setTimeout(() => {
+              setIsSending(false);
+              if (process.browser) window.location = window.location;
+            }, 2000);
           }}
         >
-          {" "}
           Submit changes
         </Button>
       </Flex>

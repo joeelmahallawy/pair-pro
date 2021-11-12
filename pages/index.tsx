@@ -20,9 +20,11 @@ import getUserId from "../helpers/getUserId";
 const IndexPage = (user) => {
   if (user.error == "not_authenticated") user = null;
   useEffect(() => {
-    if (!window.localStorage.getItem(getUserId(user))) {
-      window.localStorage.setItem(getUserId(user), getUserId(user));
-      window.location.pathname = "initLogin";
+    if (typeof getUserId(user) != "undefined") {
+      if (!window.localStorage.getItem(getUserId(user))) {
+        window.localStorage.setItem(getUserId(user), getUserId(user));
+        window.location.pathname = "initLogin";
+      }
     }
   }, []);
   return (
@@ -80,6 +82,10 @@ const IndexPage = (user) => {
               src={YosemitePic.src}
             />
             {/* TODO: */}
+            {/* TODO: */}
+            {/* TODO: */}
+            {/* TODO: */}
+            {/* TODO: */}
 
             <Center flexDir="column">
               <Text fontWeight="500" fontFamily="Roboto">
@@ -113,7 +119,6 @@ export const getServerSideProps = async (ctx) => {
     const res = await fetch("http://localhost:3000/api/stats", {
       headers: { Cookie: ctx.req.headers.cookie },
     });
-    console.log(res);
     const user = await res.json();
 
     return { props: user };

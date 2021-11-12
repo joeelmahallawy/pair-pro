@@ -6,6 +6,7 @@ import UserSettings from "../../components/userComponents/userSettings";
 import getUserId from "../../helpers/getUserId";
 
 const UserAccount = ({ user, data }: any) => {
+  console.log(data);
   return (
     <>
       <Header user={user} />
@@ -27,7 +28,7 @@ const UserAccount = ({ user, data }: any) => {
               : user?.nickname}
           </Text>
           <Text fontSize="lg" fontFamily="Arial" color="lightgray">
-            • {data["Where are you based?"]}
+            {data && <>• {data["Where are you based?"]}</>}
           </Text>
         </Center>
         {/* TODO: */}

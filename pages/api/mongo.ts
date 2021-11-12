@@ -17,8 +17,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === "POST") getPostsThenStoreToDB(req, res, users);
     if (req.method === "GET") getUserFromDB(req, res, users);
     if (req.method === "PUT") updateUser(req, res, users);
-
-    //  getUserFromDB(req, res, users);
   } catch (err: any) {
     res.status(404).json({ err });
   }
@@ -41,13 +39,7 @@ async function updateUser(
   DB: Collection
 ) {
   const { prefs } = JSON.parse(req.body);
-  // const data = await DB.findOne({ id: preferences.prefs.id });
   DB.deleteOne({ id: prefs.id });
-  // const obj = { ...data };
-  // Object.keys(preferences).forEach((pref) => {
-  //   if (preferences.pref != data.pref) obj.pref = preferences.pref;
-  // });
   DB.insertOne(prefs);
-
-  res.json(prefs);
+  res.json({});
 }
