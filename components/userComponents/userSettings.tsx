@@ -10,7 +10,6 @@ const UserSettings = ({ data }: any) => {
   const [isSending, setIsSending] = useState(false);
   const toast = useToast();
 
-  console.log(preferences);
   return data ? (
     <Box w="85%" p={5} fontFamily="Arial">
       <Editable

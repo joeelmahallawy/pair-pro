@@ -21,9 +21,6 @@ import { Link as LinkScroll, animateScroll as scroll } from "react-scroll";
 import getUserId from "../../helpers/getUserId";
 
 const Header = ({ user }) => {
-  // if (user.error == "not_authenticated") user = null;
-  console.log(`HEADER:`, user);
-
   const header = useRef();
   const [headerSticky, setHeaderSticky] = useState(false);
   if (process.browser) {
@@ -111,7 +108,6 @@ const Header = ({ user }) => {
         {user ? (
           <Box mr="20%">
             <Popover>
-              {/* TODO: */}
               <PopoverTrigger>
                 <Box cursor="pointer" _hover={{ color: "gray.300" }}>
                   <Image src={user.picture} borderRadius="50%" boxSize="10" />

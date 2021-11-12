@@ -19,6 +19,7 @@ import getUserId from "../helpers/getUserId";
 
 const IndexPage = (user) => {
   if (user.error == "not_authenticated") user = null;
+
   useEffect(() => {
     if (user) {
       fetch("https://pair-pro.vercel.app/api/mongo", {
@@ -86,11 +87,6 @@ const IndexPage = (user) => {
               borderRadius="50%"
               src={YosemitePic.src}
             />
-            {/* TODO: */}
-            {/* TODO: */}
-            {/* TODO: */}
-            {/* TODO: */}
-            {/* TODO: */}
 
             <Center flexDir="column">
               <Text fontWeight="500" fontFamily="Roboto">

@@ -24,7 +24,7 @@ import Header from "../components/pageComponents/header";
 
 const Pairing = (user) => {
   const [showSpinner, setshowSpinner] = useState(true);
-  console.log(user);
+  // console.log(user);
   useEffect(() => {
     setTimeout(() => {
       setshowSpinner(false);

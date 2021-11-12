@@ -20,9 +20,9 @@ export const getServerSideProps = withPageAuthRequired({
       headers: { Cookie: ctx.req.headers.cookie },
     });
     const data = await res.json();
-    //
-    const response = await fetch("https://pair-pro.vercel.app/api/mongo");
-    const responseData = await response.json();
+
+    // const response = await fetch("https://pair-pro.vercel.app/api/mongo");
+    // const responseData = await response.json();
 
     return { props: data };
   },
