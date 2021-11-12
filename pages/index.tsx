@@ -23,7 +23,7 @@ const IndexPage = (user) => {
   console.log("USER FROM HOMEPAGE", user);
   useEffect(() => {
     if (user) {
-      fetch("http://localhost:3000/api/mongo", {
+      fetch("https://pair-pro.vercel.app/api/mongo", {
         headers: {
           user: getUserId(user),
         },
@@ -118,7 +118,7 @@ export default IndexPage;
 
 export const getServerSideProps = async (ctx) => {
   try {
-    const res = await fetch("http://localhost:3000/api/stats", {
+    const res = await fetch("https://pair-pro.vercel.app/api/stats", {
       headers: { Cookie: ctx.req.headers.cookie },
     });
     const user = await res.json();
