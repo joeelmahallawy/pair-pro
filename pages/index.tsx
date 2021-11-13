@@ -100,13 +100,7 @@ const IndexPage = (user) => {
             </Center>
           </Center>
         </Center>
-        <Center
-          // justifyContent="flex-end"
-          p={10}
-          h="11.5vh"
-          bg="gray.500"
-          id="footer"
-        >
+        <Center p={10} h="11.5vh" bg="gray.500" id="footer">
           Copyright
         </Center>
       </Flex>
