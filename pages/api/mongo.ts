@@ -22,7 +22,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(404).json({ err });
   }
 };
-
 export default handler;
 
 async function getUserFromDB(
@@ -34,13 +33,16 @@ async function getUserFromDB(
   const data = await DB.findOne({ id: user });
   res.json({ data });
 }
+
 async function updateUser(
   req: NextApiRequest,
   res: NextApiResponse,
   DB: Collection
 ) {
   const { prefs } = JSON.parse(req.body);
-  DB.deleteOne({ id: prefs.id });
-  DB.insertOne(prefs);
+  // DB.deleteOne({ id: prefs.id });
+  // DB.deleteOne({})
+  DB.replaceOne({ id: prefs.id }, prefs);
+  // DB.insertOne(prefs);
   res.json({});
 }
