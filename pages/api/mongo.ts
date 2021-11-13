@@ -44,7 +44,7 @@ async function updateUser(
   // DB.deleteOne({})
   // DB.findOneAndReplace
   // DB.findOneAndDelete({ id: prefs.id });
-  await DB.findOneAndReplace({ id: prefs.id }, { prefs });
+  const data = await DB.findOneAndReplace({ id: prefs.id }, { prefs });
   // DB.insertOne({ ...prefs });
-  res.json({});
+  res.send(data);
 }
