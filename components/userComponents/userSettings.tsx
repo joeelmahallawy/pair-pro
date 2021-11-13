@@ -45,7 +45,7 @@ const UserSettings = ({ data }: any) => {
         p={3}
         fontSize="xl"
         textAlign="left"
-        defaultValue={data?.nickname}
+        defaultValue={data?.nickName}
         isPreviewFocusable={false}
       >
         <Center {...themes.userSettingFields} bg="gray.700">
