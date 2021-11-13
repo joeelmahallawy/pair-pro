@@ -43,7 +43,8 @@ async function updateUser(
   // DB.deleteOne({ id: prefs.id });
   // DB.deleteOne({})
   // DB.findOneAndReplace
-  DB.findOneAndReplace({ id: prefs.id }, { prefs });
-  // DB.insertOne(prefs);
+  DB.findOneAndDelete({ id: prefs.id });
+  // DB.findOneAndReplace({ id: prefs.id }, { prefs });
+  DB.insertOne({ prefs });
   res.json({});
 }
