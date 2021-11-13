@@ -40,10 +40,10 @@ async function updateUser(
   DB: Collection
 ) {
   const { prefs } = JSON.parse(req.body);
-  // DB.deleteOne({ id: prefs.id });
+  DB.deleteOne({ id: prefs.id });
   // DB.deleteOne({})
   // DB.findOneAndReplace
-  DB.findOneAndDelete({ id: prefs.id });
+  // DB.findOneAndDelete({ id: prefs.id });
   // DB.findOneAndReplace({ id: prefs.id }, { prefs });
   DB.insertOne({ prefs });
   res.json({});
