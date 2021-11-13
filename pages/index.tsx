@@ -73,7 +73,7 @@ const IndexPage = (user) => {
           </Center>
         )}
         <Center
-          p={15}
+          p={5}
           flexDir="column"
           bg={user ? "gray.900" : "gray.800"}
           id="footer"
@@ -81,15 +81,23 @@ const IndexPage = (user) => {
           <Heading mb={3} fontSize="150%">
             Collaborators
           </Heading>
-          <Center bg="gray.700" p={5} flexDir="column" id="contact-card">
+          <Center
+            bg="gray.700"
+            p={5}
+            borderRadius={5}
+            flexDir="column"
+            boxShadow="0px 0px 5px 0.5px white"
+            id="contact-card"
+          >
             <Image
               w="160px"
+              fit="cover"
               h="140px"
               borderRadius="50%"
               src={YosemitePic.src}
             />
 
-            <Center flexDir="column">
+            <Center flexDir="column" w="10vw">
               <Text fontWeight="500" fontFamily="Roboto">
                 Youssef El Mahallawy
               </Text>
@@ -97,11 +105,21 @@ const IndexPage = (user) => {
                 linkedIn={"https://www.linkedin.com/in/youssefelmahallawy"}
                 gitHub={"https://github.com/joeelmahallawy"}
               />
+              <Text bg="gray.600" mt={3} borderRadius={10} p={3}>
+                Hi, I'm Bob the builder, but in tech. I love solving problems
+                and building projects!
+              </Text>
             </Center>
           </Center>
         </Center>
-        <Center p={10} h="11.5vh" bg="gray.500" id="footer">
-          Copyright
+        <Center
+          justifyContent="flex-end"
+          p={10}
+          h="11.5vh"
+          bg="gray.900"
+          id="footer"
+        >
+          @Copyright 2021
         </Center>
       </Flex>
     </>
