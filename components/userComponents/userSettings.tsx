@@ -29,6 +29,7 @@ const UserSettings = (props) => {
   // const [preferences, setPreferences] = useState<userPref>(data);
   const data = {};
   // console.log("OHYA USERRRRRRR:", user);
+  console.log(props);
   // console.log("OHYA DATAAAAAAAAA:", data);
   const toast = useToast();
 
