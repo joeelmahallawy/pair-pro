@@ -6,8 +6,6 @@ import UserSettings from "../../components/userComponents/userSettings";
 import getUserId from "../../helpers/getUserId";
 
 const UserAccount = ({ user, data }: any) => {
-  console.log(data);
-  console.log(user);
   return (
     <>
       <Header user={user} />

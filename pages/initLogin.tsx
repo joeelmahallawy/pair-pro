@@ -2,14 +2,17 @@ import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { Box, Center } from "@chakra-ui/react";
 import React from "react";
 import Header from "../components/pageComponents/header";
-import TypeForm from "../components/userComponents/firstTimeLoginForm";
+import UserSettings from "../components/userComponents/userSettings";
 import getUserId from "../helpers/getUserId";
 
 export default function InitLog({ data, user }: any) {
+  console.log("OHYA USER:", user);
+  console.log("OHYA DATA:", data);
+
   return (
     <>
       <Center w="100vw" m="5% auto">
-        <TypeForm user={user} data={data} />
+        <UserSettings />
       </Center>
     </>
   );
