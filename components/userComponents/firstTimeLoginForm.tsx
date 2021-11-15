@@ -36,7 +36,7 @@ const TypeForm = ({ data }: any, { user }: any) => {
     >
       <Formik
         initialValues={
-          !data
+          !rest
             ? {
                 "Full Name": "",
                 Email: "",
@@ -49,7 +49,7 @@ const TypeForm = ({ data }: any, { user }: any) => {
                 "Have any projects in mind?": "",
                 "What kind of project?": "",
               }
-            : data
+            : rest
         }
         onSubmit={(values, actions) => {
           console.log(values);
@@ -57,13 +57,26 @@ const TypeForm = ({ data }: any, { user }: any) => {
             alert("Please enter valid email");
           } else {
             const id = getUserId(user);
-            fetch("/api/mongo", {
-              method: "POST",
-              body: JSON.stringify({
-                ...values,
-                id,
-              }),
-            });
+            if (!data) {
+              console.log("we are putting in new user");
+              fetch("/api/mongo", {
+                method: "POST",
+                body: JSON.stringify({
+                  ...values,
+                  id,
+                }),
+              });
+            } else {
+              console.log("we are updating user");
+              fetch("/api/mongo", {
+                body: JSON.stringify({
+                  prefs: {
+                    id: getUserId(user),
+                    ...values,
+                  },
+                }),
+              });
+            }
             if (process.browser) window.location.pathname = "/";
           }
         }}
