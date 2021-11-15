@@ -47,6 +47,7 @@ const TypeForm = ({ data }: any, { user }: any) => {
                 "Tools and technologies used": "",
                 "Tools and technologies you want to learn": "",
                 "Interested space(s)": [],
+                "If picked 'other', please specify:": "",
                 "Have any projects in mind?": "",
                 "What kind of project?": "",
               }
@@ -114,6 +115,7 @@ const TypeForm = ({ data }: any, { user }: any) => {
               if (field == "Proficient language(s)") {
                 return (
                   <FormControl mb={5} key={i}>
+                    <FormLabel>Proficient Language(s)</FormLabel>
                     {[
                       "Javascript",
                       "Python",
@@ -165,6 +167,10 @@ const TypeForm = ({ data }: any, { user }: any) => {
                         colorScheme="twitter"
                       >
                         {language}
+                        {console.log(
+                          `is ${props.values[field]} checked?`,
+                          data[field].includes(props.values[field])
+                        )}
                       </Checkbox>
                     ))}
                   </FormControl>
@@ -173,6 +179,7 @@ const TypeForm = ({ data }: any, { user }: any) => {
               if (field == "Interested space(s)") {
                 return (
                   <FormControl mb={5} key={i}>
+                    <FormLabel>Interested space(s)</FormLabel>
                     {[
                       "Cryptocurrency",
                       "NFT",
