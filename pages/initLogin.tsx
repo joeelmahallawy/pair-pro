@@ -3,6 +3,7 @@ import { Box, Center } from "@chakra-ui/react";
 import React from "react";
 import Header from "../components/pageComponents/header";
 import TypeForm from "../components/userComponents/firstTimeLoginForm";
+import getUserId from "../helpers/getUserId";
 
 export default function InitLog(props) {
   console.log(props);
@@ -20,7 +21,14 @@ export const getServerSideProps = withPageAuthRequired({
     const res = await fetch("https://pair-pro.vercel.app/api/stats", {
       headers: { Cookie: ctx.req.headers.cookie },
     });
-    const data = await res.json();
+    const user = await res.json();
+    const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
+      method: "GET",
+      headers: {
+        user: getUserId(user),
+      },
+    });
+    const data = response.json;
 
     return { props: data };
   },
