@@ -69,6 +69,7 @@ const TypeForm = ({ data }: any, { user }: any) => {
             } else {
               console.log("we are updating user");
               fetch("/api/mongo", {
+                method: "PUT",
                 body: JSON.stringify({
                   prefs: {
                     ...values,
