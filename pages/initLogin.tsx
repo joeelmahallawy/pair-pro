@@ -6,8 +6,8 @@ import UserSettings from "../components/userComponents/userSettings";
 import getUserId from "../helpers/getUserId";
 
 export default function InitLog({ data, user }: any) {
-  // console.log("OHYA USER:", user);
-  // console.log("OHYA DATA:", data);
+  console.log("OHYA initloginuser:", user);
+  console.log("OHYA initlogindata:", data);
 
   return (
     <>
