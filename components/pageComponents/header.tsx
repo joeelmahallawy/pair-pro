@@ -140,7 +140,7 @@ const Header = ({ user }) => {
                         h="60px"
                         borderRadius="50%"
                         src={user.picture}
-                        p={3}
+                        p={1}
                       />
                       {user && user?.sub?.startsWith("auth0")
                         ? user.nickname

@@ -19,6 +19,8 @@ import { Formik } from "formik";
 
 const TypeForm = (props) => {
   const [preferences, setPreferences] = useState(props.data);
+  console.log(props);
+  console.log(preferences);
 
   return (
     <Flex
