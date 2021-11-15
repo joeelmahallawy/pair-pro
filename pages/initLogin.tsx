@@ -6,13 +6,10 @@ import TypeForm from "../components/userComponents/firstTimeLoginForm";
 import getUserId from "../helpers/getUserId";
 
 export default function InitLog({ data, user }: any) {
-  // console.log("PROPS:", props);
-  console.log(data);
-  console.log(user);
   return (
     <>
       <Center w="100vw" m="5% auto">
-        <TypeForm />
+        <TypeForm user={user} data={data} />
       </Center>
     </>
   );
