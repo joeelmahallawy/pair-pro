@@ -20,9 +20,8 @@ import userPref from "../../interfaces/userPrefTypes";
 
 const TypeForm = ({ data }: any, { user }: any) => {
   // const [preferences, setPreferences] = useState<userPref>(data);
-  const newData = data.map(({ _id, id, nickName, ...rest }) => rest);
-  console.log(data);
-  console.log(newData);
+  const { _id, id, nickName, ...rest } = data;
+  console.log(rest);
 
   return (
     <Flex
@@ -37,7 +36,7 @@ const TypeForm = ({ data }: any, { user }: any) => {
     >
       <Formik
         initialValues={
-          !newData
+          !data
             ? {
                 "Full Name": "",
                 Email: "",
@@ -50,7 +49,7 @@ const TypeForm = ({ data }: any, { user }: any) => {
                 "Have any projects in mind?": "",
                 "What kind of project?": "",
               }
-            : newData
+            : data
         }
         onSubmit={(values, actions) => {
           console.log(values);
