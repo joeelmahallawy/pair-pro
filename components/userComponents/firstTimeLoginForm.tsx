@@ -77,7 +77,7 @@ const TypeForm = ({ data }: any, { user }: any) => {
                 }),
               });
             }
-            if (process.browser) window.location.pathname = "/";
+            // if (process.browser) window.location.pathname = "/";
           }
         }}
       >
