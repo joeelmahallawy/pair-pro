@@ -2,7 +2,6 @@ import {
   Center,
   Flex,
   Box,
-  Link,
   Divider,
   Button,
   Image,
@@ -13,6 +12,7 @@ import {
   PopoverHeader,
   PopoverBody,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import React, { useRef, useState } from "react";
 import logo from "../../attachments/pairpro-transparent.png";
 import { RiArrowDownSFill } from "react-icons/ri";
@@ -53,7 +53,7 @@ const Header = ({ user }) => {
     >
       <Center w="35%">
         <Center w="280px" h="40px">
-          <Link href="/" _focus={{}}>
+          <Link href="/">
             <Image
               _hover={{ cursor: "pointer" }}
               w="240px"
@@ -92,7 +92,7 @@ const Header = ({ user }) => {
           </Button>
         </>
 
-        <Link href="/pairingSession" _hover={{}} _focus={{}}>
+        <Link href="/pairingSession">
           <Button
             {...themes.navButtons}
             bg="orange.500"
@@ -139,19 +139,17 @@ const Header = ({ user }) => {
                 </PopoverHeader>
                 <PopoverBody>
                   <Flex flexDir="column" justifyContent="space-around">
-                    <Link p={0.5}>Messages</Link>
-                    <Link p={0.5}>Settings</Link>
+                    {/* <Link>Messages</Link> */}
+                    <Link href={`/user/${getUserId(user)}`}>Settings</Link>
                     <Divider />
-                    <Link _focus={{}} href="/api/auth/logout" p={0.5}>
-                      Sign out
-                    </Link>
+                    <Link href="/api/auth/logout">Sign out</Link>
                   </Flex>
                 </PopoverBody>
               </PopoverContent>
             </Popover>
           </Box>
         ) : (
-          <Link href="/api/auth/login" _hover={{}}>
+          <Link href="/api/auth/login">
             <Button
               {...themes.navButtons}
               _hover={{ bg: "blue.600" }}

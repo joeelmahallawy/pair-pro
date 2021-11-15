@@ -9,7 +9,6 @@ const UserSettings = ({ data }: any) => {
   const [preferences, setPreferences] = useState<userPref>(data);
   const [isSending, setIsSending] = useState(false);
   const toast = useToast();
-  console.log(preferences);
 
   return data ? (
     <Box w="85%" p={5} fontFamily="Arial">

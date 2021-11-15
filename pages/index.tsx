@@ -1,12 +1,5 @@
-import {
-  Button,
-  Center,
-  Flex,
-  Heading,
-  Link,
-  Image,
-  Text,
-} from "@chakra-ui/react";
+import { Button, Center, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import Link from "next/link";
 import YosemitePic from "../attachments/yosemite_compressed.jpeg";
 import React, { useEffect } from "react";
 import Header from "../components/pageComponents/header";
@@ -20,7 +13,6 @@ import getUserId from "../helpers/getUserId";
 const IndexPage = (user) => {
   if (user.error == "not_authenticated") user = null;
 
-  console.log("USER FROM HOMEPAGE", user);
   useEffect(() => {
     if (user) {
       fetch("https://pair-pro.vercel.app/api/mongo", {
@@ -66,9 +58,7 @@ const IndexPage = (user) => {
               _hover={{ bg: "orange.600" }}
               _active={{ bg: "orange.700" }}
             >
-              <Link href={"/api/auth/login"} _hover={{}} _focus={{}}>
-                Sign me up!
-              </Link>
+              <Link href={"/api/auth/login"}>Sign me up!</Link>
             </Button>
           </Center>
         )}
