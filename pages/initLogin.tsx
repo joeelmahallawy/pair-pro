@@ -5,6 +5,7 @@ import Header from "../components/pageComponents/header";
 import TypeForm from "../components/userComponents/firstTimeLoginForm";
 
 export default function InitLog(props) {
+  console.log(props);
   return (
     <>
       <Center w="100vw" m="5% auto">
