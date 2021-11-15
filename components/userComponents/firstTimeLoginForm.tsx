@@ -378,29 +378,28 @@ const TypeForm = (props) => {
   return null;
 };
 export default TypeForm;
-// const [state, doFetch] = useAsyncFn(async () => {
-//   const response = await fetch(url);
-//   const result = await response.text();
-//   return result
-// }, [url]);
 
 export const getServerSideProps = async (ctx) => {
   try {
     const res = await fetch("https://pair-pro.vercel.app/api/stats", {
       headers: { Cookie: ctx.req.headers.cookie },
     });
+    if (!res.ok) throw new Error("Could not fetch user");
     const user = await res.json();
+
     const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
       method: "GET",
       headers: {
         user: getUserId(user),
       },
     });
+    if (!response.ok)
+      throw new Error("Could not get data with users information");
     const data = await response.json();
     return { props: user };
     // if (!data.data) return { props: user };
     // else return { props: { user, data } };
   } catch (err) {
-    return { err };
+    return { error: "you suck" };
   }
 };
