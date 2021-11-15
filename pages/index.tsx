@@ -74,7 +74,6 @@ const IndexPage = (user) => {
           </Heading>
           <Center
             bg="gray.700"
-            // bg="red"
             w="20vw"
             p={5}
             borderRadius={5}

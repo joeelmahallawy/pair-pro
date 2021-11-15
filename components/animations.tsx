@@ -8,7 +8,7 @@ import { Link as LinkScroll, animateScroll as scroll } from "react-scroll";
 const Bouncer = () => (
   <Flex id="bouncer" animation={bounceAnimation} justifyContent="center">
     <Box _hover={{ cursor: "pointer" }}>
-      <Fade top big>
+      <Fade top>
         <LinkScroll to="how-it-works" smooth={true} duration={500}>
           <IoIosArrowDown size={40} />
         </LinkScroll>

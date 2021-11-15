@@ -1,6 +1,6 @@
 import _ from "lodash";
 import "@typeform/embed/build/css/popup.css";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Button,
   Checkbox,
@@ -17,7 +17,9 @@ import {
 import getUserId from "../../helpers/getUserId";
 import { Formik } from "formik";
 
-const TypeForm = ({ user }) => {
+const TypeForm = (props) => {
+  const [preferences, setPreferences] = useState(props.data);
+
   return (
     <Flex
       overflowY="auto"
@@ -30,23 +32,27 @@ const TypeForm = ({ user }) => {
       borderRadius={10}
     >
       <Formik
-        initialValues={{
-          "Full Name": "",
-          Email: "",
-          "Where are you based?": "",
-          "Years of experience": "",
-          "Proficient language(s)": [],
-          "Tools and technologies used": "",
-          "Tools and technologies you want to learn": "",
-          "Interested space(s)": [],
-          "Have any projects in mind?": "",
-          "What kind of project?": "",
-        }}
+        initialValues={
+          !props.data
+            ? {
+                "Full Name": "",
+                Email: "",
+                "Where are you based?": "",
+                "Years of experience": "",
+                "Proficient language(s)": [],
+                "Tools and technologies used": "",
+                "Tools and technologies you want to learn": "",
+                "Interested space(s)": [],
+                "Have any projects in mind?": "",
+                "What kind of project?": "",
+              }
+            : props.data
+        }
         onSubmit={(values, actions) => {
           if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.Email)) {
             alert("Please enter valid email");
           } else {
-            const id = getUserId(user);
+            const id = getUserId(props.user);
             fetch("/api/mongo", {
               method: "POST",
               body: JSON.stringify({
@@ -324,7 +330,12 @@ const TypeForm = ({ user }) => {
               );
             })}
 
-            <Button ml="auto" colorScheme="teal" type="submit">
+            <Button
+              ml="auto"
+              colorScheme="teal"
+              type="submit"
+              // isDisabled={_.isEqual(obj1, obj2);}
+            >
               Submit
             </Button>
           </form>
@@ -334,3 +345,28 @@ const TypeForm = ({ user }) => {
   );
 };
 export default TypeForm;
+// const [state, doFetch] = useAsyncFn(async () => {
+//   const response = await fetch(url);
+//   const result = await response.text();
+//   return result
+// }, [url]);
+
+export const getServerSideProps = async (ctx) => {
+  try {
+    const res = await fetch("https://pair-pro.vercel.app/api/stats", {
+      headers: { Cookie: ctx.req.headers.cookie },
+    });
+    const user = await res.json();
+    const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
+      headers: {
+        user: getUserId(user),
+      },
+    });
+
+    const data = await response.json();
+
+    return { props: data };
+  } catch (err) {
+    return {};
+  }
+};

@@ -109,7 +109,7 @@ const Header = ({ user }) => {
           </Button>
         </Link>
       </Flex>
-      <Flex w="20%" justifyContent="flex-end">
+      <Flex w="15%" justifyContent="flex-end">
         {user ? (
           <Box mr="20%">
             {/* TODO:TODO:TODO:TODO:TOOD: */}
@@ -136,8 +136,8 @@ const Header = ({ user }) => {
                       _hover={{ cursor: "pointer" }}
                     >
                       <Image
-                        w="40px"
-                        h="40px"
+                        w="60px"
+                        h="60px"
                         borderRadius="50%"
                         src={user.picture}
                         p={3}

@@ -13,7 +13,7 @@ const UserSettings = ({ data }: any) => {
 
   return data ? (
     <Box w="85%" p={5} fontFamily="Arial">
-      <TypeForm user={data} />
+      <TypeForm />
       {/* <Editable
         p={3}
         fontSize="xl"
