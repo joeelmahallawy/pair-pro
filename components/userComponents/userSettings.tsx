@@ -28,8 +28,6 @@ import getUserId from "../../helpers/getUserId";
 const UserSettings = ({ user, data }) => {
   // const [preferences, setPreferences] = useState<userPref>(data);
   const { id, _id, nickName, ...rest } = data;
-  console.log(user, data);
-  console.log(rest);
 
   const toast = useToast();
 
@@ -144,7 +142,10 @@ const UserSettings = ({ user, data }) => {
                       ].map((language, i) => (
                         <Checkbox
                           defaultChecked={
-                            data && data[field].includes(props.values[field])
+                            data &&
+                            data["Proficient language(s)"].includes(
+                              props.values[field]
+                            )
                           }
                           isFocusable={false}
                           _focus={{
@@ -206,7 +207,10 @@ const UserSettings = ({ user, data }) => {
                       ].map((language, i) => (
                         <Checkbox
                           defaultChecked={
-                            data && data[field].includes(props.values[field])
+                            data &&
+                            data["Proficient language(s)"].includes(
+                              props.values[field]
+                            )
                           }
                           isFocusable={false}
                           _focus={{
