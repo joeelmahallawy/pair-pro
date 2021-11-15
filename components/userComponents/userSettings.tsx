@@ -143,9 +143,7 @@ const UserSettings = ({ user, data }) => {
                         <Checkbox
                           defaultChecked={
                             data &&
-                            data["Proficient language(s)"].includes(
-                              props.values[field]
-                            )
+                            data["Proficient Language(s)"].includes(language)
                           }
                           isFocusable={false}
                           _focus={{
@@ -182,7 +180,7 @@ const UserSettings = ({ user, data }) => {
                           {language}
 
                           {console.log(
-                            data["Proficient language(s)"].includes(language)
+                            data["Proficient Language(s)"].includes(language)
                           )}
                         </Checkbox>
                       ))}
@@ -254,6 +252,7 @@ const UserSettings = ({ user, data }) => {
                     <FormControl key={i} mb={3}>
                       <FormLabel fontWeight="bold">{field}</FormLabel>
                       <RadioGroup
+                        defaultValue={data[field]}
                         onChange={(e) => {
                           props.values["Have any projects in mind?"] = e;
                         }}
