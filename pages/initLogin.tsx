@@ -28,7 +28,7 @@ export const getServerSideProps = withPageAuthRequired({
         user: getUserId(user),
       },
     });
-    const data = response.json;
+    const data = await response.json();
 
     return { props: data };
   },
