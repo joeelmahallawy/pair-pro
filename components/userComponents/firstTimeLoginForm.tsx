@@ -19,7 +19,11 @@ import { Formik } from "formik";
 import userPref from "../../interfaces/userPrefTypes";
 
 const TypeForm = ({ data }: any, { user }: any) => {
-  const [preferences, setPreferences] = useState<userPref>(data);
+  // const [preferences, setPreferences] = useState<userPref>(data);
+  const newData = data.map(({ _id, id, nickName, ...rest }) => rest);
+  console.log(data);
+  console.log(newData);
+
   return (
     <Flex
       overflowY="auto"
@@ -33,7 +37,7 @@ const TypeForm = ({ data }: any, { user }: any) => {
     >
       <Formik
         initialValues={
-          !data
+          !newData
             ? {
                 "Full Name": "",
                 Email: "",
@@ -46,18 +50,7 @@ const TypeForm = ({ data }: any, { user }: any) => {
                 "Have any projects in mind?": "",
                 "What kind of project?": "",
               }
-            : {
-                ...data["Full Name"],
-                ...data.Email,
-                ...data["Where are you based?"],
-                ...data["Years of experience"],
-                ...data["Proficient language(s)"],
-                ...data["Tools and technologies used"],
-                ...data["Tools and technologies you want to learn"],
-                ...data["Interested space(s)"],
-                ...data["Have any projects in mind?"],
-                ...data["What kind of project?"],
-              }
+            : newData
         }
         onSubmit={(values, actions) => {
           console.log(values);
