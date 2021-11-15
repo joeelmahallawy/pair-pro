@@ -73,7 +73,7 @@ const TypeForm = ({ data }: any, { user }: any) => {
                 body: JSON.stringify({
                   prefs: {
                     ...values,
-                    id: getUserId(user),
+                    id,
                   },
                 }),
               });
