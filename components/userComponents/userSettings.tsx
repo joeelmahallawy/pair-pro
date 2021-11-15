@@ -182,9 +182,7 @@ const UserSettings = ({ user, data }) => {
                           {language}
 
                           {console.log(
-                            `is ${props.values[field]} checked?`,
-                            `this is the data field ${data[field]} `,
-                            data && data[field].includes(props.values[field])
+                            data["Proficient language(s)"].includes(language)
                           )}
                         </Checkbox>
                       ))}
@@ -204,13 +202,10 @@ const UserSettings = ({ user, data }) => {
                         "Machine Learning",
                         "Data science",
                         "Other",
-                      ].map((language, i) => (
+                      ].map((space, i) => (
                         <Checkbox
                           defaultChecked={
-                            data &&
-                            data["Proficient language(s)"].includes(
-                              props.values[field]
-                            )
+                            data && data["Interested space(s)"].includes(space)
                           }
                           isFocusable={false}
                           _focus={{
@@ -239,12 +234,12 @@ const UserSettings = ({ user, data }) => {
                               );
                           }}
                           onBlur={props.handleBlur}
-                          value={language}
+                          value={space}
                           name={`${props.values["Interested space(s)"]}`}
                           size="lg"
                           colorScheme="twitter"
                         >
-                          {language}
+                          {space}
                         </Checkbox>
                       ))}
                     </FormControl>
