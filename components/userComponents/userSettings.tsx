@@ -25,9 +25,9 @@ import { Formik } from "formik";
 import _ from "lodash";
 import getUserId from "../../helpers/getUserId";
 
-const UserSettings = ({ data }: any, { user }: any) => {
+const UserSettings = (props) => {
   // const [preferences, setPreferences] = useState<userPref>(data);
-
+  const data = {};
   // console.log("OHYA USERRRRRRR:", user);
   // console.log("OHYA DATAAAAAAAAA:", data);
   const toast = useToast();
@@ -46,21 +46,22 @@ const UserSettings = ({ data }: any, { user }: any) => {
       >
         <Formik
           initialValues={
-            !data
-              ? {
-                  "Full Name": "",
-                  Email: "",
-                  "Where are you based?": "",
-                  "Years of experience": "",
-                  "Proficient language(s)": [],
-                  "Tools and technologies used": "",
-                  "Tools and technologies you want to learn": "",
-                  "Interested space(s)": [],
-                  "If picked 'other', please specify:": "",
-                  "Have any projects in mind?": "",
-                  "What kind of project?": "",
-                }
-              : data
+            // !data
+            //   ?
+            {
+              "Full Name": "",
+              Email: "",
+              "Where are you based?": "",
+              "Years of experience": "",
+              "Proficient language(s)": [],
+              "Tools and technologies used": "",
+              "Tools and technologies you want to learn": "",
+              "Interested space(s)": [],
+              "If picked 'other', please specify:": "",
+              "Have any projects in mind?": "",
+              "What kind of project?": "",
+            }
+            // : data
           }
           onSubmit={(values, actions) => {
             console.log(values);
@@ -69,14 +70,14 @@ const UserSettings = ({ data }: any, { user }: any) => {
             ) {
               alert("Please enter valid email");
             } else {
-              const id = getUserId(user);
+              // const id = getUserId(user);
               if (!data) {
                 console.log("we are putting in new user");
                 fetch("/api/mongo", {
                   method: "POST",
                   body: JSON.stringify({
                     ...values,
-                    id,
+                    // id,
                   }),
                 });
               } else {
@@ -86,7 +87,7 @@ const UserSettings = ({ data }: any, { user }: any) => {
                   body: JSON.stringify({
                     prefs: {
                       ...values,
-                      id,
+                      // id,
                     },
                   }),
                 });
