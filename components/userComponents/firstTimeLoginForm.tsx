@@ -128,6 +128,9 @@ const TypeForm = ({ data }: any, { user }: any) => {
                       "Other",
                     ].map((language, i) => (
                       <Checkbox
+                        defaultChecked={data[field].includes(
+                          props.values[field]
+                        )}
                         isFocusable={false}
                         _focus={{
                           outline: "none",
@@ -180,6 +183,9 @@ const TypeForm = ({ data }: any, { user }: any) => {
                       "Other",
                     ].map((language, i) => (
                       <Checkbox
+                        defaultChecked={data[field].includes(
+                          props.values[field]
+                        )}
                         isFocusable={false}
                         _focus={{
                           outline: "none",
