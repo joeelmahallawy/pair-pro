@@ -71,8 +71,8 @@ const TypeForm = ({ data }: any, { user }: any) => {
               fetch("/api/mongo", {
                 body: JSON.stringify({
                   prefs: {
-                    id: getUserId(user),
                     ...values,
+                    id: getUserId(user),
                   },
                 }),
               });
