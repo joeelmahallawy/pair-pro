@@ -100,7 +100,7 @@ const Header = ({ user }) => {
             borderRadius={5}
             _hover={{ bg: "orange.600" }}
           >
-            Pair me
+            Connect me with someone
           </Button>
         </Link>
       </Flex>

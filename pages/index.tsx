@@ -37,6 +37,7 @@ const IndexPage = (user) => {
         <Flex flexDir="column" id="home" h="100vh">
           <Header user={user} />
           <HomePage />
+          {/* TODO: */}
           <Bouncer />
         </Flex>
         <Flex h="85vh" bg="gray.900" id="how-it-works">
@@ -73,6 +74,8 @@ const IndexPage = (user) => {
           </Heading>
           <Center
             bg="gray.700"
+            // bg="red"
+            w="20vw"
             p={5}
             borderRadius={5}
             flexDir="column"
@@ -87,8 +90,8 @@ const IndexPage = (user) => {
               src={YosemitePic.src}
             />
 
-            <Center flexDir="column" w="10vw">
-              <Text fontWeight="500" fontFamily="Roboto">
+            <Center flexDir="column" w="100%">
+              <Text fontWeight="500" fontSize="lg" fontFamily="Roboto">
                 Youssef El Mahallawy
               </Text>
               <Socials

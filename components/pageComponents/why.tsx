@@ -10,7 +10,6 @@ import {
 import React, { useRef } from "react";
 import { themes } from "../../configs/themes";
 import LaptopPic from "../../attachments/laptop.jpeg";
-import { Link, animateScroll as scroll } from "react-scroll";
 
 const Why = () => {
   return (
