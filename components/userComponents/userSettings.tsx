@@ -32,7 +32,7 @@ const UserSettings = ({ user, data }) => {
   const toast = useToast();
 
   return (
-    <Box w="85%" p={5} fontFamily="Arial">
+    <Box w="85%" bg="red" p={5} fontFamily="Arial">
       <Flex
         overflowY="auto"
         flexDir="column"
@@ -243,6 +243,7 @@ const UserSettings = ({ user, data }) => {
                   );
                 }
 
+                // TODO:TODO:TODO:TODO:
                 if (field == "Have any projects in mind?") {
                   return (
                     <FormControl key={i} mb={3}>
