@@ -118,14 +118,40 @@ const Header = ({ user }) => {
                 as={Button}
                 rightIcon={<MdOutlineKeyboardArrowDown />}
                 bg="transparent"
-                _hover={{}}
+                _hover={{ color: "gray.300" }}
                 _focus={{}}
               >
-                <Image src={user.picture} borderRadius="50%" boxSize="10" />
+                {/* <Image src={user.picture} borderRadius="50%" boxSize="10" /> */}
                 {/* <Flex fontFamily="Roboto"> */}
                 {/* Me */}
+                <Box cursor="pointer" _hover={{ color: "gray.300" }}>
+                  <Image src={user.picture} borderRadius="50%" boxSize="10" />
+                  <Flex fontFamily="Roboto">
+                    Me
+                    <RiArrowDownSFill fontSize="22.5" />
+                  </Flex>
+                </Box>
               </MenuButton>
               <MenuList>
+                <MenuItem>
+                  <Center
+                    justifyContent="space-between"
+                    fontWeight="bold"
+                    _hover={{ cursor: "pointer" }}
+                  >
+                    <Image
+                      w="40px"
+                      h="40px"
+                      borderRadius="50%"
+                      src={user.picture}
+                    />
+                    {user && user?.sub?.startsWith("auth0")
+                      ? user.nickname
+                      : user?.name
+                      ? user?.name
+                      : user?.nickname}
+                  </Center>
+                </MenuItem>
                 <MenuItem>
                   <Link href={`/user/${getUserId(user)}`}>Settings</Link>
                 </MenuItem>
