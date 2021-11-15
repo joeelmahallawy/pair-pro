@@ -391,13 +391,14 @@ export const getServerSideProps = async (ctx) => {
     });
     const user = await res.json();
     const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
+      method: "GET",
       headers: {
         user: getUserId(user),
       },
     });
     const data = await response.json();
 
-    return { props: data };
+    return { props: { user, data } };
   } catch (err) {
     return {};
   }
