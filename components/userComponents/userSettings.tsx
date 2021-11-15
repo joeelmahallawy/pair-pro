@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import EditableControls from "./editableControls";
 import { themes } from "../../configs/themes";
 import userPref from "../../interfaces/userPrefTypes";
+import TypeForm from "./firstTimeLoginForm";
 
 const UserSettings = ({ data }: any) => {
   const [preferences, setPreferences] = useState<userPref>(data);
@@ -12,7 +13,8 @@ const UserSettings = ({ data }: any) => {
 
   return data ? (
     <Box w="85%" p={5} fontFamily="Arial">
-      <Editable
+      <TypeForm user={data} />
+      {/* <Editable
         p={3}
         fontSize="xl"
         textAlign="left"
@@ -180,7 +182,7 @@ const UserSettings = ({ data }: any) => {
             <EditableControls />
           </Center>
         </Center>
-      </Editable>
+      </Editable> */}
       <Flex justifyContent="flex-end" p={3}>
         <Button
           isLoading={isSending}
