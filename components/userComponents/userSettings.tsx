@@ -27,7 +27,9 @@ import getUserId from "../../helpers/getUserId";
 
 const UserSettings = ({ user, data }) => {
   // const [preferences, setPreferences] = useState<userPref>(data);
+  const { id, _id, nickName, ...rest } = data;
   console.log(user, data);
+  console.log(rest);
 
   const toast = useToast();
 
@@ -59,7 +61,7 @@ const UserSettings = ({ user, data }) => {
                   "Have any projects in mind?": "",
                   "What kind of project?": "",
                 }
-              : data
+              : rest
           }
           onSubmit={(values, actions) => {
             console.log(values);
@@ -177,10 +179,10 @@ const UserSettings = ({ user, data }) => {
                           colorScheme="twitter"
                         >
                           {language}
-                          {/* {console.log(
+                          {console.log(
                             `is ${props.values[field]} checked?`,
-                            data[field].includes(props.values[field])
-                          )} */}
+                            data && data[field].includes(props.values[field])
+                          )}
                         </Checkbox>
                       ))}
                     </FormControl>
