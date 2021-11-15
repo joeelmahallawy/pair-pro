@@ -11,7 +11,7 @@ export default function InitLog({ data, user }: any) {
 
   return (
     <>
-      <Center w="100vw" bg="blue" m="5% auto">
+      <Center w="100vw" m="5% auto">
         <UserSettings user={user} data={data} />
       </Center>
     </>

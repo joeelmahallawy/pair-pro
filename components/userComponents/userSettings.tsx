@@ -32,7 +32,7 @@ const UserSettings = ({ user, data }) => {
   const toast = useToast();
 
   return (
-    <Box w="85%" bg="red" p={5} fontFamily="Arial">
+    <Center w="85%" p={5} fontFamily="Arial">
       <Flex
         overflowY="auto"
         flexDir="column"
@@ -141,9 +141,9 @@ const UserSettings = ({ user, data }) => {
                         "Other",
                       ].map((language, i) => (
                         <Checkbox
-                          // defaultChecked={data[field].includes(
-                          //   props.values[field]
-                          // )}
+                          defaultChecked={
+                            data && data[field].includes(props.values[field])
+                          }
                           isFocusable={false}
                           _focus={{
                             outline: "none",
@@ -201,9 +201,9 @@ const UserSettings = ({ user, data }) => {
                         "Other",
                       ].map((language, i) => (
                         <Checkbox
-                          // defaultChecked={data[field].includes(
-                          //   props.values[field]
-                          // )}
+                          defaultChecked={
+                            data && data[field].includes(props.values[field])
+                          }
                           isFocusable={false}
                           _focus={{
                             outline: "none",
@@ -243,7 +243,9 @@ const UserSettings = ({ user, data }) => {
                   );
                 }
 
-                // TODO:TODO:TODO:TODO:
+                if (field == "If picked 'other', please specify:") {
+                  // TODO:TODO:TODO:TODO:
+                }
                 if (field == "Have any projects in mind?") {
                   return (
                     <FormControl key={i} mb={3}>
@@ -344,7 +346,6 @@ const UserSettings = ({ user, data }) => {
                     </FormControl>
                   );
                 }
-
                 return (
                   <FormControl mb={5} key={i} id={`${field}`} isRequired>
                     <FormLabel fontWeight="bold">{field}</FormLabel>
@@ -357,8 +358,15 @@ const UserSettings = ({ user, data }) => {
                       onBlur={props.handleBlur}
                       value={props.values[field]}
                       name={`${field}`}
-                      placeholder="Ex) React.js, Node.js"
+                      placeholder={
+                        field != "If picked 'other', please specify:"
+                          ? "Ex) React.js, Node.js"
+                          : "Ex) Real estate"
+                      }
                     />
+                    {field == "If picked 'other', please specify:" && (
+                      <FormHelperText mb={1}>'N/A' otherwise</FormHelperText>
+                    )}
                     {field == "Tools and technologies used" && (
                       <FormHelperText mb={1}>
                         Separate answers with comma and space
@@ -384,7 +392,7 @@ const UserSettings = ({ user, data }) => {
           )}
         </Formik>
       </Flex>
-    </Box>
+    </Center>
   );
 };
 export default UserSettings;
