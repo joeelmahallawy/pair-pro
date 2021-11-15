@@ -141,9 +141,9 @@ const UserSettings = ({ user, data }) => {
                         "Other",
                       ].map((language, i) => (
                         <Checkbox
-                          defaultChecked={data[field].includes(
-                            props.values[field]
-                          )}
+                          // defaultChecked={data[field].includes(
+                          //   props.values[field]
+                          // )}
                           isFocusable={false}
                           _focus={{
                             outline: "none",
@@ -177,10 +177,10 @@ const UserSettings = ({ user, data }) => {
                           colorScheme="twitter"
                         >
                           {language}
-                          {console.log(
+                          {/* {console.log(
                             `is ${props.values[field]} checked?`,
                             data[field].includes(props.values[field])
-                          )}
+                          )} */}
                         </Checkbox>
                       ))}
                     </FormControl>
@@ -201,9 +201,9 @@ const UserSettings = ({ user, data }) => {
                         "Other",
                       ].map((language, i) => (
                         <Checkbox
-                          defaultChecked={data[field].includes(
-                            props.values[field]
-                          )}
+                          // defaultChecked={data[field].includes(
+                          //   props.values[field]
+                          // )}
                           isFocusable={false}
                           _focus={{
                             outline: "none",
