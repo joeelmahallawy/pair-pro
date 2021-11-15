@@ -115,18 +115,13 @@ const Header = ({ user }) => {
             {/* TODO:TODO:TODO:TODO:TOOD: */}
             <Menu>
               <MenuButton
-                as={Button}
-                rightIcon={<MdOutlineKeyboardArrowDown />}
                 bg="transparent"
-                _hover={{ color: "gray.300" }}
+                _hover={{ color: "gray.400" }}
                 _focus={{}}
               >
-                {/* <Image src={user.picture} borderRadius="50%" boxSize="10" /> */}
-                {/* <Flex fontFamily="Roboto"> */}
-                {/* Me */}
                 <Box cursor="pointer" _hover={{ color: "gray.300" }}>
                   <Image src={user.picture} borderRadius="50%" boxSize="10" />
-                  <Flex fontFamily="Roboto">
+                  <Flex fontFamily="Arial" fontWeight="500">
                     Me
                     <RiArrowDownSFill fontSize="22.5" />
                   </Flex>
@@ -134,27 +129,30 @@ const Header = ({ user }) => {
               </MenuButton>
               <MenuList>
                 <MenuItem>
-                  <Center
-                    justifyContent="space-between"
-                    fontWeight="bold"
-                    _hover={{ cursor: "pointer" }}
-                  >
-                    <Image
-                      w="40px"
-                      h="40px"
-                      borderRadius="50%"
-                      src={user.picture}
-                    />
-                    {user && user?.sub?.startsWith("auth0")
-                      ? user.nickname
-                      : user?.name
-                      ? user?.name
-                      : user?.nickname}
-                  </Center>
+                  <Link href={`/user/${getUserId(user)}`}>
+                    <Center
+                      justifyContent="space-between"
+                      fontWeight="bold"
+                      _hover={{ cursor: "pointer" }}
+                    >
+                      <Image
+                        w="40px"
+                        h="40px"
+                        borderRadius="50%"
+                        src={user.picture}
+                        p={3}
+                      />
+                      {user && user?.sub?.startsWith("auth0")
+                        ? user.nickname
+                        : user?.name
+                        ? user?.name
+                        : user?.nickname}
+                    </Center>
+                  </Link>
                 </MenuItem>
-                <MenuItem>
-                  <Link href={`/user/${getUserId(user)}`}>Settings</Link>
-                </MenuItem>
+                <Link href={`/user/${getUserId(user)}`}>
+                  <MenuItem>Settings</MenuItem>
+                </Link>
                 <MenuItem>
                   <Link href="/api/auth/logout">Sign out</Link>
                 </MenuItem>
