@@ -8,7 +8,7 @@ export default function InitLog(props) {
   return (
     <>
       <Center w="100vw" m="5% auto">
-        <TypeForm user={props.user} data={props.data} />
+        {/* <TypeForm user={props.user} data={props.data} /> */}
       </Center>
     </>
   );
@@ -16,7 +16,7 @@ export default function InitLog(props) {
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
-    const res = await fetch("http://localhost:3000/api/stats", {
+    const res = await fetch("https://pair-pro.vercel.app/api/stats", {
       headers: { Cookie: ctx.req.headers.cookie },
     });
     const data = await res.json();
