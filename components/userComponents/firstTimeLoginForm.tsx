@@ -23,7 +23,7 @@ const TypeForm = ({ data }: any, { user }: any) => {
 
   // const { _id, id, nickName, ...rest } = data;
   console.log(data);
-  console.log(!data);
+  console.log(!data.data);
 
   return (
     <Flex

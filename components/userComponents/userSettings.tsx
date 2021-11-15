@@ -8,7 +8,8 @@ import TypeForm from "./firstTimeLoginForm";
 
 const UserSettings = ({ data }: any, { user }: any) => {
   // const [preferences, setPreferences] = useState<userPref>(data);
-
+  console.log(data);
+  console.log(user);
   const toast = useToast();
 
   return data ? (
