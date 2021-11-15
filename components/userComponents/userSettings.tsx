@@ -179,8 +179,10 @@ const UserSettings = ({ user, data }) => {
                           colorScheme="twitter"
                         >
                           {language}
+
                           {console.log(
                             `is ${props.values[field]} checked?`,
+                            `this is the data field ${data[field]} `,
                             data && data[field].includes(props.values[field])
                           )}
                         </Checkbox>
