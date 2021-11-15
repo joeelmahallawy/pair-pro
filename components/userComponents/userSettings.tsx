@@ -25,7 +25,7 @@ import { Formik } from "formik";
 import _ from "lodash";
 import getUserId from "../../helpers/getUserId";
 
-const UserSettings = ({ data }: any, { user }: any) => {
+const UserSettings = (data, user) => {
   // const [preferences, setPreferences] = useState<userPref>(data);
   // console.log(data);
   // console.log(user);
