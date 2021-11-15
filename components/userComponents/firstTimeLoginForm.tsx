@@ -401,6 +401,6 @@ export const getServerSideProps = async (ctx) => {
     // if (!data.data) return { props: user };
     // else return { props: { user, data } };
   } catch (err) {
-    return {};
+    return { err };
   }
 };
