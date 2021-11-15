@@ -31,7 +31,7 @@ const UserSettings = ({ user, data }) => {
 
   const toast = useToast();
 
-  return (
+  return data ? (
     <Box w="85%" p={5} fontFamily="Arial">
       <Flex
         overflowY="auto"
@@ -384,7 +384,7 @@ const UserSettings = ({ user, data }) => {
         </Formik>
       </Flex>
     </Box>
-  );
+  ) : null;
 };
 export default UserSettings;
 
