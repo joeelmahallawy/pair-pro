@@ -7,8 +7,8 @@ import userPref from "../../interfaces/userPrefTypes";
 import TypeForm from "./firstTimeLoginForm";
 
 const UserSettings = ({ data }: any, { user }: any) => {
-  const [preferences, setPreferences] = useState<userPref>(data);
-  const [isSending, setIsSending] = useState(false);
+  // const [preferences, setPreferences] = useState<userPref>(data);
+
   const toast = useToast();
 
   return data ? (
@@ -183,42 +183,6 @@ const UserSettings = ({ data }: any, { user }: any) => {
           </Center>
         </Center>
       </Editable> */}
-      <Flex justifyContent="flex-end" p={3}>
-        <Button
-          isLoading={isSending}
-          loadingText={isSending ? "Submitting..." : null}
-          bg="blue.500"
-          _hover={{ bg: "blue.600" }}
-          _active={{ bg: "blue.700" }}
-          _focus={{}}
-          onClick={() => {
-            fetch("https://pair-pro.vercel.app/api/mongo", {
-              method: "PUT",
-              body: JSON.stringify({
-                prefs: preferences,
-              }),
-            });
-
-            setIsSending(true);
-            setTimeout(() => {
-              setIsSending(false);
-              // if (process.browser) window.location = window.location;
-            }, 2500);
-
-            setTimeout(() => {
-              return toast({
-                title: "Submitted changes!",
-                description: "Profile looking good. 😉",
-                status: "success",
-                duration: 5000,
-                isClosable: false,
-              });
-            }, 2500);
-          }}
-        >
-          Submit changes
-        </Button>
-      </Flex>
     </Box>
   ) : null;
 };
