@@ -22,6 +22,8 @@ const TypeForm = ({ data }: any, { user }: any) => {
   // const [preferences, setPreferences] = useState<userPref>(data);
 
   // const { _id, id, nickName, ...rest } = data;
+  console.log(data);
+  console.log(!data);
 
   return (
     <Flex
