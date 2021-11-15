@@ -11,6 +11,10 @@ import {
   PopoverArrow,
   PopoverHeader,
   PopoverBody,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import React, { useRef, useState } from "react";
@@ -19,6 +23,7 @@ import { RiArrowDownSFill } from "react-icons/ri";
 import { themes } from "../../configs/themes";
 import { Link as LinkScroll, animateScroll as scroll } from "react-scroll";
 import getUserId from "../../helpers/getUserId";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 const Header = ({ user }) => {
   const header = useRef();
@@ -107,12 +112,36 @@ const Header = ({ user }) => {
       <Flex w="20%" justifyContent="flex-end">
         {user ? (
           <Box mr="20%">
-            <Popover>
+            {/* TODO:TODO:TODO:TODO:TOOD: */}
+            <Menu>
+              <MenuButton
+                as={Button}
+                rightIcon={<MdOutlineKeyboardArrowDown />}
+                bg="transparent"
+                _hover={{}}
+                _focus={{}}
+              >
+                <Image src={user.picture} borderRadius="50%" boxSize="10" />
+                {/* <Flex fontFamily="Roboto"> */}
+                {/* Me */}
+              </MenuButton>
+              <MenuList>
+                <MenuItem>
+                  <Link href={`/user/${getUserId(user)}`}>Settings</Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link href="/api/auth/logout">Sign out</Link>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+
+            {/* <Popover>
               <PopoverTrigger>
                 <Box cursor="pointer" _hover={{ color: "gray.300" }}>
                   <Image src={user.picture} borderRadius="50%" boxSize="10" />
                   <Flex fontFamily="Roboto">
                     Me
+                    
                     <RiArrowDownSFill fontSize="22.5" />
                   </Flex>
                 </Box>
@@ -121,7 +150,11 @@ const Header = ({ user }) => {
                 <PopoverArrow />
                 <PopoverHeader fontFamily="Roboto">
                   <Link href={`/user/${getUserId(user)}`}>
-                    <Center justifyContent="space-between" fontWeight="bold">
+                    <Center
+                      justifyContent="space-between"
+                      fontWeight="bold"
+                      _hover={{ cursor: "pointer" }}
+                    >
                       <Image
                         w="60px"
                         h="60px"
@@ -139,14 +172,18 @@ const Header = ({ user }) => {
                 </PopoverHeader>
                 <PopoverBody>
                   <Flex flexDir="column" justifyContent="space-around">
-                    {/* <Link>Messages</Link> */}
-                    <Link href={`/user/${getUserId(user)}`}>Settings</Link>
+                    {/* <Link>Messages</Link> 
+                    <Box p={3}>
+                      <Link href={`/user/${getUserId(user)}`}>Settings</Link>
+                    </Box>
                     <Divider />
-                    <Link href="/api/auth/logout">Sign out</Link>
+                    <Box p={3}>
+                      <Link href="/api/auth/logout">Sign out</Link>
+                    </Box>
                   </Flex>
                 </PopoverBody>
               </PopoverContent>
-            </Popover>
+            </Popover> */}
           </Box>
         ) : (
           <Link href="/api/auth/login">

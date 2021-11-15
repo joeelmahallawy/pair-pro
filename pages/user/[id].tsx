@@ -6,6 +6,8 @@ import UserSettings from "../../components/userComponents/userSettings";
 import getUserId from "../../helpers/getUserId";
 
 const UserAccount = ({ user, data }: any) => {
+  console.log(data);
+  console.log(user);
   return (
     <>
       <Header user={user} />
@@ -30,7 +32,7 @@ const UserAccount = ({ user, data }: any) => {
             {data && <>• {data["Where are you based?"]}</>}
           </Text>
         </Center>
-
+        {/* TODO: */}
         <Center bg="black" borderRightRadius={10} w="60%" pt={10}>
           {data && <UserSettings data={data} />}
         </Center>

@@ -12,7 +12,7 @@ import React from "react";
 class MyApp extends App {
   async componentDidMount() {
     if (process.env.NODE_ENV === "production") {
-      // ReactGA.initialize("UA-203142465-1");
+      ReactGA.initialize("UA-212930034-1");
       this.logPageView();
     }
   }
