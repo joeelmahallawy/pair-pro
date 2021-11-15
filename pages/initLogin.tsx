@@ -30,6 +30,6 @@ export const getServerSideProps = withPageAuthRequired({
     });
     const data = await response.json();
 
-    return { props: user };
+    return { props: { user, data } };
   },
 });
