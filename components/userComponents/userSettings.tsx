@@ -28,8 +28,8 @@ import getUserId from "../../helpers/getUserId";
 const UserSettings = ({ data }: any, { user }: any) => {
   // const [preferences, setPreferences] = useState<userPref>(data);
 
-  console.log("OHYA USERRRRRRR:", user);
-  console.log("OHYA DATAAAAAAAAA:", data);
+  // console.log("OHYA USERRRRRRR:", user);
+  // console.log("OHYA DATAAAAAAAAA:", data);
   const toast = useToast();
 
   return data ? (
