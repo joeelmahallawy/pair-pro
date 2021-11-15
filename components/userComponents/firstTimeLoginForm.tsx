@@ -20,7 +20,7 @@ import userPref from "../../interfaces/userPrefTypes";
 
 const TypeForm = (props) => {
   // const [preferences, setPreferences] = useState<userPref>(data);
-
+  console.log(`typeform props:`, props);
   // const { _id, id, nickName, ...rest } = data;
   // console.log(rest);
 
