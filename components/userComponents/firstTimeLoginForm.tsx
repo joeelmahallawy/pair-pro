@@ -23,6 +23,7 @@ const TypeForm = ({ data }: any, { user }: any) => {
   const { _id, id, nickName, ...rest } = data;
   console.log(rest);
 
+  console.log(id);
   return (
     <Flex
       overflowY="auto"
@@ -56,8 +57,8 @@ const TypeForm = ({ data }: any, { user }: any) => {
           if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.Email)) {
             alert("Please enter valid email");
           } else {
-            const id = getUserId(user);
             if (!data) {
+              const id = getUserId(user);
               console.log("we are putting in new user");
               fetch("/api/mongo", {
                 method: "POST",
