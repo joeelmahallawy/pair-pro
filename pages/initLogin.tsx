@@ -4,11 +4,11 @@ import React from "react";
 import Header from "../components/pageComponents/header";
 import TypeForm from "../components/userComponents/firstTimeLoginForm";
 
-export default function InitLog(user) {
+export default function InitLog(props) {
   return (
     <>
       <Center w="100vw" m="5% auto">
-        <TypeForm user={user} />
+        <TypeForm user={props.user} data={props.data} />
       </Center>
     </>
   );
@@ -16,13 +16,10 @@ export default function InitLog(user) {
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
-    const res = await fetch("https://pair-pro.vercel.app/api/stats", {
+    const res = await fetch("http://localhost:3000/api/stats", {
       headers: { Cookie: ctx.req.headers.cookie },
     });
     const data = await res.json();
-
-    // const response = await fetch("https://pair-pro.vercel.app/api/mongo");
-    // const responseData = await response.json();
 
     return { props: data };
   },
