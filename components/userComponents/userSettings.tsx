@@ -6,14 +6,14 @@ import { themes } from "../../configs/themes";
 import userPref from "../../interfaces/userPrefTypes";
 import TypeForm from "./firstTimeLoginForm";
 
-const UserSettings = ({ data }: any) => {
+const UserSettings = ({ data }: any, { user }: any) => {
   const [preferences, setPreferences] = useState<userPref>(data);
   const [isSending, setIsSending] = useState(false);
   const toast = useToast();
 
   return data ? (
     <Box w="85%" p={5} fontFamily="Arial">
-      <TypeForm />
+      <TypeForm user={user} data={data} />
       {/* <Editable
         p={3}
         fontSize="xl"

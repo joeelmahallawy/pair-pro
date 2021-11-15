@@ -17,10 +17,8 @@ import {
 import getUserId from "../../helpers/getUserId";
 import { Formik } from "formik";
 
-const TypeForm = (props) => {
-  const [preferences, setPreferences] = useState(props.data);
-  console.log(props);
-  console.log(preferences);
+const TypeForm = ({ data }: any, { user }: any) => {
+  // const [preferences, setPreferences] = useState(data);
 
   return (
     <Flex
@@ -35,7 +33,7 @@ const TypeForm = (props) => {
     >
       <Formik
         initialValues={
-          !props.data
+          !data
             ? {
                 "Full Name": "",
                 Email: "",
@@ -48,13 +46,13 @@ const TypeForm = (props) => {
                 "Have any projects in mind?": "",
                 "What kind of project?": "",
               }
-            : props.data
+            : data
         }
         onSubmit={(values, actions) => {
           if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.Email)) {
             alert("Please enter valid email");
           } else {
-            const id = getUserId(props.user);
+            const id = getUserId(user);
             fetch("/api/mongo", {
               method: "POST",
               body: JSON.stringify({
@@ -353,22 +351,22 @@ export default TypeForm;
 //   return result
 // }, [url]);
 
-export const getServerSideProps = async (ctx) => {
-  try {
-    const res = await fetch("https://pair-pro.vercel.app/api/stats", {
-      headers: { Cookie: ctx.req.headers.cookie },
-    });
-    const user = await res.json();
-    const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
-      headers: {
-        user: getUserId(user),
-      },
-    });
+// export const getServerSideProps = async (ctx) => {
+//   try {
+//     const res = await fetch("https://pair-pro.vercel.app/api/stats", {
+//       headers: { Cookie: ctx.req.headers.cookie },
+//     });
+//     const user = await res.json();
+//     const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
+//       headers: {
+//         user: getUserId(user),
+//       },
+//     });
 
-    const data = await response.json();
+//     const data = await response.json();
 
-    return { props: data };
-  } catch (err) {
-    return {};
-  }
-};
+//     return { props: data };
+//   } catch (err) {
+//     return {};
+//   }
+// };

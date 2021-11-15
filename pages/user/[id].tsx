@@ -34,7 +34,7 @@ const UserAccount = ({ user, data }: any) => {
         </Center>
         {/* TODO: */}
         <Center bg="black" borderRightRadius={10} w="60%" pt={10}>
-          {data && <UserSettings data={data} />}
+          {data && user && <UserSettings data={data} user={user} />}
         </Center>
       </Flex>
     </>
