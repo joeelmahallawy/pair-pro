@@ -45,7 +45,7 @@ async function postToQueue(
   res: NextApiResponse,
   DB: Collection
 ) {
-  const id = req.body;
+  const { id } = JSON.parse(req.body);
   await DB.insertOne({ id });
   res.json({ id });
 }
