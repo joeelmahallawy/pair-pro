@@ -93,7 +93,8 @@ const UserSettings = ({ user, data }) => {
                   }),
                 });
               }
-              // if (process.browser) window.location.pathname = "/";
+              if (process.browser && window.location.pathname == "/initLogin")
+                window.location.pathname = "/";
             }
           }}
         >
@@ -390,15 +391,17 @@ const UserSettings = ({ user, data }) => {
                 ml="auto"
                 colorScheme="teal"
                 type="submit"
-                onClick={() =>
-                  toast({
-                    title: "Submitted changes.",
-                    description: "Profile looking good! 😉",
-                    status: "success",
-                    duration: 3000,
-                    isClosable: true,
-                  })
-                }
+                onClick={() => {
+                  if (data) {
+                    return toast({
+                      title: "Submitted changes.",
+                      description: "Profile looking good! 😉",
+                      status: "success",
+                      duration: 3000,
+                      isClosable: true,
+                    });
+                  }
+                }}
               >
                 Submit
               </Button>
