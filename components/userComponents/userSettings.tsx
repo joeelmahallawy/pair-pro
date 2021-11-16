@@ -143,7 +143,7 @@ const UserSettings = ({ user, data }) => {
                         <Checkbox
                           defaultChecked={
                             data &&
-                            data["Proficient Language(s)"].includes(language)
+                            data["Proficient Language(s)"]?.includes(language)
                           }
                           isFocusable={false}
                           _focus={{
@@ -180,8 +180,7 @@ const UserSettings = ({ user, data }) => {
                           {language}
 
                           {console.log(
-                            data &&
-                              data["Proficient Language(s)"].includes(language)
+                            data["Proficient Language(s)"]?.includes(language)
                           )}
                         </Checkbox>
                       ))}
@@ -204,7 +203,7 @@ const UserSettings = ({ user, data }) => {
                       ].map((space, i) => (
                         <Checkbox
                           defaultChecked={
-                            data && data["Interested space(s)"].includes(space)
+                            data && data["Interested space(s)"]?.includes(space)
                           }
                           isFocusable={false}
                           _focus={{
