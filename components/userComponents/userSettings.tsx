@@ -26,9 +26,13 @@ import _ from "lodash";
 import getUserId from "../../helpers/getUserId";
 
 const UserSettings = ({ user, data }) => {
-  const { id, _id, nickName, ...rest } = data && data;
-
   const toast = useToast();
+  if (data) {
+    delete data.id;
+    delete data._id;
+    delete data.nickName;
+  }
+  // const { id, _id, nickName, ...rest } = data;
 
   return (
     <Center w="85%" p={5} fontFamily="Arial">
@@ -44,8 +48,9 @@ const UserSettings = ({ user, data }) => {
       >
         <Formik
           initialValues={
-            !data
-              ? {
+            data
+              ? data
+              : {
                   "Full Name": "",
                   Email: "",
                   "Where are you based?": "",
@@ -58,7 +63,6 @@ const UserSettings = ({ user, data }) => {
                   "Have any projects in mind?": "",
                   "What kind of project?": "",
                 }
-              : rest
           }
           onSubmit={(values, actions) => {
             console.log(values);
