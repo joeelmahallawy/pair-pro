@@ -112,7 +112,6 @@ const Header = ({ user }) => {
       <Flex w="15%" justifyContent="flex-end">
         {user ? (
           <Box mr="20%">
-            {/* TODO:TODO:TODO:TODO:TOOD: */}
             <Menu>
               <MenuButton
                 bg="transparent"
@@ -128,7 +127,7 @@ const Header = ({ user }) => {
                 </Box>
               </MenuButton>
               <MenuList>
-                <MenuItem bg="gray.700" _hover={{ bg: "gray.600" }}>
+                <MenuItem>
                   <Link href={`/user/${getUserId(user)}`}>
                     <Center
                       justifyContent="space-between"

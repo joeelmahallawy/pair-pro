@@ -48,33 +48,37 @@ const Pairing = ({ user, responseData }) => {
     }
   }, []);
 
+  if (userExists) {
+    return (
+      <Alert
+        status="error"
+        variant="subtle"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        textAlign="center"
+        height="200px"
+        w="35vw"
+        borderRadius={10}
+      >
+        <AlertIcon boxSize="40px" mr={0} />
+        <AlertTitle mt={4} mb={1} fontSize="lg">
+          Wait a minute!
+        </AlertTitle>
+        <AlertDescription maxWidth="sm">
+          It seems taht you've already been added to the queue, please wait
+          patiently.
+        </AlertDescription>
+      </Alert>
+    );
+  }
+
   return (
     <>
       <Header user={user} />
       <Center fontFamily="Arial" w="100vw" h="80vh">
         {showSpinner ? (
           <Spinner w="70px" h="70px" />
-        ) : userExists ? (
-          <Alert
-            status="error"
-            variant="subtle"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-            textAlign="center"
-            height="200px"
-            w="35vw"
-            borderRadius={10}
-          >
-            <AlertIcon boxSize="40px" mr={0} />
-            <AlertTitle mt={4} mb={1} fontSize="lg">
-              Wait a minute!
-            </AlertTitle>
-            <AlertDescription maxWidth="sm">
-              It seems taht you've already been added to the queue, please wait
-              patiently.
-            </AlertDescription>
-          </Alert>
         ) : (
           <>
             <Alert
