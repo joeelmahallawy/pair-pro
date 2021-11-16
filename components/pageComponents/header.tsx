@@ -13,7 +13,7 @@ import {
   MenuList,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import logo from "../../attachments/pairpro-transparent.png";
 import { RiArrowDownSFill } from "react-icons/ri";
 import { themes } from "../../configs/themes";
@@ -23,7 +23,15 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 const Header = ({ user }) => {
   const header = useRef();
+  const [onHome, setOnHome] = useState(true);
   const [headerSticky, setHeaderSticky] = useState(false);
+  useEffect(() => {
+    if (process.browser) {
+      if (window.location.pathname != "/") {
+        setOnHome(false);
+      }
+    }
+  }, []);
   if (process.browser) {
     window.onscroll = () => {
       if (
@@ -66,32 +74,33 @@ const Header = ({ user }) => {
       </Center>
       <Flex w="40%" justifyContent="flex-end">
         {/* FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:ISSUE WITH RENDERING BUTTON SINCE ITS ON SERVERFIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME: */}
+        {setOnHome && (
+          <>
+            <Button {...themes.navButtons}>
+              <LinkScroll
+                to="how-it-works"
+                smooth={true}
+                // @ts-expect-error
+                offset={-header.current?.getBoundingClientRect().height}
+                duration={500}
+              >
+                How it works
+              </LinkScroll>
+            </Button>
 
-        <>
-          <Button {...themes.navButtons}>
-            <LinkScroll
-              to="how-it-works"
-              smooth={true}
-              // @ts-expect-error
-              offset={-header.current?.getBoundingClientRect().height}
-              duration={500}
-            >
-              How it works
-            </LinkScroll>
-          </Button>
-
-          <Button {...themes.navButtons}>
-            <LinkScroll
-              to="why"
-              smooth={true}
-              // @ts-expect-error
-              offset={-header.current?.getBoundingClientRect().height}
-              duration={500}
-            >
-              Why
-            </LinkScroll>
-          </Button>
-        </>
+            <Button {...themes.navButtons}>
+              <LinkScroll
+                to="why"
+                smooth={true}
+                // @ts-expect-error
+                offset={-header.current?.getBoundingClientRect().height}
+                duration={500}
+              >
+                Why
+              </LinkScroll>
+            </Button>
+          </>
+        )}
 
         <LinkChakra _hover={{}} _focus={{}} href="/pairingSession">
           <Button
