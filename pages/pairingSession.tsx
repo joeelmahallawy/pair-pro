@@ -30,19 +30,19 @@ const Pairing = ({ user, responseData }: any) => {
 
   const [showSpinner, setshowSpinner] = useState(true);
   useEffect(() => {
-    if (!responseData.data) {
-      fetch("https://pair-pro.vercel.app/api/mongo", {
-        method: "POST",
-        headers: {
-          type: "queue",
-        },
-        body: JSON.stringify({
-          id: getUserId(user),
-        }),
-      }).then(() => {
-        setshowSpinner(false);
-      });
-    }
+    // if (!responseData.data) {
+    //   fetch("https://pair-pro.vercel.app/api/mongo", {
+    //     method: "POST",
+    //     headers: {
+    //       type: "queue",
+    //     },
+    //     body: JSON.stringify({
+    //       id: getUserId(user),
+    //     }),
+    //   }).then(() => {
+    //     setshowSpinner(false);
+    //   });
+    // }
   }, []);
 
   return (
