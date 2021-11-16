@@ -14,7 +14,7 @@ const IndexPage = ({ user, data }) => {
   if (user.error == "not_authenticated") user = null;
 
   useEffect(() => {
-    if (data && process.browser) {
+    if (!data && process.browser) {
       window.location.pathname = "initLogin";
     }
   }, []);
