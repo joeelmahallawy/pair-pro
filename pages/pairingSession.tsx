@@ -31,11 +31,9 @@ const Pairing = ({ user, responseData }) => {
   const [showSpinner, setshowSpinner] = useState(true);
   useEffect(() => {
     if (!responseData.data) {
-      // console.log("posting data...");
-      console.log(getUserId(user));
-      console.log("posting data...");
       fetch("https://pair-pro.vercel.app/api/mongo", {
         method: "POST",
+        mode: "no-cors",
         headers: {
           type: "queue",
         },
@@ -52,26 +50,31 @@ const Pairing = ({ user, responseData }) => {
 
   if (userExists) {
     return (
-      <Alert
-        status="error"
-        variant="subtle"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        textAlign="center"
-        height="200px"
-        w="35vw"
-        borderRadius={10}
-      >
-        <AlertIcon boxSize="40px" mr={0} />
-        <AlertTitle mt={4} mb={1} fontSize="lg">
-          Wait a minute!
-        </AlertTitle>
-        <AlertDescription maxWidth="sm">
-          It seems that you've already been added to the queue, please wait
-          patiently.
-        </AlertDescription>
-      </Alert>
+      <>
+        <Header user={user} />
+        <Center fontFamily="Arial" w="100vw" h="80vh">
+          <Alert
+            status="error"
+            variant="subtle"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            height="200px"
+            w="35vw"
+            borderRadius={10}
+          >
+            <AlertIcon boxSize="40px" mr={0} />
+            <AlertTitle mt={4} mb={1} fontSize="lg">
+              Wait a minute!
+            </AlertTitle>
+            <AlertDescription maxWidth="sm">
+              It seems that you've already been added to the queue, please wait
+              patiently.
+            </AlertDescription>
+          </Alert>
+        </Center>
+      </>
     );
   }
 

@@ -45,13 +45,9 @@ async function postToQueue(
   res: NextApiResponse,
   DB: Collection
 ) {
-  try {
-    const { userid } = JSON.parse(req.body);
-    DB.insertOne({ id: userid });
-    // res.json({ id });
-  } catch (err) {
-    // res.status(505).json({ err: "cant upload to DB" });
-  }
+  const { userid } = await JSON.parse(req.body);
+  await DB.insertOne({ id: userid });
+  // res.json({ id });
 }
 
 async function getUserFromDB(
