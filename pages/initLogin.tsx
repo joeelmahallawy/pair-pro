@@ -12,7 +12,7 @@ export default function InitLog({ data, user }: any) {
   return (
     <>
       <Center w="100vw" m="5% auto">
-        <UserSettings user={user} data={data} />
+        <UserSettings user={user} data={user} />
       </Center>
     </>
   );
@@ -23,7 +23,9 @@ export const getServerSideProps = withPageAuthRequired({
     const res = await fetch("https://pair-pro.vercel.app/api/stats", {
       headers: { Cookie: ctx.req.headers.cookie },
     });
+
     const user = await res.json();
+
     const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
       method: "GET",
       headers: {
@@ -31,7 +33,6 @@ export const getServerSideProps = withPageAuthRequired({
       },
     });
     const data = await response.json();
-
     return { props: data };
   },
 });
