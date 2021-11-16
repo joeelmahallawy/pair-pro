@@ -9,6 +9,8 @@ import HomePage from "../components/pageComponents/homePage";
 import { Bouncer } from "../components/animations";
 import Socials from "../components/socialLinks";
 import getUserId from "../helpers/getUserId";
+// import Router from 'next/router'
+import Router from "next/router";
 
 const IndexPage = ({ user, data }) => {
   if (user.error == "not_authenticated") user = null;
@@ -16,7 +18,8 @@ const IndexPage = ({ user, data }) => {
   console.log(data.data);
   useEffect(() => {
     if (!data.data && process.browser) {
-      window.location.pathname = "initLogin";
+      // window.location.pathname = "initLogin";
+      Router.push("/initLogin");
     }
   }, []);
 
