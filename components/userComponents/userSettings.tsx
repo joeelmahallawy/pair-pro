@@ -26,6 +26,7 @@ import _ from "lodash";
 import getUserId from "../../helpers/getUserId";
 
 const UserSettings = ({ user, data }) => {
+  const [showToast, setShowToast] = useState(false);
   const toast = useToast();
   if (data) {
     delete data.id;
@@ -82,7 +83,6 @@ const UserSettings = ({ user, data }) => {
                   }),
                 });
               } else {
-                console.log("we are updating user");
                 fetch("/api/mongo", {
                   method: "PUT",
                   body: JSON.stringify({
@@ -91,6 +91,8 @@ const UserSettings = ({ user, data }) => {
                       id,
                     },
                   }),
+                }).then(() => {
+                  setShowToast(true);
                 });
               }
               if (process.browser && window.location.pathname == "/initLogin")
@@ -392,7 +394,7 @@ const UserSettings = ({ user, data }) => {
                 colorScheme="teal"
                 type="submit"
                 onClick={() => {
-                  if (data) {
+                  if (data && showToast) {
                     return toast({
                       title: "Submitted changes.",
                       description: "Profile looking good! 😉",
