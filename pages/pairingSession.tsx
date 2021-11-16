@@ -53,13 +53,14 @@ const Pairing = ({ user, responseData }) => {
         <Header user={user} />
         <Center fontFamily="Arial" w="100vw" h="80vh">
           <Alert
+            fontSize={["14px", "18px", "20px", "24px", "28px"]}
+            height="15vh"
             status="error"
             variant="subtle"
             flexDirection="column"
             alignItems="center"
             justifyContent="center"
             textAlign="center"
-            height="200px"
             w="35vw"
             borderRadius={10}
           >
@@ -86,13 +87,14 @@ const Pairing = ({ user, responseData }) => {
         ) : (
           <>
             <Alert
+              fontSize={["14px", "18px", "20px", "24px", "28px"]}
+              height="15vh"
               status="success"
               variant="subtle"
               flexDirection="column"
               alignItems="center"
               justifyContent="center"
               textAlign="center"
-              height="200px"
               w="35vw"
               borderRadius={10}
             >

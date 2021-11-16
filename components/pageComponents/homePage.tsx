@@ -16,6 +16,7 @@ const HomePage = () => {
         <Heading
           {...themes.fonts.heading}
           fontFamily="Arial"
+          fontSize={["20px", "24px", "28px", "32px", "36px"]}
           m="0 auto 1% auto"
           textAlign="center"
         >
@@ -23,9 +24,9 @@ const HomePage = () => {
           interests to build the projects of your dreams!
         </Heading>
         <Text
-          w={["60%", "80%", "60%", "70%", "80%", "60%"]}
+          w={["60%", "80%", "60%", "70%", "80%", "70%"]}
           textAlign="center"
-          fontSize={["50%", "65%", "80%", "90%", "100%"]}
+          fontSize={["50%", "75%", "87.5%", "100%", "130%"]}
           m="0 auto"
           color="gray.400"
         >
