@@ -24,25 +24,27 @@ import { useAsyncFn } from "react-use";
 import Header from "../components/pageComponents/header";
 import getUserId from "../helpers/getUserId";
 
-const Pairing = ({ user, responseData }: any) => {
+const Pairing = ({ user, responseData, data }: any) => {
   console.log("responsedata", responseData);
   console.log(user);
+  console.log("dataazz", data);
   const [showSpinner, setshowSpinner] = useState(true);
   useEffect(() => {
-    // if(responseData)
-    // fetch("https://pair-pro.vercel.app/api/mongo", {
-    //   method: "POST",
-    //   headers: {
-    //     type: "queue",
-    //   },
-    //   body: JSON.stringify({
-    //     id: getUserId(user),
-    //   }),
-    // }).then(async (res) => {
-    //   const data = await res.json();
-    //   console.log(data);
-    //   setshowSpinner(false);
-    // });
+    if (!responseData.data) {
+      fetch("https://pair-pro.vercel.app/api/mongo", {
+        method: "POST",
+        headers: {
+          type: "queue",
+        },
+        body: JSON.stringify({
+          id: getUserId(user),
+        }),
+      }).then(async (res) => {
+        const data = await res.json();
+        console.log(data);
+        setshowSpinner(false);
+      });
+    }
     // TODO:
   }, []);
 
