@@ -133,7 +133,8 @@ const Header = ({ user }) => {
                     <Center
                       justifyContent="space-between"
                       fontWeight="bold"
-                      _hover={{ cursor: "pointer" }}
+                      bg="gray.400"
+                      _hover={{ cursor: "pointer", bg: "gray.300" }}
                     >
                       <Image
                         w="60px"
@@ -150,12 +151,14 @@ const Header = ({ user }) => {
                     </Center>
                   </Link>
                 </MenuItem>
+                <Divider />
                 <Link href={`/user/${getUserId(user)}`}>
                   <MenuItem>Settings</MenuItem>
                 </Link>
-                <MenuItem>
-                  <Link href="/api/auth/logout">Sign out</Link>
-                </MenuItem>
+                <Divider />
+                <Link href="/api/auth/logout">
+                  <MenuItem>Sign out</MenuItem>
+                </Link>
               </MenuList>
             </Menu>
 
