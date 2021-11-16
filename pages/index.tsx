@@ -10,19 +10,12 @@ import { Bouncer } from "../components/animations";
 import Socials from "../components/socialLinks";
 import getUserId from "../helpers/getUserId";
 
-const IndexPage = (user) => {
+const IndexPage = ({ user, data }) => {
   if (user.error == "not_authenticated") user = null;
 
   useEffect(() => {
-    if (user) {
-      fetch("https://pair-pro.vercel.app/api/mongo", {
-        headers: {
-          user: getUserId(user),
-        },
-      }).then(async (res) => {
-        const userData = await res.json();
-        if (!userData.data) window.location.pathname = "initLogin";
-      });
+    if (data && process.browser) {
+      window.location.pathname = "initLogin";
     }
   }, []);
 
@@ -127,7 +120,14 @@ export const getServerSideProps = async (ctx) => {
     });
     const user = await res.json();
 
-    return { props: user };
+    const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
+      headers: {
+        user: getUserId(user),
+      },
+    });
+    const data = await response.json();
+
+    return { props: { user, data } };
   } catch (err) {
     return {};
   }
