@@ -32,7 +32,6 @@ const Pairing = ({ user, responseData }) => {
   useEffect(() => {
     if (responseData.data == null) {
       console.log("resoponse data is NULL");
-      console.log("resoponse data is NULL");
 
       fetch("https://pair-pro.vercel.app/api/mongo", {
         method: "POST",
@@ -43,7 +42,7 @@ const Pairing = ({ user, responseData }) => {
           id: getUserId(user),
         }),
       }).then(async (res) => {
-        const data = await res.json();
+        const data = await res.text();
         console.log(data);
         setshowSpinner(false);
       });
