@@ -154,7 +154,7 @@ const Header = ({ user }) => {
                 <Link href={`/user/${getUserId(user)}`}>
                   <MenuItem>Settings</MenuItem>
                 </Link>
-                <Divider />
+
                 <Link href="/api/auth/logout">
                   <MenuItem>Sign out</MenuItem>
                 </Link>
