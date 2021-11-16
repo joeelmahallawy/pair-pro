@@ -128,7 +128,7 @@ const Header = ({ user }) => {
                 </Box>
               </MenuButton>
               <MenuList>
-                <MenuItem bg="gray.600" _hover={{ bg: "gray.500" }}>
+                <MenuItem bg="gray.700" _hover={{ bg: "gray.600" }}>
                   <Link href={`/user/${getUserId(user)}`}>
                     <Center
                       justifyContent="space-between"
@@ -154,6 +154,7 @@ const Header = ({ user }) => {
                 <Link href={`/user/${getUserId(user)}`}>
                   <MenuItem>Settings</MenuItem>
                 </Link>
+                <Divider />
                 <Link href="/api/auth/logout">
                   <MenuItem>Sign out</MenuItem>
                 </Link>
