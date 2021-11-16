@@ -29,22 +29,16 @@ const Pairing = ({ user, responseData }) => {
   // console.log(user);
   const [userExists, setUserExists] = useState(false);
   const [showSpinner, setshowSpinner] = useState(true);
+
   useEffect(() => {
-    if (!responseData.data) {
-      fetch("https://pair-pro.vercel.app/api/mongo", {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          type: "queue",
-        },
-        body: JSON.stringify({
-          userid: getUserId(user),
-        }),
-      }).then(() => {
-        setshowSpinner(false);
-      });
+    if (responseData.data) {
+      setTimeout(() => {
+        setUserExists(true);
+      }, 1000);
     } else {
-      setUserExists(true);
+      setTimeout(() => {
+        setshowSpinner(false);
+      }, 1000);
     }
   }, []);
 
@@ -129,6 +123,18 @@ export const getServerSideProps = withPageAuthRequired({
       },
     });
     const responseData = await response.json();
+
+    if (!responseData) {
+      fetch("https://pair-pro.vercel.app/api/mongo", {
+        method: "POST",
+        headers: {
+          type: "queue",
+        },
+        body: JSON.stringify({
+          userid: getUserId(data),
+        }),
+      });
+    }
 
     return { props: { data, responseData } };
   },
