@@ -13,8 +13,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (!db) throw Error("Could not connect to database");
     const users = db.collection("users");
     const matches = db.collection("matches");
+    const queue = db.collection("inqueue");
     // users.deleteMany({});
     // Fetch posts from typeform responses API  then store it to MongoDB
+    if (req.method === "POST" && req.headers.type === "queue")
+      postToQueue(req, res, queue);
     if (req.method === "POST") getPostsThenStoreToDB(req, res, users);
     if (req.method === "GET") getUserFromDB(req, res, users);
     if (req.method === "PUT") updateUser(req, res, users);
@@ -23,6 +26,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 export default handler;
+
+async function postToQueue(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  DB: Collection
+) {
+  const { id } = JSON.parse(req.body);
+  await DB.insertOne({ id });
+  res.json({});
+}
 
 async function getUserFromDB(
   req: NextApiRequest,

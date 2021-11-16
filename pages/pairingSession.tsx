@@ -21,13 +21,26 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
 import Header from "../components/pageComponents/header";
+import getUserId from "../helpers/getUserId";
 
 const Pairing = (user) => {
   const [showSpinner, setshowSpinner] = useState(true);
   useEffect(() => {
-    setTimeout(() => {
-      setshowSpinner(false);
-    }, 3000);
+    async () => {
+      fetch("https://pair-pro.vercel.app/api/mongo", {
+        method: "POST",
+        headers: {
+          type: "queue",
+        },
+        body: JSON.stringify({
+          id: getUserId(user),
+        }),
+      }).then((res) => setshowSpinner(false));
+      //
+    };
+    // setTimeout(() => {
+    //   setshowSpinner(false);
+    // }, 500);
   }, []);
 
   return (
