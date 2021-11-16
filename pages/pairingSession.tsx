@@ -66,7 +66,7 @@ const Pairing = ({ user, responseData }) => {
           Wait a minute!
         </AlertTitle>
         <AlertDescription maxWidth="sm">
-          It seems taht you've already been added to the queue, please wait
+          It seems that you've already been added to the queue, please wait
           patiently.
         </AlertDescription>
       </Alert>
