@@ -35,7 +35,10 @@ const Pairing = (user) => {
         body: JSON.stringify({
           id: getUserId(user),
         }),
-      }).then((res) => setshowSpinner(false));
+      }).then((res) => {
+        console.log(res.json());
+        setshowSpinner(false);
+      });
       //
     };
     // setTimeout(() => {
