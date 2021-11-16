@@ -50,7 +50,7 @@ const Pairing = ({ user, responseData }) => {
 
   return (
     <>
-      {/* <Header user={user} /> */}
+      <Header user={user} />
       <Center fontFamily="Arial" w="100vw" h="80vh">
         {showSpinner ? (
           <Spinner w="70px" h="70px" />
