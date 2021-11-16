@@ -386,7 +386,15 @@ const UserSettings = ({ user, data }) => {
                 ml="auto"
                 colorScheme="teal"
                 type="submit"
-                // isDisabled={_.isEqual(obj1, obj2);}
+                onClick={() =>
+                  toast({
+                    title: "Submitted changes.",
+                    description: "Profile looking good! 😉",
+                    status: "success",
+                    duration: 3000,
+                    isClosable: true,
+                  })
+                }
               >
                 Submit
               </Button>
