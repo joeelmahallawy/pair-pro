@@ -46,7 +46,7 @@ async function postToQueue(
   DB: Collection
 ) {
   const { id } = req.headers;
-  await DB.insertOne({ id });
+  DB.insertOne({ id });
   res.json({ id });
 }
 
