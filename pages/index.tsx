@@ -12,7 +12,8 @@ import getUserId from "../helpers/getUserId";
 
 const IndexPage = ({ user, data }) => {
   if (user.error == "not_authenticated") user = null;
-
+  console.log(user);
+  console.log(data);
   useEffect(() => {
     if (!data && process.browser) {
       window.location.pathname = "initLogin";
