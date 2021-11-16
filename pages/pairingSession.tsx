@@ -24,10 +24,12 @@ import { useAsyncFn } from "react-use";
 import Header from "../components/pageComponents/header";
 import getUserId from "../helpers/getUserId";
 
-const Pairing = (props) => {
-  const [userExists, setUserExists] = useState(false);
+const Pairing = ({ user, responseData }: any) => {
+  console.log("responsedata", responseData);
+  console.log(user);
   const [showSpinner, setshowSpinner] = useState(true);
   useEffect(() => {
+    // if(responseData)
     // fetch("https://pair-pro.vercel.app/api/mongo", {
     //   method: "POST",
     //   headers: {
@@ -43,11 +45,10 @@ const Pairing = (props) => {
     // });
     // TODO:
   }, []);
-  console.log("props from pairing sesh", props);
 
   return (
     <>
-      {/* <Header user={user} /> */}
+      <Header user={user} />
       <Center fontFamily="Arial" w="100vw" h="80vh">
         {showSpinner ? (
           <Spinner w="70px" h="70px" />
