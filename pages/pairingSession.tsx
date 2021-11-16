@@ -42,8 +42,9 @@ const Pairing = ({ user, responseData }) => {
           id: getUserId(user),
         }),
       }).then(async (res) => {
-        const data = await res.text();
-        console.log(data);
+        const data = await res.json();
+        console.log("sent that:", data);
+        // console.log(data);
         setshowSpinner(false);
       });
     } else {
