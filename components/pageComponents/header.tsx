@@ -28,6 +28,7 @@ const Header = ({ user }) => {
   useEffect(() => {
     if (process.browser) {
       if (window.location.pathname != "/") {
+        console.log("this is not home page");
         setOnHome(false);
       }
     }
@@ -74,7 +75,7 @@ const Header = ({ user }) => {
       </Center>
       <Flex w="40%" justifyContent="flex-end">
         {/* FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:ISSUE WITH RENDERING BUTTON SINCE ITS ON SERVERFIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME: */}
-        {setOnHome && (
+        {onHome && (
           <>
             <Button {...themes.navButtons}>
               <LinkScroll
