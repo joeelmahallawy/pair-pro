@@ -19,8 +19,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === "GET" && req.headers.type === "queue") {
       getIDfromQueue(req, res, queue);
     }
-    if (req.method === "POST" && req.headers.type === "queue")
+    if (req.method == "POST" && req.headers.type == "queue") {
       postToQueue(req, res, queue);
+    }
     if (req.method === "POST") getPostsThenStoreToDB(req, res, users);
     if (req.method === "GET") getUserFromDB(req, res, users);
     if (req.method === "PUT") updateUser(req, res, users);
@@ -45,9 +46,9 @@ async function postToQueue(
   res: NextApiResponse,
   DB: Collection
 ) {
-  const { userid } = JSON.parse(req.body);
-  DB.insertOne({ id: userid });
-  // res.json({ id });
+  const { userid } = req.headers;
+  await DB.insertOne({ id: userid });
+  res.json({});
 }
 
 async function getUserFromDB(

@@ -129,10 +129,8 @@ export const getServerSideProps = withPageAuthRequired({
         method: "POST",
         headers: {
           type: "queue",
-        },
-        body: JSON.stringify({
           userid: getUserId(data),
-        }),
+        },
       });
     }
 
