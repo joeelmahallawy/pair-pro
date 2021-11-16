@@ -31,6 +31,7 @@ const Pairing = ({ user, responseData }) => {
   const [showSpinner, setshowSpinner] = useState(true);
   useEffect(() => {
     if (responseData.data == null) {
+      console.log("resoponse data is NULL");
       fetch("https://pair-pro.vercel.app/api/mongo", {
         method: "POST",
         headers: {
