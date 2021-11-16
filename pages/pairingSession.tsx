@@ -24,30 +24,30 @@ import { useAsyncFn } from "react-use";
 import Header from "../components/pageComponents/header";
 import getUserId from "../helpers/getUserId";
 
-const Pairing = ({ user, responseData }: any) => {
-  console.log("responsedata", responseData);
-  console.log(user);
-
+const Pairing = (props) => {
+  // console.log("responsedata", responseData);
+  // console.log(user);
+  console.log(props);
   const [showSpinner, setshowSpinner] = useState(true);
   useEffect(() => {
     // if (!responseData.data) {
-    //   fetch("https://pair-pro.vercel.app/api/mongo", {
-    //     method: "POST",
-    //     headers: {
-    //       type: "queue",
-    //     },
-    //     body: JSON.stringify({
-    //       id: getUserId(user),
-    //     }),
-    //   }).then(() => {
-    //     setshowSpinner(false);
-    //   });
+    // fetch("https://pair-pro.vercel.app/api/mongo", {
+    //   method: "POST",
+    //   headers: {
+    //     type: "queue",
+    //   },
+    //   body: JSON.stringify({
+    //     id: getUserId(user),
+    //   }),
+    // }).then(() => {
+    //   setshowSpinner(false);
+    // });
     // }
   }, []);
 
   return (
     <>
-      <Header user={user} />
+      {/* <Header user={user} /> */}
       <Center fontFamily="Arial" w="100vw" h="80vh">
         {showSpinner ? (
           <Spinner w="70px" h="70px" />
@@ -88,15 +88,15 @@ export const getServerSideProps = withPageAuthRequired({
     });
     const data = await res.json();
 
-    const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
-      method: "GET",
-      headers: {
-        type: "queue",
-        userid: getUserId(data),
-      },
-    });
-    const responseData = await response.json();
+    // const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
+    //   method: "GET",
+    //   headers: {
+    //     type: "queue",
+    //     userid: getUserId(data),
+    //   },
+    // });
+    // const responseData = await response.json();
 
-    return { props: { data, responseData } };
+    return { props: { data } };
   },
 });

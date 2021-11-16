@@ -37,7 +37,7 @@ async function getIDfromQueue(
 ) {
   const { userid } = req.headers;
   const data = await DB.findOne({ id: userid });
-  res.json(data);
+  res.json({ data });
 }
 
 async function postToQueue(
