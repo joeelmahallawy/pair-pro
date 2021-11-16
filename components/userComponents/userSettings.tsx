@@ -26,7 +26,6 @@ import _ from "lodash";
 import getUserId from "../../helpers/getUserId";
 
 const UserSettings = ({ user, data }) => {
-  // const [preferences, setPreferences] = useState<userPref>(data);
   const { id, _id, nickName, ...rest } = data;
 
   const toast = useToast();
