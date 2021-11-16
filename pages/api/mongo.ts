@@ -12,7 +12,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const db = client.db("test");
     if (!db) throw Error("Could not connect to database");
     const users = db.collection("users");
-    const matches = db.collection("matches");
+    // const matches = db.collection("matches");
     const queue = db.collection("inqueue");
     // users.deleteMany({});
     // Fetch posts from typeform responses API  then store it to MongoDB
@@ -45,7 +45,7 @@ async function postToQueue(
   res: NextApiResponse,
   DB: Collection
 ) {
-  const { id } = JSON.parse(req.body);
+  const { id } = req.headers;
   await DB.insertOne({ id });
   res.json({ id });
 }

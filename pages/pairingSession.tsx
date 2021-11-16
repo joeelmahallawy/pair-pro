@@ -25,20 +25,19 @@ import Header from "../components/pageComponents/header";
 import getUserId from "../helpers/getUserId";
 
 const Pairing = ({ user, responseData }) => {
-  console.log("responsedata", responseData);
-  console.log(user);
+  // console.log("responsedata", responseData);
+  // console.log(user);
   const [userExists, setUserExists] = useState(false);
   const [showSpinner, setshowSpinner] = useState(true);
   useEffect(() => {
     if (!responseData.data) {
-      fetch("/api/mongo", {
+      console.log("posting data...");
+      fetch("https://pair-pro.vercel.app/api/mongo", {
         method: "POST",
         headers: {
           type: "queue",
-        },
-        body: JSON.stringify({
           id: getUserId(user),
-        }),
+        },
       }).then(async (res) => {
         const data = await res.json();
         console.log("got that data:", data);
