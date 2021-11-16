@@ -244,19 +244,18 @@ const UserSettings = ({ user, data }) => {
                   );
                 }
 
-                if (field == "If picked 'other', please specify:") {
-                  // TODO:TODO:TODO:TODO:
-                }
                 if (field == "Have any projects in mind?") {
                   return (
                     <FormControl key={i} mb={3}>
                       <FormLabel fontWeight="bold">{field}</FormLabel>
                       <RadioGroup
+                        // value={data["Have any projects in mind?"]}
                         onChange={(e) => {
                           props.values["Have any projects in mind?"] = e;
                         }}
                         onBlur={props.handleBlur}
                       >
+                        {/* {console.log(data["Have any projects in mind?"])} */}
                         <HStack
                           value={props.values[field]}
                           name={`${field}`}
