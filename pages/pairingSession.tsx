@@ -24,10 +24,10 @@ import { useAsyncFn } from "react-use";
 import Header from "../components/pageComponents/header";
 import getUserId from "../helpers/getUserId";
 
-const Pairing = ({ user, responseData, data }: any) => {
+const Pairing = ({ user, responseData }: any) => {
   console.log("responsedata", responseData);
   console.log(user);
-  console.log("dataazz", data);
+
   const [showSpinner, setshowSpinner] = useState(true);
   useEffect(() => {
     if (!responseData.data) {
@@ -39,13 +39,10 @@ const Pairing = ({ user, responseData, data }: any) => {
         body: JSON.stringify({
           id: getUserId(user),
         }),
-      }).then(async (res) => {
-        const data = await res.json();
-        console.log(data);
+      }).then(() => {
         setshowSpinner(false);
       });
     }
-    // TODO:
   }, []);
 
   return (
@@ -95,7 +92,7 @@ export const getServerSideProps = withPageAuthRequired({
       method: "GET",
       headers: {
         type: "queue",
-        userID: getUserId(data),
+        userid: getUserId(data),
       },
     });
     const responseData = await response.json();
