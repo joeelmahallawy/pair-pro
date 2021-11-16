@@ -26,7 +26,7 @@ import _ from "lodash";
 import getUserId from "../../helpers/getUserId";
 
 const UserSettings = ({ user, data }) => {
-  const { id, _id, nickName, ...rest } = data;
+  const { id, _id, nickName, ...rest } = data && data;
 
   const toast = useToast();
 

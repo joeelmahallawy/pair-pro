@@ -12,7 +12,7 @@ export default function InitLog({ data, user }: any) {
   return (
     <>
       <Center w="100vw" m="5% auto">
-        <UserSettings user={user} data={user} />
+        <UserSettings user={user} data={data} />
       </Center>
     </>
   );
