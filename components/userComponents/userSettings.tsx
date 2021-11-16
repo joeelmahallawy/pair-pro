@@ -252,19 +252,12 @@ const UserSettings = ({ user, data }) => {
                     <FormControl key={i} mb={3}>
                       <FormLabel fontWeight="bold">{field}</FormLabel>
                       <RadioGroup
-                        defaultValue={
-                          data && data["Have any projects in mind?"]
-                        }
                         onChange={(e) => {
                           props.values["Have any projects in mind?"] = e;
                         }}
                         onBlur={props.handleBlur}
                       >
-                        {/* {console.log(data["Have any projects in mind?"])} */}
                         <HStack
-                          defaultValue={
-                            data && data["Have any projects in mind?"]
-                          }
                           value={props.values[field]}
                           name={`${field}`}
                           spacing="10%"
