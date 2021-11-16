@@ -16,6 +16,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const queue = db.collection("inqueue");
     // users.deleteMany({});
     // Fetch posts from typeform responses API  then store it to MongoDB
+    if (req.method === "GET" && req.headers.type === "queue") {
+      getIDfromQueue(req, res, queue);
+    }
     if (req.method === "POST" && req.headers.type === "queue")
       postToQueue(req, res, queue);
     if (req.method === "POST") getPostsThenStoreToDB(req, res, users);
@@ -26,6 +29,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 export default handler;
+
+async function getIDfromQueue(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  DB: Collection
+) {
+  const { userID } = req.headers;
+  const data = await DB.findOne({ id: userID });
+  res.json({ data });
+}
 
 async function postToQueue(
   req: NextApiRequest,

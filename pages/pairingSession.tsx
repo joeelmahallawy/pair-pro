@@ -20,36 +20,34 @@ import {
   AlertTitle,
 } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
+import { useAsyncFn } from "react-use";
 import Header from "../components/pageComponents/header";
 import getUserId from "../helpers/getUserId";
 
-const Pairing = (user) => {
+const Pairing = (props) => {
+  const [userExists, setUserExists] = useState(false);
   const [showSpinner, setshowSpinner] = useState(true);
   useEffect(() => {
-    (async () => {
-      fetch("https://pair-pro.vercel.app/api/mongo", {
-        method: "POST",
-        headers: {
-          type: "queue",
-        },
-        body: JSON.stringify({
-          id: getUserId(user),
-        }),
-      }).then(async (res) => {
-        const data = await res.json();
-        console.log(data);
-        setshowSpinner(false);
-      });
-      //
-    })();
-    // setTimeout(() => {
+    // fetch("https://pair-pro.vercel.app/api/mongo", {
+    //   method: "POST",
+    //   headers: {
+    //     type: "queue",
+    //   },
+    //   body: JSON.stringify({
+    //     id: getUserId(user),
+    //   }),
+    // }).then(async (res) => {
+    //   const data = await res.json();
+    //   console.log(data);
     //   setshowSpinner(false);
-    // }, 500);
+    // });
+    // TODO:
   }, []);
+  console.log("props from pairing sesh", props);
 
   return (
     <>
-      <Header user={user} />
+      {/* <Header user={user} /> */}
       <Center fontFamily="Arial" w="100vw" h="80vh">
         {showSpinner ? (
           <Spinner w="70px" h="70px" />
@@ -90,6 +88,15 @@ export const getServerSideProps = withPageAuthRequired({
     });
     const data = await res.json();
 
-    return { props: data };
+    const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
+      method: "GET",
+      headers: {
+        type: "queue",
+        userID: getUserId(data),
+      },
+    });
+    const responseData = await response.json();
+
+    return { props: { data, responseData } };
   },
 });
