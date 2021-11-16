@@ -24,9 +24,9 @@ const HomePage = () => {
           interests to build the projects of your dreams!
         </Heading>
         <Text
-          w={["60%", "80%", "60%", "70%", "80%", "70%"]}
+          w={["60%", "80%", "60%", "70%", "80%", "60%"]}
           textAlign="center"
-          fontSize={["50%", "75%", "87.5%", "100%", "130%"]}
+          fontSize={["50%", "60%", "75%", "85%", "100%", "130%"]}
           m="0 auto"
           color="gray.400"
         >
