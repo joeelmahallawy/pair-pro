@@ -6,11 +6,7 @@ import {
   Button,
   Image,
   Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverArrow,
-  PopoverHeader,
-  PopoverBody,
+  Link as LinkChakra,
   Menu,
   MenuButton,
   MenuItem,
@@ -97,7 +93,7 @@ const Header = ({ user }) => {
           </Button>
         </>
 
-        <Link href="/pairingSession">
+        <LinkChakra _hover={{}} _focus={{}} href="/pairingSession">
           <Button
             {...themes.navButtons}
             bg="orange.500"
@@ -107,7 +103,7 @@ const Header = ({ user }) => {
           >
             Connect me with someone
           </Button>
-        </Link>
+        </LinkChakra>
       </Flex>
       <Flex w="15%" justifyContent="flex-end">
         {user ? (

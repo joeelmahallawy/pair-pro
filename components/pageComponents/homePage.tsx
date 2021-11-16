@@ -1,5 +1,5 @@
-import { Center, Box, Heading, Text, Button } from "@chakra-ui/react";
-import Link from "next/link";
+import { Center, Box, Heading, Text, Button, Link } from "@chakra-ui/react";
+// import Link from "next/link";
 
 import React from "react";
 import { themes } from "../../configs/themes";
@@ -36,7 +36,7 @@ const HomePage = () => {
           experience and is ready to collaborate to build great projects!
         </Text>
       </Box>
-      <Link href="/pairingSession">
+      <Link _focus={{}} _hover={{}} href="/pairingSession">
         <Button
           mt="5.5%"
           size="lg"
