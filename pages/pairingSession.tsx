@@ -30,10 +30,8 @@ const Pairing = ({ user, responseData }) => {
   const [userExists, setUserExists] = useState(false);
   const [showSpinner, setshowSpinner] = useState(true);
   useEffect(() => {
-    if (responseData.data == null) {
-      console.log("resoponse data is NULL");
-
-      fetch("https://pair-pro.vercel.app/api/mongo", {
+    if (!responseData.data) {
+      fetch("/api/mongo", {
         method: "POST",
         headers: {
           type: "queue",
@@ -43,8 +41,7 @@ const Pairing = ({ user, responseData }) => {
         }),
       }).then(async (res) => {
         const data = await res.json();
-        console.log("sent that:", data);
-        // console.log(data);
+        console.log("got that data:", data);
         setshowSpinner(false);
       });
     } else {

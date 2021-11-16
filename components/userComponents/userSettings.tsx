@@ -74,7 +74,6 @@ const UserSettings = ({ user, data }) => {
             } else {
               const id = getUserId(user);
               if (!data) {
-                console.log("we are putting in new user");
                 fetch("/api/mongo", {
                   method: "POST",
                   body: JSON.stringify({
