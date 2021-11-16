@@ -35,8 +35,8 @@ async function getIDfromQueue(
   res: NextApiResponse,
   DB: Collection
 ) {
-  const { userid } = req.headers;
-  const data = await DB.findOne({ id: userid });
+  const { id } = req.headers;
+  const data = await DB.findOne({ id });
   res.json({ data });
 }
 

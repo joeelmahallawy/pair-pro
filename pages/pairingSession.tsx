@@ -24,24 +24,24 @@ import { useAsyncFn } from "react-use";
 import Header from "../components/pageComponents/header";
 import getUserId from "../helpers/getUserId";
 
-const Pairing = ({ user }) => {
-  // console.log("responsedata", responseData);
-  // console.log(user);
+const Pairing = ({ user, responseData }) => {
+  console.log("responsedata", responseData);
+  console.log(user);
 
   const [showSpinner, setshowSpinner] = useState(true);
   useEffect(() => {
     // if (!responseData.data) {
-    fetch("https://pair-pro.vercel.app/api/mongo", {
-      method: "POST",
-      headers: {
-        type: "queue",
-      },
-      body: JSON.stringify({
-        id: getUserId(user),
-      }),
-    }).then(() => {
-      setshowSpinner(false);
-    });
+    // fetch("https://pair-pro.vercel.app/api/mongo", {
+    //   method: "POST",
+    //   headers: {
+    //     type: "queue",
+    //   },
+    //   body: JSON.stringify({
+    //     id: getUserId(user),
+    //   }),
+    // }).then(() => {
+    //   setshowSpinner(false);
+    // });
     // }
   }, []);
 
@@ -88,15 +88,15 @@ export const getServerSideProps = withPageAuthRequired({
     });
     const data = await res.json();
 
-    // const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
-    //   method: "GET",
-    //   headers: {
-    //     type: "queue",
-    //     userid: getUserId(data),
-    //   },
-    // });
-    // const responseData = await response.json();
+    const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
+      method: "GET",
+      headers: {
+        type: "queue",
+        id: getUserId(data),
+      },
+    });
+    const responseData = await response.json();
 
-    return { props: { data } };
+    return { props: { data, responseData } };
   },
 });
