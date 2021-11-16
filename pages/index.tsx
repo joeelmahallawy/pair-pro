@@ -13,9 +13,9 @@ import getUserId from "../helpers/getUserId";
 const IndexPage = ({ user, data }) => {
   if (user.error == "not_authenticated") user = null;
   console.log(user);
-  console.log(data);
+  console.log(data.data);
   useEffect(() => {
-    if (!data && process.browser) {
+    if (!data.data && process.browser) {
       window.location.pathname = "initLogin";
     }
   }, []);
@@ -122,6 +122,7 @@ export const getServerSideProps = async (ctx) => {
     const user = await res.json();
 
     const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
+      method: "GET",
       headers: {
         user: getUserId(user),
       },
