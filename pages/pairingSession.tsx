@@ -32,7 +32,7 @@ const Pairing = ({ user, responseData }) => {
   useEffect(() => {
     if (!responseData.data) {
       console.log("posting data...");
-      console.log("posting data...");
+
       fetch("/api/mongo", {
         method: "POST",
         headers: {
