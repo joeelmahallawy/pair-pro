@@ -68,7 +68,7 @@ async function updateUser(
   const { prefs } = JSON.parse(req.body);
   await DB.deleteOne({ id: prefs.id });
   await DB.insertOne({ ...prefs });
-  // DB.deleteOne({})
+
   // DB.findOneAndReplace
   // DB.findOneAndDelete({ id: prefs.id });
   // const data = await DB.findOneAndReplace({ id: prefs.id }, { prefs });
