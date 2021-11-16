@@ -180,7 +180,8 @@ const UserSettings = ({ user, data }) => {
                           {language}
 
                           {console.log(
-                            data["Proficient Language(s)"].includes(language)
+                            data &&
+                              data["Proficient Language(s)"].includes(language)
                           )}
                         </Checkbox>
                       ))}
