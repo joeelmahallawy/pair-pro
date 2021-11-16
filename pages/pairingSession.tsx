@@ -27,22 +27,25 @@ import getUserId from "../helpers/getUserId";
 const Pairing = ({ user, responseData }) => {
   console.log("responsedata", responseData);
   console.log(user);
-
+  const [userExists, setUserExists] = useState(false);
   const [showSpinner, setshowSpinner] = useState(true);
   useEffect(() => {
-    // if (!responseData.data) {
-    // fetch("https://pair-pro.vercel.app/api/mongo", {
-    //   method: "POST",
-    //   headers: {
-    //     type: "queue",
-    //   },
-    //   body: JSON.stringify({
-    //     id: getUserId(user),
-    //   }),
-    // }).then(() => {
-    //   setshowSpinner(false);
-    // });
-    // }
+    if (!responseData.data) {
+      fetch("https://pair-pro.vercel.app/api/mongo", {
+        method: "POST",
+        headers: {
+          type: "queue",
+        },
+        body: JSON.stringify({
+          id: getUserId(user),
+        }),
+      }).then(() => {
+        setshowSpinner(false);
+      });
+    } else {
+      setshowSpinner(false);
+      setUserExists(true);
+    }
   }, []);
 
   return (
@@ -51,6 +54,27 @@ const Pairing = ({ user, responseData }) => {
       <Center fontFamily="Arial" w="100vw" h="80vh">
         {showSpinner ? (
           <Spinner w="70px" h="70px" />
+        ) : userExists ? (
+          <Alert
+            status="error"
+            variant="subtle"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            height="200px"
+            w="35vw"
+            borderRadius={10}
+          >
+            <AlertIcon boxSize="40px" mr={0} />
+            <AlertTitle mt={4} mb={1} fontSize="lg">
+              Wait a minute!
+            </AlertTitle>
+            <AlertDescription maxWidth="sm">
+              It seems taht you've already been added to the queue, please wait
+              patiently.
+            </AlertDescription>
+          </Alert>
         ) : (
           <>
             <Alert
