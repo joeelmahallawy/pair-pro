@@ -47,7 +47,7 @@ async function postToQueue(
 ) {
   try {
     const { userid } = JSON.parse(req.body);
-    DB.insertOne({ userid });
+    DB.insertOne({ id: userid });
     // res.json({ id });
   } catch (err) {
     // res.status(505).json({ err: "cant upload to DB" });
