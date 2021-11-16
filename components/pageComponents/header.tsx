@@ -128,13 +128,12 @@ const Header = ({ user }) => {
                 </Box>
               </MenuButton>
               <MenuList>
-                <MenuItem>
+                <MenuItem bg="gray.600" _hover={{ bg: "gray.500" }}>
                   <Link href={`/user/${getUserId(user)}`}>
                     <Center
                       justifyContent="space-between"
                       fontWeight="bold"
-                      bg="gray.400"
-                      _hover={{ cursor: "pointer", bg: "gray.300" }}
+                      _hover={{ cursor: "pointer" }}
                     >
                       <Image
                         w="60px"
@@ -155,7 +154,6 @@ const Header = ({ user }) => {
                 <Link href={`/user/${getUserId(user)}`}>
                   <MenuItem>Settings</MenuItem>
                 </Link>
-                <Divider />
                 <Link href="/api/auth/logout">
                   <MenuItem>Sign out</MenuItem>
                 </Link>
