@@ -178,9 +178,9 @@ const UserSettings = ({ user, data }) => {
                         >
                           {language}
 
-                          {console.log(
+                          {/* {console.log(
                             data["Proficient language(s)"].includes(language)
-                          )}
+                          )} */}
                         </Checkbox>
                       ))}
                     </FormControl>
