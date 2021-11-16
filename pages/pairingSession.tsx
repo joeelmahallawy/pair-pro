@@ -33,7 +33,7 @@ const Pairing = ({ user, responseData }) => {
     if (!responseData.data) {
       console.log("posting data...");
       console.log("posting data...");
-      fetch("https://pair-pro.vercel.app/api/mongo", {
+      fetch("/api/mongo", {
         method: "POST",
         headers: {
           type: "queue",
