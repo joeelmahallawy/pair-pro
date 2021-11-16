@@ -32,6 +32,7 @@ const Pairing = ({ user, responseData }) => {
   useEffect(() => {
     if (!responseData.data) {
       console.log("posting data...");
+      console.log("posting data...");
       fetch("https://pair-pro.vercel.app/api/mongo", {
         method: "POST",
         headers: {
