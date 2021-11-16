@@ -16,14 +16,21 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const queue = db.collection("inqueue");
     // users.deleteMany({});
     // Fetch posts from typeform responses API  then store it to MongoDB
-    if (req.method === "GET" && req.headers.type === "queue") {
-      getIDfromQueue(req, res, queue);
+
+    if (req.method === "POST") {
+      if (req.headers.type === "queue") {
+        postToQueue(req, res, queue);
+      } else {
+        getPostsThenStoreToDB(req, res, users);
+      }
     }
-    if (req.method === "POST" && req.headers.type == "queue") {
-      postToQueue(req, res, queue);
+    if (req.method === "GET") {
+      if (req.headers.type === "queue") {
+        getIDfromQueue(req, res, queue);
+      } else {
+        getUserFromDB(req, res, users);
+      }
     }
-    if (req.method === "POST") getPostsThenStoreToDB(req, res, users);
-    if (req.method === "GET") getUserFromDB(req, res, users);
     if (req.method === "PUT") updateUser(req, res, users);
   } catch (err: any) {
     res.status(404).json({ err });
@@ -46,7 +53,7 @@ async function postToQueue(
   res: NextApiResponse,
   DB: Collection
 ) {
-  const { userid } = req.headers;
+  const { userid } = JSON.parse(req.body);
   DB.insertOne({ id: userid });
   res.json({});
 }

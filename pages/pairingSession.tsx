@@ -27,15 +27,18 @@ import getUserId from "../helpers/getUserId";
 const Pairing = ({ user, responseData }) => {
   const [userExists, setUserExists] = useState(false);
   const [showSpinner, setshowSpinner] = useState(true);
-
+  console.log(responseData);
+  console.log(user);
   useEffect(() => {
     if (!responseData.data) {
       fetch("https://pair-pro.vercel.app/api/mongo", {
         method: "POST",
         headers: {
           type: "queue",
-          userid: getUserId(user),
         },
+        body: JSON.stringify({
+          userid: getUserId(user),
+        }),
       }).then(() => {
         setshowSpinner(false);
       });
