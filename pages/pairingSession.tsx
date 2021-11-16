@@ -26,7 +26,7 @@ import getUserId from "../helpers/getUserId";
 const Pairing = (user) => {
   const [showSpinner, setshowSpinner] = useState(true);
   useEffect(() => {
-    async () => {
+    (async () => {
       fetch("https://pair-pro.vercel.app/api/mongo", {
         method: "POST",
         headers: {
@@ -41,7 +41,7 @@ const Pairing = (user) => {
         setshowSpinner(false);
       });
       //
-    };
+    })();
     // setTimeout(() => {
     //   setshowSpinner(false);
     // }, 500);
