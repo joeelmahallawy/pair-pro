@@ -32,6 +32,7 @@ const Pairing = ({ user, responseData }) => {
   useEffect(() => {
     if (!responseData.data) {
       console.log("posting data...");
+      console.log(getUserId(user));
       console.log("posting data...");
       fetch("https://pair-pro.vercel.app/api/mongo", {
         method: "POST",
@@ -39,7 +40,7 @@ const Pairing = ({ user, responseData }) => {
           type: "queue",
         },
         body: JSON.stringify({
-          id: getUserId(user),
+          userid: getUserId(user),
         }),
       }).then(() => {
         setshowSpinner(false);
