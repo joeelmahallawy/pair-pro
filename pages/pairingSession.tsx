@@ -32,20 +32,16 @@ const Pairing = ({ user, responseData }) => {
   useEffect(() => {
     if (!responseData.data) {
       console.log("posting data...");
-
       fetch("/api/mongo", {
         method: "POST",
         headers: {
           type: "queue",
           id: getUserId(user),
         },
-      }).then(async (res) => {
-        const data = await res.json();
-        console.log("got that data:", data);
+      }).then(() => {
         setshowSpinner(false);
       });
     } else {
-      setshowSpinner(false);
       setUserExists(true);
     }
   }, []);

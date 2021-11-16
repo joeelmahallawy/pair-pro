@@ -47,7 +47,7 @@ async function postToQueue(
 ) {
   const { id } = req.headers;
   DB.insertOne({ id });
-  res.json({ id });
+  res.json({});
 }
 
 async function getUserFromDB(
