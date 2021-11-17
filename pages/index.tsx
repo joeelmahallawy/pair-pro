@@ -13,6 +13,8 @@ import getUserId from "../helpers/getUserId";
 import Router from "next/router";
 
 const IndexPage = ({ user, data }) => {
+  console.log(user);
+  console.log(data);
   useEffect(() => {
     if (!data.data && process.browser) {
       Router.push("/initLogin");
