@@ -387,15 +387,19 @@ const UserSettings = ({ user, data }) => {
                 ml="auto"
                 colorScheme="teal"
                 type="submit"
-                onClick={() =>
-                  toast({
-                    title: "Submitted changes.",
-                    description: "Profile looking good! 😉",
-                    status: "success",
-                    duration: 3000,
-                    isClosable: true,
-                  })
-                }
+                onClick={() => {
+                  if (
+                    process.browser &&
+                    window.location.pathname != "/initLogin"
+                  )
+                    return toast({
+                      title: "Submitted changes.",
+                      description: "Profile looking good! 😉",
+                      status: "success",
+                      duration: 3000,
+                      isClosable: true,
+                    });
+                }}
               >
                 Submit
               </Button>
