@@ -1,7 +1,5 @@
 import {
   Center,
-  Text,
-  Box,
   Button,
   Flex,
   useToast,
@@ -15,12 +13,7 @@ import {
   RadioGroup,
   Select,
 } from "@chakra-ui/react";
-import { Editable, EditableInput, EditablePreview } from "@chakra-ui/editable";
 import React, { useState } from "react";
-import EditableControls from "./editableControls";
-import { themes } from "../../configs/themes";
-import userPref from "../../interfaces/userPrefTypes";
-
 import { Formik } from "formik";
 import _ from "lodash";
 import getUserId from "../../helpers/getUserId";

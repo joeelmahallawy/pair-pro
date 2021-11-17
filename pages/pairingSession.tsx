@@ -1,33 +1,21 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import {
-  ModalOverlay,
-  ModalContent,
-  Button,
   Center,
-  FormControl,
-  FormLabel,
-  Input,
-  ModalBody,
-  ModalCloseButton,
-  ModalHeader,
-  Modal,
-  Flex,
   Spinner,
   Alert,
   AlertIcon,
-  Box,
   AlertDescription,
   AlertTitle,
 } from "@chakra-ui/react";
-import React, { useEffect, useRef, useState } from "react";
-import { useAsyncFn } from "react-use";
+import React, { useEffect, useState } from "react";
 import Header from "../components/pageComponents/header";
 import getUserId from "../helpers/getUserId";
 
-const Pairing = ({ user, responseData }) => {
+const Pairing = ({ user, responseData, emailData }) => {
   const [userExists, setUserExists] = useState(false);
   const [showSpinner, setshowSpinner] = useState(true);
   console.log(responseData);
+  console.log("ohya heres some email data:", emailData);
   console.log(user);
   useEffect(() => {
     if (!responseData.data) {
@@ -122,6 +110,14 @@ export const getServerSideProps = withPageAuthRequired({
     });
     const data = await res.json();
 
+    const emailRes = await fetch("https://pair-pro.vercel.app/api/mongo", {
+      method: "GET",
+      headers: {
+        user: getUserId(data),
+      },
+    });
+    const emailData = await emailRes.json();
+    // TODO:
     const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
       method: "GET",
       headers: {
@@ -131,6 +127,6 @@ export const getServerSideProps = withPageAuthRequired({
     });
     const responseData = await response.json();
 
-    return { props: { data, responseData } };
+    return { props: { data, responseData, emailData } };
   },
 });
