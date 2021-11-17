@@ -49,6 +49,7 @@ const Header = ({ user, data }) => {
 
   return (
     <Center
+      zIndex="overlay"
       position={headerSticky ? "fixed" : null}
       top={headerSticky ? 0 : null}
       width={headerSticky ? "100%" : null}

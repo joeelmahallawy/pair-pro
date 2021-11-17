@@ -20,6 +20,7 @@ import getUserId from "../../helpers/getUserId";
 
 const UserSettings = ({ user, data }) => {
   const [showToast, setShowToast] = useState(false);
+  const [showOther, setShowOther] = useState(false);
   const toast = useToast();
   if (data) {
     delete data.id;
@@ -180,63 +181,97 @@ const UserSettings = ({ user, data }) => {
                     </FormControl>
                   );
                 }
+                // TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
                 if (field == "Interested space(s)") {
                   return (
-                    <FormControl mb={5} key={i}>
-                      <FormLabel>Interested space(s)</FormLabel>
-                      {[
-                        "Cryptocurrency",
-                        "NFT",
-                        "Blockchain technology",
-                        "DeFi",
-                        "Artificial Intelligence",
-                        "Machine Learning",
-                        "Data science",
-                        "Other",
-                      ].map((space, i) => (
-                        <Checkbox
-                          defaultChecked={
-                            data && data["Interested space(s)"].includes(space)
-                          }
-                          isFocusable={false}
-                          _focus={{
-                            outline: "none",
-                            bg: "red",
-                            borderColor: "transparent",
-                          }}
-                          w={["50%", "50%", "50%", "50%", "50%", "50%"]}
-                          type="checkbox"
-                          key={i}
-                          onChange={(e) => {
-                            if (
-                              props.values["Interested space(s)"].includes(
-                                e.currentTarget.value
+                    <>
+                      <FormControl mb={5} key={i}>
+                        <FormLabel>Interested space(s)</FormLabel>
+                        {[
+                          "Cryptocurrency",
+                          "NFT",
+                          "Blockchain technology",
+                          "DeFi",
+                          "Artificial Intelligence",
+                          "Machine Learning",
+                          "Data science",
+                          "Other",
+                        ].map((space, i) => (
+                          <Checkbox
+                            defaultChecked={
+                              data &&
+                              data["Interested space(s)"].includes(space)
+                            }
+                            isFocusable={false}
+                            _focus={{
+                              outline: "none",
+                              bg: "red",
+                              borderColor: "transparent",
+                            }}
+                            w={["50%", "50%", "50%", "50%", "50%", "50%"]}
+                            type="checkbox"
+                            key={i}
+                            onChange={(e) => {
+                              if (e.currentTarget.value === "Other")
+                                setShowOther(true);
+                              if (
+                                props.values["Interested space(s)"].includes(
+                                  e.currentTarget.value
+                                )
                               )
-                            )
-                              _.remove(
-                                props.values["Interested space(s)"],
-                                function (el) {
-                                  return e.currentTarget.value == el;
-                                }
-                              );
-                            else
-                              props.values["Interested space(s)"].push(
-                                e.currentTarget.value
-                              );
-                          }}
-                          onBlur={props.handleBlur}
-                          value={space}
-                          name={`${props.values["Interested space(s)"]}`}
-                          size="lg"
-                          colorScheme="twitter"
+                                _.remove(
+                                  props.values["Interested space(s)"],
+                                  function (el) {
+                                    return e.currentTarget.value == el;
+                                  }
+                                );
+                              else
+                                props.values["Interested space(s)"].push(
+                                  e.currentTarget.value
+                                );
+                            }}
+                            onBlur={props.handleBlur}
+                            value={space}
+                            name={`${props.values["Interested space(s)"]}`}
+                            size="lg"
+                            colorScheme="twitter"
+                          >
+                            {space}
+                          </Checkbox>
+                        ))}
+                      </FormControl>
+                      {/* TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO: */}
+                      {showOther && (
+                        <FormControl
+                          mb={5}
+                          key={i}
+                          id="If picked 'other', please specify:"
+                          isRequired
                         >
-                          {space}
-                        </Checkbox>
-                      ))}
-                    </FormControl>
+                          <FormLabel fontWeight="bold">
+                            If picked 'other', please specify:
+                          </FormLabel>
+                          <Input
+                            _focus={{ bg: "gray.500" }}
+                            variant="filled"
+                            color="white"
+                            type="text"
+                            onChange={props.handleChange}
+                            onBlur={props.handleBlur}
+                            value={
+                              props.values["If picked 'other', please specify:"]
+                            }
+                            name="If picked 'other', please specify:"
+                            placeholder={"Ex) Fintech"}
+                          />
+                        </FormControl>
+                      )}
+                    </>
                   );
-                }
 
+                  // TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
+                }
+                if (field == "If picked 'other', please specify:") return null;
                 if (field == "Have any projects in mind?") {
                   return (
                     <FormControl key={i} mb={3}>
@@ -342,6 +377,11 @@ const UserSettings = ({ user, data }) => {
                     </FormControl>
                   );
                 }
+                if (field == "Interested space(s)") {
+                  // props.values["Interested space(s)"].push(
+                  //   e.currentTarget.value
+                  // )
+                }
                 return (
                   <FormControl mb={5} key={i} id={`${field}`} isRequired>
                     <FormLabel fontWeight="bold">{field}</FormLabel>
@@ -354,15 +394,8 @@ const UserSettings = ({ user, data }) => {
                       onBlur={props.handleBlur}
                       value={props.values[field]}
                       name={`${field}`}
-                      placeholder={
-                        field != "If picked 'other', please specify:"
-                          ? "Ex) React.js, Node.js"
-                          : "Ex) Real estate"
-                      }
+                      placeholder={"Ex) React.js, Node.js"}
                     />
-                    {field == "If picked 'other', please specify:" && (
-                      <FormHelperText mb={1}>'N/A' otherwise</FormHelperText>
-                    )}
                     {field == "Tools and technologies used" && (
                       <FormHelperText mb={1}>
                         Separate answers with comma and space
