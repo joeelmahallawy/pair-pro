@@ -287,57 +287,35 @@ const UserSettings = ({ user, data }) => {
                           }}
                           onBlur={props.handleBlur}
                         >
-                          {/* {console.log(data["Have any projects in mind?"])} */}
                           <HStack
                             value={props.values[field]}
                             name={`${field}`}
                             spacing="10%"
                           >
-                            <Radio
-                              value="Yes"
-                              onClick={() => {
-                                setShowKindOfProject(true);
-                              }}
-                            >
-                              Yes
-                            </Radio>
-                            <Radio
-                              value="No"
-                              onClick={() => {
-                                setShowKindOfProject(false);
-                              }}
-                            >
-                              No
-                            </Radio>
+                            <Radio value="Yes">Yes</Radio>
+                            <Radio value="No">No</Radio>
                           </HStack>
                         </RadioGroup>
                       </FormControl>
                       {/* TODO:TODO:TODO:TODO:TODO: */}
 
-                      {showKindOfProject ||
-                        (data["Have any projects in mind?"] == "Yes" && (
-                          <FormControl
-                            mb={5}
-                            id="What kind of project?"
-                            isRequired
-                          >
-                            <FormLabel fontWeight="bold">
-                              What kind of project?
-                            </FormLabel>
-                            <Input
-                              _focus={{ bg: "gray.500" }}
-                              variant="filled"
-                              color="white"
-                              type="text"
-                              onChange={props.handleChange}
-                              onBlur={props.handleBlur}
-                              value={props.values["What kind of project?"]}
-                              name="What kind of project?"
-                              placeholder="Ex) The Airbnb for people's backyards"
-                            />
-                            <FormHelperText>Give the TL;DR</FormHelperText>
-                          </FormControl>
-                        ))}
+                      <FormControl mb={5} id="What kind of project?" isRequired>
+                        <FormLabel fontWeight="bold">
+                          If so, what kind of project? Enter 'N/A' otherwise
+                        </FormLabel>
+                        <Input
+                          _focus={{ bg: "gray.500" }}
+                          variant="filled"
+                          color="white"
+                          type="text"
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                          value={props.values["What kind of project?"]}
+                          name="What kind of project?"
+                          placeholder="Ex) The Airbnb for people's backyards"
+                        />
+                        <FormHelperText>Give the TL;DR</FormHelperText>
+                      </FormControl>
                     </>
                   );
                 }
