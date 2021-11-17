@@ -106,7 +106,13 @@ const Header = ({ user, data }) => {
         <LinkChakra
           _hover={{}}
           _focus={{}}
-          href={user && data.data ? "/pairingSession" : "/api/auth/login"}
+          href={
+            !user
+              ? "/api/auth/login"
+              : data.data
+              ? "/pairingSession"
+              : "/initLogin"
+          }
         >
           <Button
             {...themes.navButtons}

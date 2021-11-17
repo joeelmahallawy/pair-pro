@@ -40,7 +40,13 @@ const HomePage = ({ user, data = { data: null } }) => {
       <Link
         _focus={{}}
         _hover={{}}
-        href={user && data.data ? "/pairingSession" : "/api/auth/login"}
+        href={
+          !user
+            ? "/api/auth/login"
+            : data.data
+            ? "/pairingSession"
+            : "/initLogin"
+        }
       >
         <Button
           mt="5.5%"
