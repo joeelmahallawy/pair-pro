@@ -12,6 +12,7 @@ import {
   Radio,
   RadioGroup,
   Select,
+  Box,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Formik } from "formik";
@@ -101,7 +102,7 @@ const UserSettings = ({ user, data }) => {
               {Object.keys(props.values).map((field, i) => {
                 if (field == "Years of experience") {
                   return (
-                    <FormControl mb={3} key={Math.random()}>
+                    <FormControl mb={3}>
                       <FormLabel fontWeight="bold">{field}</FormLabel>
                       <Select
                         onChange={props.handleChange}
@@ -123,7 +124,7 @@ const UserSettings = ({ user, data }) => {
 
                 if (field == "Proficient language(s)") {
                   return (
-                    <FormControl mb={5} key={Math.random()}>
+                    <FormControl mb={5}>
                       <FormLabel>Proficient Language(s)</FormLabel>
                       {[
                         "Javascript",
@@ -140,6 +141,7 @@ const UserSettings = ({ user, data }) => {
                         "Other",
                       ].map((language, i) => (
                         <Checkbox
+                          key={i}
                           defaultChecked={
                             data &&
                             data["Proficient language(s)"].includes(language)
@@ -152,7 +154,6 @@ const UserSettings = ({ user, data }) => {
                           }}
                           w={["30%", "30%", "30%", "30%", "30%", "25%"]}
                           type="checkbox"
-                          key={Math.random()}
                           onChange={(e) => {
                             if (
                               props.values["Proficient language(s)"].includes(
@@ -185,8 +186,8 @@ const UserSettings = ({ user, data }) => {
                 // TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
                 if (field == "Interested space(s)") {
                   return (
-                    <>
-                      <FormControl mb={5} key={Math.random()}>
+                    <Box key={i}>
+                      <FormControl mb={5}>
                         <FormLabel>Interested space(s)</FormLabel>
                         {[
                           "Cryptocurrency",
@@ -199,6 +200,7 @@ const UserSettings = ({ user, data }) => {
                           "Other",
                         ].map((space, i) => (
                           <Checkbox
+                            key={i}
                             defaultChecked={
                               data &&
                               data["Interested space(s)"].includes(space)
@@ -211,7 +213,6 @@ const UserSettings = ({ user, data }) => {
                             }}
                             w={["50%", "50%", "50%", "50%", "50%", "50%"]}
                             type="checkbox"
-                            key={Math.random()}
                             onChange={(e) => {
                               if (e.currentTarget.value === "Other")
                                 setShowOther((prev) => !prev);
@@ -245,7 +246,6 @@ const UserSettings = ({ user, data }) => {
                       {showOther && (
                         <FormControl
                           mb={5}
-                          key={Math.random()}
                           id="If picked 'other', please specify:"
                           isRequired
                         >
@@ -267,7 +267,7 @@ const UserSettings = ({ user, data }) => {
                           />
                         </FormControl>
                       )}
-                    </>
+                    </Box>
                   );
 
                   // TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
@@ -276,7 +276,7 @@ const UserSettings = ({ user, data }) => {
                 if (field == "Have any projects in mind?") {
                   return (
                     <>
-                      <FormControl key={Math.random()} mb={3}>
+                      <FormControl mb={3}>
                         <FormLabel fontWeight="bold">{field}</FormLabel>
                         <RadioGroup
                           defaultValue={
@@ -318,7 +318,6 @@ const UserSettings = ({ user, data }) => {
                       {showKindOfProject && (
                         <FormControl
                           mb={5}
-                          key={Math.random()}
                           id="What kind of project?"
                           isRequired
                         >
@@ -348,12 +347,7 @@ const UserSettings = ({ user, data }) => {
 
                 if (field == "Where are you based?") {
                   return (
-                    <FormControl
-                      mb={5}
-                      key={Math.random()}
-                      id={`${field}`}
-                      isRequired
-                    >
+                    <FormControl mb={5} id={`${field}`} isRequired>
                       <FormLabel fontWeight="bold">{field} </FormLabel>
                       <Input
                         _focus={{ bg: "gray.500" }}
@@ -371,12 +365,7 @@ const UserSettings = ({ user, data }) => {
                 }
                 if (field == "Email") {
                   return (
-                    <FormControl
-                      mb={5}
-                      key={Math.random()}
-                      id={`${field}`}
-                      isRequired
-                    >
+                    <FormControl mb={5} id={`${field}`} isRequired>
                       <FormLabel fontWeight="bold">{field}</FormLabel>
                       <Input
                         _focus={{ bg: "gray.500" }}
@@ -394,12 +383,7 @@ const UserSettings = ({ user, data }) => {
                 }
                 if (field == "Full Name") {
                   return (
-                    <FormControl
-                      mb={5}
-                      key={Math.random()}
-                      id={`${field}`}
-                      isRequired
-                    >
+                    <FormControl mb={5} id={`${field}`} isRequired>
                       <FormLabel fontWeight="bold">{field}</FormLabel>
                       <Input
                         _focus={{ bg: "gray.500" }}
@@ -421,12 +405,7 @@ const UserSettings = ({ user, data }) => {
                   // )
                 }
                 return (
-                  <FormControl
-                    mb={5}
-                    key={Math.random()}
-                    id={`${field}`}
-                    isRequired
-                  >
+                  <FormControl mb={5} id={`${field}`} isRequired>
                     <FormLabel fontWeight="bold">{field}</FormLabel>
                     <Input
                       _focus={{ bg: "gray.500" }}
