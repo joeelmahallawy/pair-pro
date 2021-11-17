@@ -21,6 +21,7 @@ import getUserId from "../../helpers/getUserId";
 const UserSettings = ({ user, data }) => {
   const [showToast, setShowToast] = useState(false);
   const [showOther, setShowOther] = useState(false);
+  const [showKindOfProject, setShowKindOfProject] = useState(false);
   const toast = useToast();
   if (data) {
     delete data.id;
@@ -100,7 +101,7 @@ const UserSettings = ({ user, data }) => {
               {Object.keys(props.values).map((field, i) => {
                 if (field == "Years of experience") {
                   return (
-                    <FormControl mb={3} key={i}>
+                    <FormControl mb={3} key={Math.random()}>
                       <FormLabel fontWeight="bold">{field}</FormLabel>
                       <Select
                         onChange={props.handleChange}
@@ -122,7 +123,7 @@ const UserSettings = ({ user, data }) => {
 
                 if (field == "Proficient language(s)") {
                   return (
-                    <FormControl mb={5} key={i}>
+                    <FormControl mb={5} key={Math.random()}>
                       <FormLabel>Proficient Language(s)</FormLabel>
                       {[
                         "Javascript",
@@ -151,7 +152,7 @@ const UserSettings = ({ user, data }) => {
                           }}
                           w={["30%", "30%", "30%", "30%", "30%", "25%"]}
                           type="checkbox"
-                          key={i}
+                          key={Math.random()}
                           onChange={(e) => {
                             if (
                               props.values["Proficient language(s)"].includes(
@@ -185,7 +186,7 @@ const UserSettings = ({ user, data }) => {
                 if (field == "Interested space(s)") {
                   return (
                     <>
-                      <FormControl mb={5} key={i}>
+                      <FormControl mb={5} key={Math.random()}>
                         <FormLabel>Interested space(s)</FormLabel>
                         {[
                           "Cryptocurrency",
@@ -210,7 +211,7 @@ const UserSettings = ({ user, data }) => {
                             }}
                             w={["50%", "50%", "50%", "50%", "50%", "50%"]}
                             type="checkbox"
-                            key={i}
+                            key={Math.random()}
                             onChange={(e) => {
                               if (e.currentTarget.value === "Other")
                                 setShowOther((prev) => !prev);
@@ -244,7 +245,7 @@ const UserSettings = ({ user, data }) => {
                       {showOther && (
                         <FormControl
                           mb={5}
-                          key={i}
+                          key={Math.random()}
                           id="If picked 'other', please specify:"
                           isRequired
                         >
@@ -274,58 +275,85 @@ const UserSettings = ({ user, data }) => {
                 if (field == "If picked 'other', please specify:") return null;
                 if (field == "Have any projects in mind?") {
                   return (
-                    <FormControl key={i} mb={3}>
-                      <FormLabel fontWeight="bold">{field}</FormLabel>
-                      <RadioGroup
-                        defaultValue={
-                          data && data["Have any projects in mind?"]
-                        }
-                        // value={data["Have any projects in mind?"]}
-                        onChange={(e) => {
-                          props.values["Have any projects in mind?"] = e;
-                        }}
-                        onBlur={props.handleBlur}
-                      >
-                        {/* {console.log(data["Have any projects in mind?"])} */}
-                        <HStack
-                          value={props.values[field]}
-                          name={`${field}`}
-                          spacing="10%"
+                    <>
+                      <FormControl key={Math.random()} mb={3}>
+                        <FormLabel fontWeight="bold">{field}</FormLabel>
+                        <RadioGroup
+                          defaultValue={
+                            data && data["Have any projects in mind?"]
+                          }
+                          // value={data["Have any projects in mind?"]}
+                          onChange={(e) => {
+                            props.values["Have any projects in mind?"] = e;
+                          }}
+                          onBlur={props.handleBlur}
                         >
-                          <Radio value="Yes">Yes</Radio>
-                          <Radio value="No">No</Radio>
-                        </HStack>
-                      </RadioGroup>
-                    </FormControl>
+                          {/* {console.log(data["Have any projects in mind?"])} */}
+                          <HStack
+                            value={props.values[field]}
+                            name={`${field}`}
+                            spacing="10%"
+                          >
+                            <Radio
+                              value="Yes"
+                              onClick={() => {
+                                setShowKindOfProject(true);
+                              }}
+                            >
+                              Yes
+                            </Radio>
+                            <Radio
+                              value="No"
+                              onClick={() => {
+                                setShowKindOfProject(false);
+                              }}
+                            >
+                              No
+                            </Radio>
+                          </HStack>
+                        </RadioGroup>
+                      </FormControl>
+                      {/* TODO:TODO:TODO:TODO:TODO: */}
+
+                      {showKindOfProject && (
+                        <FormControl
+                          mb={5}
+                          key={Math.random()}
+                          id="What kind of project?"
+                          isRequired
+                        >
+                          <FormLabel fontWeight="bold">
+                            What kind of project?
+                          </FormLabel>
+                          <Input
+                            _focus={{ bg: "gray.500" }}
+                            variant="filled"
+                            color="white"
+                            type="text"
+                            onChange={props.handleChange}
+                            onBlur={props.handleBlur}
+                            value={props.values["What kind of project?"]}
+                            name="What kind of project?"
+                            placeholder="Ex) The Airbnb for people's backyards"
+                          />
+                          <FormHelperText>Give the TL;DR</FormHelperText>
+                        </FormControl>
+                      )}
+                    </>
                   );
                 }
                 if (field == "What kind of project?") {
-                  return (
-                    <FormControl mb={5} key={i} id={`${field}`} isRequired>
-                      <FormLabel fontWeight="bold">
-                        If so, what kind of project? (optional)
-                      </FormLabel>
-                      <Input
-                        _focus={{ bg: "gray.500" }}
-                        variant="filled"
-                        color="white"
-                        type="text"
-                        onChange={props.handleChange}
-                        onBlur={props.handleBlur}
-                        value={props.values[field]}
-                        name={`${field}`}
-                        placeholder="Ex) The Airbnb for people's backyards"
-                      />
-                      <FormHelperText>
-                        Give the TL;DR and 'N/A' otherwise
-                      </FormHelperText>
-                    </FormControl>
-                  );
+                  return null;
                 }
 
                 if (field == "Where are you based?") {
                   return (
-                    <FormControl mb={5} key={i} id={`${field}`} isRequired>
+                    <FormControl
+                      mb={5}
+                      key={Math.random()}
+                      id={`${field}`}
+                      isRequired
+                    >
                       <FormLabel fontWeight="bold">{field} </FormLabel>
                       <Input
                         _focus={{ bg: "gray.500" }}
@@ -343,7 +371,12 @@ const UserSettings = ({ user, data }) => {
                 }
                 if (field == "Email") {
                   return (
-                    <FormControl mb={5} key={i} id={`${field}`} isRequired>
+                    <FormControl
+                      mb={5}
+                      key={Math.random()}
+                      id={`${field}`}
+                      isRequired
+                    >
                       <FormLabel fontWeight="bold">{field}</FormLabel>
                       <Input
                         _focus={{ bg: "gray.500" }}
@@ -361,7 +394,12 @@ const UserSettings = ({ user, data }) => {
                 }
                 if (field == "Full Name") {
                   return (
-                    <FormControl mb={5} key={i} id={`${field}`} isRequired>
+                    <FormControl
+                      mb={5}
+                      key={Math.random()}
+                      id={`${field}`}
+                      isRequired
+                    >
                       <FormLabel fontWeight="bold">{field}</FormLabel>
                       <Input
                         _focus={{ bg: "gray.500" }}
@@ -383,7 +421,12 @@ const UserSettings = ({ user, data }) => {
                   // )
                 }
                 return (
-                  <FormControl mb={5} key={i} id={`${field}`} isRequired>
+                  <FormControl
+                    mb={5}
+                    key={Math.random()}
+                    id={`${field}`}
+                    isRequired
+                  >
                     <FormLabel fontWeight="bold">{field}</FormLabel>
                     <Input
                       _focus={{ bg: "gray.500" }}
