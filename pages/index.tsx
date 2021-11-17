@@ -15,19 +15,11 @@ import Router from "next/router";
 const IndexPage = ({ data, user }) => {
   // console.log(props);c
   console.log(user, data);
-  if (user?.error == "not_authenticated") user = null;
-  // console.log(user);
-  // console.log(data);
-  // useEffect(() => {
-  //   if (user?.error != "not_authenticated") {
-  //     if (!data.data && process.browser) {
-  //       Router.push("/initLogin");
-  //     }
-  //   }
-
-  // if (user?.error != "not_authenticated" && !data.data && process.browser) {
-  // }
-  // }, []);
+  console.log("error" in user);
+  if ("error" in user) user = null;
+  else {
+    if (!data.data && process.browser) Router.push("/initLogin");
+  }
 
   return (
     <>
