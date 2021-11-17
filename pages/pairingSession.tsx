@@ -23,7 +23,7 @@ const Pairing = ({ user, responseData, emailData }) => {
         },
         body: JSON.stringify({
           userid: getUserId(user),
-          email: emailData.data.Email,
+          email: emailData?.data?.Email,
         }),
       }).then(() => {
         setshowSpinner(false);
@@ -48,6 +48,7 @@ const Pairing = ({ user, responseData, emailData }) => {
             justifyContent="center"
             textAlign="center"
             w="35vw"
+            p={3}
             borderRadius={10}
           >
             <AlertIcon boxSize="40px" mr={0} />
@@ -73,6 +74,7 @@ const Pairing = ({ user, responseData, emailData }) => {
         ) : (
           <>
             <Alert
+              p={3}
               fontSize={["8px", "12px", "14px", "16px", "16px", "20px"]}
               height="22.5vh"
               status="success"
