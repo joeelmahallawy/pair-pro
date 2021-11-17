@@ -42,8 +42,8 @@ const Pairing = ({ user, responseData, emailData }) => {
         <Header user={user} />
         <Center fontFamily="Arial" w="100vw" h="80vh">
           <Alert
-            fontSize={["8px", "12px", "14px", "16px", "20px", "20px"]}
-            height="25vh"
+            fontSize={["8px", "12px", "14px", "16px", "16px", "20px"]}
+            height="20vh"
             status="error"
             variant="subtle"
             flexDirection="column"
@@ -76,8 +76,8 @@ const Pairing = ({ user, responseData, emailData }) => {
         ) : (
           <>
             <Alert
-              fontSize={["8px", "12px", "14px", "16px", "20px", "20px"]}
-              height="25vh"
+              fontSize={["8px", "12px", "14px", "16px", "16px", "20px"]}
+              height="20vh"
               status="success"
               variant="subtle"
               flexDirection="column"
