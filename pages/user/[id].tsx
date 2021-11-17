@@ -8,9 +8,10 @@ import getUserId from "../../helpers/getUserId";
 const UserAccount = ({ user, data }: any) => {
   console.log("from suer account, user", user);
   console.log("from suer account,data", data);
+  const obj = { data };
   return (
     <>
-      <Header user={user} data={data} />
+      <Header user={user} data={obj} />
       <Flex bg="gray.900" m="0 auto" mt={10} borderRadius={10} w="80vw">
         <Center w="40%" flexDir="column">
           <Box w="82.5%" borderRadius="50%">
