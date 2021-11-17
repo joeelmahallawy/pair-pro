@@ -42,7 +42,7 @@ const Pairing = ({ user, responseData, emailData }) => {
         <Header user={user} />
         <Center fontFamily="Arial" w="100vw" h="80vh">
           <Alert
-            fontSize={["8px", "12px", "14px", "16px", "20px", "24px"]}
+            fontSize={["8px", "12px", "14px", "16px", "20px", "20px"]}
             height="25vh"
             status="error"
             variant="subtle"
@@ -57,7 +57,7 @@ const Pairing = ({ user, responseData, emailData }) => {
             <AlertTitle mt={4} mb={1} fontSize="lg">
               Wait a minute!
             </AlertTitle>
-            <AlertDescription maxWidth="sm">
+            <AlertDescription fontWeight="500" maxWidth="xl">
               It seems that you've already been added to the queue, please wait
               patiently.
             </AlertDescription>
@@ -76,7 +76,7 @@ const Pairing = ({ user, responseData, emailData }) => {
         ) : (
           <>
             <Alert
-              fontSize={["8px", "12px", "14px", "16px", "20px", "24px"]}
+              fontSize={["8px", "12px", "14px", "16px", "20px", "20px"]}
               height="25vh"
               status="success"
               variant="subtle"
@@ -91,7 +91,7 @@ const Pairing = ({ user, responseData, emailData }) => {
               <AlertTitle mt={4} mb={1} fontSize="lg">
                 Congratulations!
               </AlertTitle>
-              <AlertDescription maxWidth="sm">
+              <AlertDescription fontWeight="500" maxWidth="xl">
                 You've been added to the matchmaking queue! You will receive an
                 email once you match with someone.
               </AlertDescription>
