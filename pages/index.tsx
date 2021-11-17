@@ -13,11 +13,11 @@ import getUserId from "../helpers/getUserId";
 import Router from "next/router";
 
 const IndexPage = ({ user, data }) => {
+  if (user?.error == "not_authenticated") user = null;
   console.log(user);
   console.log(data);
   useEffect(() => {
-    if (user?.error == "not_authenticated") user = null;
-    else {
+    if (user?.error != "not_authenticated") {
       if (!data.data && process.browser) {
         Router.push("/initLogin");
       }
@@ -77,7 +77,7 @@ const IndexPage = ({ user, data }) => {
           <Center
             bg="gray.700"
             w={["10vw", "12.5vw", "14vw", "16vw", "20vw"]}
-            h={["20vw", "25vw", "28vw", "32vw", "40vw"]}
+            h={["20vh", "25vh", "28vh", "32vh", "40vh"]}
             p={5}
             borderRadius={5}
             flexDir="column"
