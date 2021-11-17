@@ -16,13 +16,15 @@ const IndexPage = ({ user, data }) => {
   console.log(user);
   console.log(data);
   useEffect(() => {
-    if (user.error == "not_authenticated") {
-      user = null;
-    } else {
+    if (user?.error == "not_authenticated") user = null;
+    else {
       if (!data.data && process.browser) {
         Router.push("/initLogin");
       }
     }
+
+    // if (user?.error != "not_authenticated" && !data.data && process.browser) {
+    // }
   }, []);
 
   return (
@@ -129,7 +131,7 @@ export const getServerSideProps = async (ctx) => {
     const user = await res.json();
 
     let data;
-    if (user) {
+    if (user.error != "not_authenticated") {
       const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
         method: "GET",
         headers: {
