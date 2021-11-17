@@ -54,7 +54,7 @@ const Header = ({ user }) => {
       width={headerSticky ? "100%" : null}
       bg={headerSticky ? "rgb(23, 25, 35,.75)" : null}
       ref={header}
-      h="11.5v%"
+      // h="11.5v%"
       boxShadow="0 0px 3px 1px rgb(217, 218, 217)"
       id="header"
       justifyContent="space-around"
@@ -73,7 +73,7 @@ const Header = ({ user }) => {
           </Link>
         </Center>
       </Center>
-      <Flex w="40%" justifyContent="flex-end">
+      <Flex w="45%" justifyContent="flex-end">
         {/* FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:ISSUE WITH RENDERING BUTTON SINCE ITS ON SERVERFIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME:FIXME: */}
         {onHome && (
           <>

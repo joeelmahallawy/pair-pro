@@ -13,9 +13,6 @@ import getUserId from "../helpers/getUserId";
 import Router from "next/router";
 
 const IndexPage = ({ data, user }) => {
-  // console.log(props);c
-  console.log(user, data);
-  console.log("error" in user);
   if ("error" in user) user = null;
   else {
     if (!data.data && process.browser) Router.push("/initLogin");
@@ -71,7 +68,7 @@ const IndexPage = ({ data, user }) => {
           <Center
             bg="gray.700"
             w={["10vw", "12.5vw", "14vw", "16vw", "20vw"]}
-            h={["20vh", "25vh", "28vh", "32vh", "40vh"]}
+            h={["20vh", "25vh", "28vh", "32vh", "36vh"]}
             p={5}
             borderRadius={5}
             flexDir="column"

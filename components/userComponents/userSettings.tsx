@@ -33,7 +33,6 @@ const UserSettings = ({ user, data }) => {
     delete data._id;
     delete data.nickName;
   }
-  // const { id, _id, nickName, ...rest } = data;
 
   return (
     <Center w="85%" p={5} fontFamily="Arial">
@@ -43,7 +42,7 @@ const UserSettings = ({ user, data }) => {
         p={5}
         bg="gray.700"
         h={["75vh", "75vh", "75vh", "75vh", "75vh", "62vh"]}
-        w={["35vw", "35vw", "35vw", "35vw", "35vw", "20vw"]}
+        w={["35vw", "35vw", "35vw", "35vw", "35vw", "27.5vw"]}
         fontFamily="Arial"
         borderRadius={10}
       >
@@ -183,10 +182,6 @@ const UserSettings = ({ user, data }) => {
                           colorScheme="twitter"
                         >
                           {language}
-
-                          {/* {console.log(
-                            data["Proficient language(s)"].includes(language)
-                          )} */}
                         </Checkbox>
                       ))}
                     </FormControl>
@@ -392,17 +387,15 @@ const UserSettings = ({ user, data }) => {
                 ml="auto"
                 colorScheme="teal"
                 type="submit"
-                onClick={() => {
-                  if (data && showToast) {
-                    return toast({
-                      title: "Submitted changes.",
-                      description: "Profile looking good! 😉",
-                      status: "success",
-                      duration: 3000,
-                      isClosable: true,
-                    });
-                  }
-                }}
+                onClick={() =>
+                  toast({
+                    title: "Submitted changes.",
+                    description: "Profile looking good! 😉",
+                    status: "success",
+                    duration: 3000,
+                    isClosable: true,
+                  })
+                }
               >
                 Submit
               </Button>
