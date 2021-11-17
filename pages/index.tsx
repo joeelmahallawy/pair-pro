@@ -68,7 +68,7 @@ const IndexPage = ({ data, user }) => {
           <Center
             bg="gray.700"
             w={["10vw", "12.5vw", "14vw", "16vw", "20vw"]}
-            h={["20vh", "25vh", "28vh", "32vh", "36vh"]}
+            h={["20vh", "25vh", "28vh", "32vh", "38vh"]}
             p={5}
             borderRadius={5}
             flexDir="column"
