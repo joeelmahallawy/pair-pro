@@ -5,6 +5,8 @@ import {
 } from "@chakra-ui/react";
 
 const themes = extendTheme({
+  initialColorMode: "dark",
+
   fonts: {
     heading: {
       fontFamily: "Raleway",
