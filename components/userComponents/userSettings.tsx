@@ -36,7 +36,7 @@ const UserSettings = ({ user, data }) => {
         p={5}
         bg="gray.700"
         h={["75vh", "75vh", "75vh", "75vh", "75vh", "62vh"]}
-        w={["35vw", "35vw", "35vw", "35vw", "35vw", "27.5vw"]}
+        w={["45vw", "45vw", "45vw", "45vw", "45vw", "37.5vw"]}
         fontFamily="Arial"
         borderRadius={10}
       >
@@ -213,7 +213,7 @@ const UserSettings = ({ user, data }) => {
                             key={i}
                             onChange={(e) => {
                               if (e.currentTarget.value === "Other")
-                                setShowOther(true);
+                                setShowOther((prev) => !prev);
                               if (
                                 props.values["Interested space(s)"].includes(
                                   e.currentTarget.value
