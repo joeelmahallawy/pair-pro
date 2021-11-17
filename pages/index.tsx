@@ -77,9 +77,9 @@ const IndexPage = ({ data = { data: null }, user }) => {
             id="contact-card"
           >
             <Image
-              w="160px"
+              w="60%"
               fit="cover"
-              h="140px"
+              h="100%"
               borderRadius="50%"
               src={YosemitePic.src}
             />
