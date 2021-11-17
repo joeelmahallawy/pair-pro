@@ -38,7 +38,7 @@ const UserSettings = ({ user, data }) => {
         p={5}
         bg="gray.700"
         h={["75vh", "75vh", "75vh", "75vh", "75vh", "62vh"]}
-        w={["45vw", "45vw", "45vw", "45vw", "45vw", "37.5vw"]}
+        w={["37.5vw", "37.5vw", "37.5vw", "37.5vw", "37.5vw", "30vw"]}
         fontFamily="Arial"
         borderRadius={10}
       >
@@ -243,30 +243,29 @@ const UserSettings = ({ user, data }) => {
                         ))}
                       </FormControl>
                       {/* TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO: */}
-                      {showOther && (
-                        <FormControl
-                          mb={5}
-                          id="If picked 'other', please specify:"
-                          isRequired
-                        >
-                          <FormLabel fontWeight="bold">
-                            If picked 'other', please specify:
-                          </FormLabel>
-                          <Input
-                            _focus={{ bg: "gray.500" }}
-                            variant="filled"
-                            color="white"
-                            type="text"
-                            onChange={props.handleChange}
-                            onBlur={props.handleBlur}
-                            value={
-                              props.values["If picked 'other', please specify:"]
-                            }
-                            name="If picked 'other', please specify:"
-                            placeholder={"Ex) Fintech"}
-                          />
-                        </FormControl>
-                      )}
+                      {showOther ||
+                        (data["Interested space(s)"].includes("Other") && (
+                          <FormControl mb={5} id="Please specify:" isRequired>
+                            <FormLabel fontWeight="bold">
+                              If picked 'other', please specify:
+                            </FormLabel>
+                            <Input
+                              _focus={{ bg: "gray.500" }}
+                              variant="filled"
+                              color="white"
+                              type="text"
+                              onChange={props.handleChange}
+                              onBlur={props.handleBlur}
+                              value={
+                                props.values[
+                                  "If picked 'other', please specify:"
+                                ]
+                              }
+                              name="If picked 'other', please specify:"
+                              placeholder={"Ex) Fintech"}
+                            />
+                          </FormControl>
+                        ))}
                     </Box>
                   );
 
@@ -315,29 +314,30 @@ const UserSettings = ({ user, data }) => {
                       </FormControl>
                       {/* TODO:TODO:TODO:TODO:TODO: */}
 
-                      {showKindOfProject && (
-                        <FormControl
-                          mb={5}
-                          id="What kind of project?"
-                          isRequired
-                        >
-                          <FormLabel fontWeight="bold">
-                            What kind of project?
-                          </FormLabel>
-                          <Input
-                            _focus={{ bg: "gray.500" }}
-                            variant="filled"
-                            color="white"
-                            type="text"
-                            onChange={props.handleChange}
-                            onBlur={props.handleBlur}
-                            value={props.values["What kind of project?"]}
-                            name="What kind of project?"
-                            placeholder="Ex) The Airbnb for people's backyards"
-                          />
-                          <FormHelperText>Give the TL;DR</FormHelperText>
-                        </FormControl>
-                      )}
+                      {showKindOfProject ||
+                        (data["Have any projects in mind?"] == "Yes" && (
+                          <FormControl
+                            mb={5}
+                            id="What kind of project?"
+                            isRequired
+                          >
+                            <FormLabel fontWeight="bold">
+                              What kind of project?
+                            </FormLabel>
+                            <Input
+                              _focus={{ bg: "gray.500" }}
+                              variant="filled"
+                              color="white"
+                              type="text"
+                              onChange={props.handleChange}
+                              onBlur={props.handleBlur}
+                              value={props.values["What kind of project?"]}
+                              name="What kind of project?"
+                              placeholder="Ex) The Airbnb for people's backyards"
+                            />
+                            <FormHelperText>Give the TL;DR</FormHelperText>
+                          </FormControl>
+                        ))}
                     </>
                   );
                 }
