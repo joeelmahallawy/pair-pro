@@ -15,7 +15,7 @@ const Pairing = ({ user, responseData, emailData }) => {
   const [userExists, setUserExists] = useState(false);
   const [showSpinner, setshowSpinner] = useState(true);
   console.log(responseData);
-  console.log("ohya heres some email data:", emailData);
+  console.log("ohya heres some email data:", emailData.data.Email);
   console.log(user);
   useEffect(() => {
     if (!responseData.data) {
@@ -26,6 +26,7 @@ const Pairing = ({ user, responseData, emailData }) => {
         },
         body: JSON.stringify({
           userid: getUserId(user),
+          email: emailData.data.Email,
         }),
       }).then(() => {
         setshowSpinner(false);
