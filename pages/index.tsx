@@ -12,8 +12,9 @@ import getUserId from "../helpers/getUserId";
 // import Router from 'next/router'
 import Router from "next/router";
 
-const IndexPage = (props) => {
-  console.log(props);
+const IndexPage = ({ data, user }) => {
+  // console.log(props);c
+  console.log(user, data);
   // if (user?.error == "not_authenticated") user = null;
   // console.log(user);
   // console.log(data);
@@ -38,7 +39,7 @@ const IndexPage = (props) => {
         boxSizing="border-box"
       >
         <Flex flexDir="column" id="home" h="100vh">
-          <Header user={props.user} />
+          <Header user={user} />
           <HomePage />
           {/* TODO: */}
           <Bouncer />
@@ -50,7 +51,7 @@ const IndexPage = (props) => {
           <Why />
         </Flex>
 
-        {!props.user && (
+        {!user && (
           <Center p={0} bg="gray.900">
             <Button
               m="10%"
@@ -69,7 +70,7 @@ const IndexPage = (props) => {
         <Center
           p={5}
           flexDir="column"
-          bg={props.user ? "gray.900" : "gray.800"}
+          bg={user ? "gray.900" : "gray.800"}
           id="footer"
         >
           <Heading mb={3} fontSize="150%">
@@ -131,18 +132,13 @@ export const getServerSideProps = async (ctx) => {
     });
     const user = await res.json();
 
-    let data;
-    if (user.error != "not_authenticated") {
-      const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
-        method: "GET",
-        headers: {
-          user: getUserId(user),
-        },
-      });
-      data = await response.json();
-    } else {
-      data = null;
-    }
+    const response = await fetch("https://pair-pro.vercel.app/api/mongo", {
+      method: "GET",
+      headers: {
+        user: getUserId(user),
+      },
+    });
+    const data = await response.json();
 
     return { props: { user, data } };
   } catch (err) {
