@@ -12,9 +12,10 @@ import getUserId from "../helpers/getUserId";
 // import Router from 'next/router'
 import Router from "next/router";
 
-const IndexPage = ({ data, user }) => {
-  if ("error" in user) user = null;
-  else {
+const IndexPage = ({ data = { data: null }, user }) => {
+  if ("error" in user) {
+    user = null;
+  } else {
     if (!data.data && process.browser) Router.push("/initLogin");
   }
 
@@ -28,8 +29,8 @@ const IndexPage = ({ data, user }) => {
         boxSizing="border-box"
       >
         <Flex flexDir="column" id="home" h="100vh">
-          <Header user={user} />
-          <HomePage />
+          <Header user={user} data={data} />
+          <HomePage user={user} data={data} />
           {/* TODO: */}
           <Bouncer />
         </Flex>

@@ -10,7 +10,7 @@ const UserAccount = ({ user, data }: any) => {
   console.log("from suer account,data", data);
   return (
     <>
-      <Header user={user} />
+      <Header user={user} data={data} />
       <Flex bg="gray.900" m="0 auto" mt={10} borderRadius={10} w="80vw">
         <Center w="40%" flexDir="column">
           <Box w="82.5%" borderRadius="50%">

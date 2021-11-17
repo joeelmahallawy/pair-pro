@@ -21,7 +21,7 @@ import { Link as LinkScroll, animateScroll as scroll } from "react-scroll";
 import getUserId from "../../helpers/getUserId";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
-const Header = ({ user }) => {
+const Header = ({ user, data }) => {
   const header = useRef();
   const [onHome, setOnHome] = useState(true);
   const [headerSticky, setHeaderSticky] = useState(false);
@@ -103,7 +103,11 @@ const Header = ({ user }) => {
           </>
         )}
 
-        <LinkChakra _hover={{}} _focus={{}} href="/pairingSession">
+        <LinkChakra
+          _hover={{}}
+          _focus={{}}
+          href={user && data.data ? "/pairingSession" : "/api/auth/login"}
+        >
           <Button
             {...themes.navButtons}
             bg="orange.500"

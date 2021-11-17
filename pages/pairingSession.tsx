@@ -14,9 +14,7 @@ import getUserId from "../helpers/getUserId";
 const Pairing = ({ user, responseData, emailData }) => {
   const [userExists, setUserExists] = useState(false);
   const [showSpinner, setshowSpinner] = useState(true);
-  console.log(responseData);
-  console.log("ohya heres some email data:", emailData.data.Email);
-  console.log(user);
+
   useEffect(() => {
     if (!responseData.data) {
       fetch("https://pair-pro.vercel.app/api/mongo", {
@@ -39,7 +37,7 @@ const Pairing = ({ user, responseData, emailData }) => {
   if (userExists) {
     return (
       <>
-        <Header user={user} />
+        {/* <Header user={user} /> */}
         <Center fontFamily="Arial" w="100vw" h="80vh">
           <Alert
             fontSize={["8px", "12px", "14px", "16px", "16px", "20px"]}
@@ -69,7 +67,7 @@ const Pairing = ({ user, responseData, emailData }) => {
 
   return (
     <>
-      <Header user={user} />
+      {/* <Header user={user} /> */}
       <Center fontFamily="Arial" w="100vw" h="80vh">
         {showSpinner ? (
           <Spinner w="70px" h="70px" />

@@ -4,7 +4,7 @@ import { Center, Box, Heading, Text, Button, Link } from "@chakra-ui/react";
 import React from "react";
 import { themes } from "../../configs/themes";
 
-const HomePage = () => {
+const HomePage = ({ user, data = { data: null } }) => {
   return (
     <Center
       h="80%"
@@ -37,7 +37,11 @@ const HomePage = () => {
           experience and is ready to collaborate to build great projects!
         </Text>
       </Box>
-      <Link _focus={{}} _hover={{}} href="/pairingSession">
+      <Link
+        _focus={{}}
+        _hover={{}}
+        href={user && data.data ? "/pairingSession" : "/api/auth/login"}
+      >
         <Button
           mt="5.5%"
           size="lg"
