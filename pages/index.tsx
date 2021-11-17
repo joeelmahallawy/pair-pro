@@ -16,11 +16,14 @@ const IndexPage = ({ user, data }) => {
   console.log(user);
   console.log(data);
   useEffect(() => {
-    if (user?.error != "not_authenticated" && !data.data && process.browser) {
-      Router.push("/initLogin");
+    if (user.error == "not_authenticated") {
+      user = null;
+    } else {
+      if (!data.data && process.browser) {
+        Router.push("/initLogin");
+      }
     }
   }, []);
-  if (user.error == "not_authenticated") user = null;
 
   return (
     <>
