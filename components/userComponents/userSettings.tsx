@@ -425,6 +425,14 @@ const UserSettings = ({ user, data }) => {
                       duration: 3000,
                       isClosable: true,
                     });
+                  else
+                    return toast({
+                      title: "Account created.",
+                      description: "Your ready to start matching!",
+                      status: "success",
+                      duration: 3000,
+                      isClosable: true,
+                    });
                 }}
               >
                 Submit
