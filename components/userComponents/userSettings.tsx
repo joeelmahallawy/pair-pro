@@ -244,28 +244,29 @@ const UserSettings = ({ user, data }) => {
                       </FormControl>
                       {/* TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO: */}
                       {showOther ||
-                        (data["Interested space(s)"].includes("Other") && (
-                          <FormControl mb={5} id="Please specify:" isRequired>
-                            <FormLabel fontWeight="bold">
-                              If picked 'other', please specify:
-                            </FormLabel>
-                            <Input
-                              _focus={{ bg: "gray.500" }}
-                              variant="filled"
-                              color="white"
-                              type="text"
-                              onChange={props.handleChange}
-                              onBlur={props.handleBlur}
-                              value={
-                                props.values[
-                                  "If picked 'other', please specify:"
-                                ]
-                              }
-                              name="If picked 'other', please specify:"
-                              placeholder={"Ex) Fintech"}
-                            />
-                          </FormControl>
-                        ))}
+                        (data &&
+                          data["Interested space(s)"].includes("Other") && (
+                            <FormControl mb={5} id="Please specify:" isRequired>
+                              <FormLabel fontWeight="bold">
+                                If picked 'other', please specify:
+                              </FormLabel>
+                              <Input
+                                _focus={{ bg: "gray.500" }}
+                                variant="filled"
+                                color="white"
+                                type="text"
+                                onChange={props.handleChange}
+                                onBlur={props.handleBlur}
+                                value={
+                                  props.values[
+                                    "If picked 'other', please specify:"
+                                  ]
+                                }
+                                name="If picked 'other', please specify:"
+                                placeholder={"Ex) Fintech"}
+                              />
+                            </FormControl>
+                          ))}
                     </Box>
                   );
 
