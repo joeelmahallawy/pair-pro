@@ -13,11 +13,13 @@ import getUserId from "../helpers/getUserId";
 import Router from "next/router";
 
 const IndexPage = ({ data = { data: null }, user }) => {
-  if ("error" in user) {
-    user = null;
-  } else {
-    if (!data.data && process.browser) Router.push("/initLogin");
-  }
+  useEffect(() => {
+    if ("error" in user) {
+      user = null;
+    } else {
+      if (!data.data && process.browser) Router.push("/initLogin");
+    }
+  }, []);
 
   return (
     <>
