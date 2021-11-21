@@ -13,14 +13,12 @@ import getUserId from "../helpers/getUserId";
 import Router from "next/router";
 
 const IndexPage = ({ data = { data: null }, user }) => {
-  useEffect(() => {
-    if ("error" in user) {
-      user = null;
-    } else {
-      if (!data.data && process.browser) Router.push("/initLogin");
-    }
-  }, []);
-
+  if ("error" in user) {
+    user = null;
+  } else {
+    if (!data.data && process.browser) Router.push("/initLogin");
+  }
+  console.log(user);
   return (
     <>
       <Flex
