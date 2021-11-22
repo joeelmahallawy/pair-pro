@@ -13,6 +13,7 @@ import {
   RadioGroup,
   Select,
   Box,
+  Link,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Formik } from "formik";
@@ -408,7 +409,10 @@ const UserSettings = ({ user, data }) => {
                   </FormControl>
                 );
               })}
-              <Button
+
+              {/* TODO: */}
+              <Link
+                href="/"
                 ml="auto"
                 colorScheme="teal"
                 type="submit"
@@ -435,7 +439,7 @@ const UserSettings = ({ user, data }) => {
                 }}
               >
                 Submit
-              </Button>
+              </Link>
             </form>
           )}
         </Formik>
