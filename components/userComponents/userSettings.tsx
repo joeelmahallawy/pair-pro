@@ -1,3 +1,4 @@
+import Router from "next/router";
 import {
   Center,
   Button,
@@ -100,7 +101,12 @@ const UserSettings = ({ user, data }) => {
           {(props) => (
             <form
               style={{ display: "flex", flexDirection: "column" }}
-              onSubmit={props.handleSubmit}
+              onSubmit={() => {
+                props.handleSubmit();
+                if (process.browser && window.location.pathname == "/initLogin")
+                  Router.replace("initLogin", "/");
+                //
+              }}
             >
               {Object.keys(props.values).map((field, i) => {
                 if (field == "Years of experience") {
@@ -410,10 +416,7 @@ const UserSettings = ({ user, data }) => {
                 );
               })}
 
-              {/* TODO: */}
-              <Link
-                as={Button}
-                href="/"
+              <Button
                 ml="auto"
                 colorScheme="teal"
                 type="submit"
@@ -440,7 +443,7 @@ const UserSettings = ({ user, data }) => {
                 }}
               >
                 Submit
-              </Link>
+              </Button>
             </form>
           )}
         </Formik>
