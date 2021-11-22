@@ -94,20 +94,14 @@ const UserSettings = ({ user, data }) => {
                 });
               }
               if (process.browser && window.location.pathname == "/initLogin")
-                window.location.pathname = "/";
+                Router.replace("/");
             }
           }}
         >
           {(props) => (
             <form
               style={{ display: "flex", flexDirection: "column" }}
-              onSubmit={() => {
-                props.handleSubmit();
-                if (process.browser && window.location.pathname == "/initLogin")
-                  window.location.pathname = "/";
-
-                //
-              }}
+              onSubmit={props.handleSubmit}
             >
               {Object.keys(props.values).map((field, i) => {
                 if (field == "Years of experience") {
