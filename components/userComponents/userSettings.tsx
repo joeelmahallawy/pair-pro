@@ -412,6 +412,7 @@ const UserSettings = ({ user, data }) => {
 
               {/* TODO: */}
               <Link
+                as={Button}
                 href="/"
                 ml="auto"
                 colorScheme="teal"
