@@ -104,7 +104,8 @@ const UserSettings = ({ user, data }) => {
               onSubmit={() => {
                 props.handleSubmit();
                 if (process.browser && window.location.pathname == "/initLogin")
-                  Router.replace("initLogin", "/");
+                  window.location.pathname = "/";
+
                 //
               }}
             >
